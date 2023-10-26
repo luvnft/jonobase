@@ -16,7 +16,7 @@ import { Suspense } from 'react'
 import { Load } from './basis/util/load-spin'
 
 export const dynamic = 'auto'
-export const revalidate = 0
+export const revalidate = 900
 export const fetchCache = 'auto'
 
 export const metadata: Metadata = {
