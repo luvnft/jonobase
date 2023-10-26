@@ -48,7 +48,7 @@ export default function ItemCard({item, lang} : any) {
 
     return (
       <Line className={`
-        text-black dark:text-gray-500
+        font-sans text-black dark:text-gray-500
         ${item.featured && `text-black dark:text-black`}
         ${item.collectionName === 'pages' && `hidden`}
         ${itemDate === '' && `hidden`}        
@@ -77,9 +77,9 @@ export default function ItemCard({item, lang} : any) {
 
   const ListCardTitle = () => {
     return (
-      <Line className={`hover:underline ${item.emoji ? `text-2xl` : `text-4xl`}`}> 
+      <h3 className={`hover:underline ${item.emoji ? `text-2xl` : `text-4xl`}`}> 
         {item.title}
-      </Line>
+      </h3>
     )
   }
 
