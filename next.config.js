@@ -1,16 +1,18 @@
 /** @type {import('next').NextConfig} */
 
+const domainString = process.env.PBDOMAIN_SHORT.toString()
+
 module.exports = {  
   images: {
     remotePatterns: [      
       {
         protocol: 'http',
-        hostname: process.env.PBDOMAIN_SHORT,        
+        hostname: domainString,        
         pathname: '/api/files/**'
       },
       {
         protocol: 'https',
-        hostname: process.env.PBDOMAIN_SHORT,        
+        hostname: domainString,        
         pathname: '/api/files/**'
       },
     ] 
