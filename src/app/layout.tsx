@@ -14,6 +14,7 @@ import Head from '@/app/basis/head/head'
 import Tail from '@/app/basis/tail/tail'
 import { Suspense } from 'react'
 import { Load } from './basis/util/load-spin'
+import { getImageURL } from './basis/util/func'
 
 export const dynamic = 'auto'
 export const revalidate = 900
@@ -30,10 +31,13 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  const { lang } = await getBase()
+  const { app, lang } = await getBase()
 
   return (
-    <html lang="en" suppressHydrationWarning>      
+    <html lang="en" suppressHydrationWarning>
+      <head>
+      { app.icon && <link rel="icon" href={`${getImageURL(app.collectionId, app.id, app.icon)}?v=${Date.now()}`} />}
+      </head>      
       <body className={`flex flex-col overflow-auto min-h-screen`}>        
         <ThemeProvider attribute={`class`} defaultTheme={`light`} enableSystem>
           <Skip text={lang.skip_to_main_content} />

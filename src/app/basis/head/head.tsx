@@ -14,7 +14,7 @@ import { getBase } from '../util/data'
 export default async function Head(_props: any) {
 
   const { app, lang } = await getBase()
-  const icon = getImageURL(app)
+  const icon = getImageURL(app.collectionId, app.id, app.icon)
 
   const HeadFullWidthWrapper = ({children}: any) => {
     return (

@@ -5,7 +5,7 @@ jonopoco
 loose helper functions to manipulate data
 */
 
-export const getImageURL = ({collectionId, id, icon}: any) => {
+export const getImageURL = (collectionId: string, id: string, icon: string) => {
   return `${process.env.PBDOMAIN}/api/files/${collectionId}/${id}/${icon}`
 }  
 
