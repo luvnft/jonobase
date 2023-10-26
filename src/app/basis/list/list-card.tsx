@@ -7,21 +7,23 @@ card for lists
 
 import Link from "next/link"
 import { Span, Line } from "../util/tidy-html"
-import { getFormattedDate, getFormattedDateTime } from "../util/func"
+import { getFormattedDate, getFormattedDateTime, getFormattedYearMonth } from "../util/func"
 
 export default function ItemCard({item, lang} : any) {
 
   let itemDate = ''
   switch (item.collectionName) {
     case "links":
-      itemDate = getFormattedDateTime(item.backdated, true)
+      itemDate = getFormattedDateTime(item.backdated)
       break;
     case "minis":
-      itemDate = getFormattedDateTime(item.backdated)
+      itemDate = getFormattedDateTime(item.backdated, true)
       break;        
     case "posts":
-    case "works":
       itemDate = getFormattedDate(item.backdated)
+      break;
+    case "works":
+      itemDate = getFormattedYearMonth(item.backdated)
       break;
     default:
       itemDate = ''

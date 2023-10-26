@@ -18,6 +18,10 @@ export const getFormattedDateTime = (oldDate: any, seconds: boolean = false) => 
   return oldDate.substring(0, ending)
 }
 
+export const getFormattedYearMonth = (oldDate: any) => {
+  return oldDate.substring(0, 7)
+}
+
 export const getFormattedTime = (oldDate: any, seconds: boolean = false) => {
   const ending = seconds ? 19 : 16
   return oldDate.substring(11, ending)
