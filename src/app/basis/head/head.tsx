@@ -5,27 +5,11 @@ jonopoco
 essential component for the app's header 
 */
 
-import PocketBase from 'pocketbase'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getImageURL } from '../util/func'
 import Menu from './menu'
-import { Suspense } from 'react'
-import { Line } from '../util/tidy-html'
-
-async function getBase() {
-  
-  const pb = new PocketBase(process.env.PBDOMAIN)
-  
-  const app = await pb.collection('bases')
-    .getFirstListItem(`slug='${process.env.PBSLUG}'`)
-  
-  const lang = await pb.collection('i18ns')
-    .getFirstListItem(`id='${app.language}'`)
-
-  return { app, lang }
-
-}
+import { getBase } from '../util/data'
 
 export default async function Head(_props: any) {
 
