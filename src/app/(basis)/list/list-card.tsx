@@ -1,7 +1,7 @@
 
 /*
 jonopoco
-/app/basis/list/list-card.tsx
+/app/(basis)/list/list-card.tsx
 card for lists
 */
 

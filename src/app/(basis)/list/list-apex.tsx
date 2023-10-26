@@ -1,7 +1,7 @@
 
 /*
 jonopoco
-/app/basis/list/list-apex.tsx
+/app/(basis)/list/list-apex.tsx
 apex (breadcrumbs) for lists
 */
 
@@ -9,16 +9,18 @@ import Link from "next/link"
 import { Span } from "../util/tidy-html"
 
 export default async function ListApex({lang, type, topic, current}: any) {
+
+
   
   return (
     <h2 className="text-2xl uppercase">      
      
       { (topic === '' || topic === undefined) && 
-        <Span>{type}</Span>
+        <Span>{decodeURIComponent(type)}</Span>
       }
 
       { (topic !== '' && topic !== undefined) && 
-        <Link href={`/${type}/`}>{type}</Link>
+        <Link href={`/${type}/`}>{decodeURIComponent(type)}</Link>
       }
       
       { (topic !== '' && topic !== undefined) && 

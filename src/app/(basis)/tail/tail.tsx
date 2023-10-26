@@ -1,13 +1,13 @@
 
 /* 
 jonopoco 
-/app/basis/tail/tail.tsx 
+/app/(basis)/tail/tail.tsx 
 essential component for the app's footer 
 ("tail" in my terminology) 
 */
 
 import { sanitize } from 'isomorphic-dompurify'
-import { getBase } from '@/app/basis/util/data'
+import { getBase } from '@/app/(basis)/util/data'
 import styles from './styles.module.css'
 
 export default async function Tail() {

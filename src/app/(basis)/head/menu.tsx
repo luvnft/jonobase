@@ -1,7 +1,7 @@
 
 /* 
 jonopoco 
-/app/basis/head/menu.tsx : 
+/app/(basis)/head/menu.tsx : 
 essential site navigation
 */
 

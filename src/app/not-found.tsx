@@ -3,8 +3,8 @@
 app/not-found.tsx : 404 page 
 */
 
-import { getBase } from '@/app/basis/util/data'
-import { Span } from './basis/util/tidy-html'
+import { getBase } from '@/app/(basis)/util/data'
+import { Span } from './(basis)/util/tidy-html'
 
 export default async function NotFound() {
 

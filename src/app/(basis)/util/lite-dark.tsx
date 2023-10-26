@@ -2,12 +2,12 @@
 
 /*
 jonopoco
-/app/basis/util/lite-dark.tsx : 
+/app/(basis)/util/lite-dark.tsx : 
 allows switching between light mode and dark mode 
 
 on layout.tsx: 
 
-  import { ThemeProvider } from '@/app/basis/util/lite-dark`
+  import { ThemeProvider } from '@/app/(basis)/util/lite-dark`
 
 and then also on layout.tsx:
 

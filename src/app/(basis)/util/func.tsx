@@ -1,7 +1,7 @@
 
 /*
 jonopoco
-/app/basis/util/func.tsx
+/app/(basis)/util/func.tsx
 loose helper functions to manipulate data
 */
 

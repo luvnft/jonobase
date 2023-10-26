@@ -1,7 +1,7 @@
 
 /* 
 jonopoco 
-/app/basis/a11y/skip.tsx 
+/app/(basis)/a11y/skip.tsx 
 accessibility component for "skip to main content" link
 un-hides before the header by pressing shift+tab  
 */

@@ -1,7 +1,7 @@
 
 /* 
 jonopoco 
-/app/basis/head/menu-find.tsx : 
+/app/(basis)/head/menu-find.tsx : 
 essential site navigation
 (search subcomponent)
 */

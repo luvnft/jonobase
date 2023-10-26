@@ -1,7 +1,7 @@
 
 /* 
 jonopoco 
-/app/basis/head/head.tsx 
+/app/(basis)/head/head.tsx 
 essential component for the app's header 
 */
 
