@@ -30,9 +30,11 @@ export async function generateMetadata({
 }
 
 export default async function PostList({ searchParams }: any) {
-
+  
   // reject any non-numeric injections in the URL bar
-  if (isNaN(searchParams.p + searchParams.l)) {
+  if (
+    (isNaN(searchParams.p) && isNaN(searchParams.l)) &&
+    (searchParams.p !== undefined || searchParams.l !== undefined)) {
     return <NotFound />
   }
   
