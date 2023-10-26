@@ -56,8 +56,6 @@ export async function getFullContentCount(
     }
   }
 
-  console.log("===== filtering", filtering)
-
   // sorting depending on post type
   let sorting = ''
   switch (type) {
