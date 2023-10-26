@@ -35,7 +35,7 @@ export default async function PostList({ params, searchParams }: any) {
   const content = await getContentList(
     listType, 
     searchParams.p, 
-    params.tagged, 
+    params.tagged.replace('%20', ' '), 
     searchParams.l
   )
   const { items } = content || []
@@ -60,7 +60,7 @@ export default async function PostList({ params, searchParams }: any) {
           <ListApex 
             lang={lang}
             type={listType}
-            topic={params.tagged}
+            topic={params.tagged.replace('%20', ' ')}
             current={searchParams.p}
           />
           
@@ -75,7 +75,7 @@ export default async function PostList({ params, searchParams }: any) {
 
           <PageJump             
             type={listType}            
-            topic={params.tagged}
+            topic={params.tagged.replace('%20', ' ')}
             current={searchParams.p}
             limit={searchParams.l}            
           />
