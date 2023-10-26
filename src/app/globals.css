@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* generics */
+
+body {
+  font-family: 'Roboto Slab', serif;
+}
+
+header, h1, h2, h3, h4, h5, h6, main .pagination.button, footer {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+header section, main section, footer section {
+  padding: 16px;
+}
+
+/* main */
+
+main a {
+  color: #009900;
+  cursor: pointer;
+}
+
+main a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.dark main a:hover {
+  color: white;
+}
+
+main .button {
+  background-color: white;  
+  color: black;  
+  display: inline-block;
+  border: 1px solid black;
+  margin: 0;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+}
+
+main .button:hover {
+  background-color: black; 
+  border: 1px solid black; 
+  color: white;
+  text-decoration: none;
+}
+
+main .pagination.button.current {
+  background-color: #009900;
+  color: white;
+}
+
+main p {
+  margin: 24px 0;
+}
+
+main li p {
+  margin: 12px 0;
+}
+
+/* main content customizations */
+
+table {
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid;    
+}
+
+th, td {
+  padding: 10px 20px;
+}
+
+th {
+  background-color: #cccccc;
+  text-align: left;
+}
+
+.dark th {
+  background-color: #333333;
+}
+
+main section div h2 {
+  font-size: 24px;  
+  margin-bottom: 16px;  
+}
+
+main section [class*=meat] h2, 
+main section [class*=meat] h3, 
+main section [class*=meat] h4 {
+  margin: 24px 0;
+}
+
+main [class*=meat] h2 {
+  font-size: 36px;
+}
+
+main [class*=meat] h3 { 
+  font-size: 30px;
+}
+
+main [class*=meat] h4 {
+  font-size: 24px;
+}
+
+main [class*=meat] ul, main [class*=meat] ol {
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+main [class*=meat] ul li, main [class*=meat] ol li {  
+  margin-left: 15px;  
+  margin-bottom: 15px;
+}
+
+main [class*=meat] ul > li {
+  list-style-type: disc;
+}
+
+main [class*=meat] ul > li li {
+  list-style-type: circle;
+}
+
+main [class*=meat] ol > li {
+  list-style-type: decimal;
+}
+
+main [class*=meat] ol > li > li {
+  list-style-type: lower-alpha;
+}
+
+main [class*=meat] ol > li > li > li {
+  list-style-type: lower-roman;
+}
+
+/* responsive */
+
+@media screen and (min-width: 1024px) {
+
+  header section {
+    gap: 24px;
+    padding: 24px 0;
+  }
+
+  main section, footer section {
+    padding: 24px 0;
+  }
+
+  header section, main section > div, footer section {
+    max-width: 1024px;  
+    margin: 0 auto;
+  }
+  
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1048px) {
+  header section {
+    padding: 24px;
+  }
+}

@@ -1,0 +1,16 @@
+
+.skiplink {
+  font-family: 'Barlow Condensed', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 100%; 
+  z-index: 500; 
+}
+
+.skiplink:focus {
+  right: auto;
+  background-color: #666666;
+  color: #ffffff;
+  border: #ffffff 3px solid;
+  padding: 1em;
+}
