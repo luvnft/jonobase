@@ -9,6 +9,7 @@ import { getBase, getContentList } from '../../../basis/util/data'
 import ItemCard from '@/app/basis/list/list-card'
 import ListApex from '@/app/basis/list/list-apex'
 import PageJump from '@/app/basis/list/page-jump'
+import NotFound from '@/app/not-found'
 
 const listType = 'posts'
 
@@ -29,15 +30,20 @@ export async function generateMetadata({
 }
 
 export default async function PostList({ searchParams }: any) {
+
+  // reject any non-numeric injections in the URL bar
+  if (isNaN(searchParams.p + searchParams.l)) {
+    return <NotFound />
+  }
   
   const { lang } = await getBase()
-  const content = await getContentList(
+
+  const { items } = await getContentList(
     listType, 
     searchParams.p, 
     searchParams.t, 
     searchParams.l
-  )
-  const { items } = content || []
+  ) 
 
   const ListWrap = ({children}: any) => {
     return (

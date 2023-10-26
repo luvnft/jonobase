@@ -49,17 +49,33 @@ export async function getFullContentCount(
     filtering += `bases?~'${base}'`
   }
   if (topicMatched[0]) {
-    filtering += ` && topics?~'${topicMatched[0].id}'` 
+    filtering += ` && topics~'${topicMatched[0].id}'` 
   } else {
     if (topic) {
       filtering += ` && topics='NULL'`
     }
   }
 
-  const count = await pb.collection(type)
-    .getFullList({ filter: filtering }) 
+  console.log("===== filtering", filtering)
+
+  // sorting depending on post type
+  let sorting = ''
+  switch (type) {
+    case "posts":
+    case "works":
+      sorting = `-featured, -backdated`
+      break;    
+    default: 
+      sorting = `-featured, -created`
+  }
+
+  const list = await pb.collection(type)
+    .getFullList({ 
+      sort: sorting,
+      filter: filtering
+    }) 
     
-  return count.length
+  return list.length
 }
 
 export async function getContentList(
@@ -72,8 +88,6 @@ export async function getContentList(
   const pb = new PocketBase(process.env.PBDOMAIN)
 
   const baseId = await getBaseID()   
-
-  if (isNaN(page) || isNaN(limit)) return []
   
   // "topics" are tags and are also known as "cases"
   const { items: topicMatched } = await pb.collection('cases')
