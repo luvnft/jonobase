@@ -7,7 +7,7 @@ essential site navigation
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useTheme } from 'next-themes'
 import { sanitize } from 'isomorphic-dompurify'
 import FocusTrap from 'focus-trap-react'
