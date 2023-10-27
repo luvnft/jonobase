@@ -38,7 +38,7 @@ export default async function Tail() {
   const TailWrapper = ({children}: any) => {
     return (
       <section 
-        className={`flex flex-col justify-center 
+        className={`flex flex-col  
           xl:flex-row xl:justify-between xl:items-start 
           gap-2 xl:gap-10
         `}
@@ -50,23 +50,21 @@ export default async function Tail() {
 
   const TailFat = () => {
     return (
-      <div
-        className={`text-center xl:text-left xl:w-1/2`}
-      >
+      <>
         { footerFat && 
-          <div dangerouslySetInnerHTML={{__html: footerFat}} />
+          <div className={`text-center xl:text-left w-full`} dangerouslySetInnerHTML={{__html: footerFat}} />
         }
-      </div>
+      </>
     )
   }
 
   const TailCopy = () => {
     return (
-      <div 
-        className={`text-center xl:text-left xl:w-1/2`}
+      <div
+        className={`xl:w-1/2`}
       >
         { footerCopy && 
-          <div dangerouslySetInnerHTML={{__html: footerCopy}} />
+          <div className={`text-center xl:text-left`} dangerouslySetInnerHTML={{__html: footerCopy}} />
         }
       </div>
     )
@@ -75,10 +73,10 @@ export default async function Tail() {
   const TailExtra = () => {
     return (
       <div 
-        className={`text-center xl:text-right xl:w-1/2`}
+        className={`xl:w-1/2`}
       >
       { footerLinks && 
-        <div dangerouslySetInnerHTML={{__html: footerLinks}} />
+        <div className={`text-center xl:text-right`} dangerouslySetInnerHTML={{__html: footerLinks}} />
       }
       </div>  
     )
