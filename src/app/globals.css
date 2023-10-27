@@ -92,56 +92,51 @@ th {
   background-color: #333333;
 }
 
-main section div h2 {
-  font-size: 24px;  
-  margin-bottom: 16px;  
-}
-
-main section [class*=meat] h2, 
-main section [class*=meat] h3, 
-main section [class*=meat] h4 {
+main section article h2, 
+main section article h3, 
+main section article h4 {
   margin: 24px 0;
 }
 
-main [class*=meat] h2 {
+main article h2 {
   font-size: 36px;
 }
 
-main [class*=meat] h3 { 
+main article h3 { 
   font-size: 30px;
 }
 
-main [class*=meat] h4 {
+main article h4 {
   font-size: 24px;
 }
 
-main [class*=meat] ul, main [class*=meat] ol {
+main article ul, main article ol {
   margin-left: 15px;
   margin-top: 15px;
 }
 
-main [class*=meat] ul li, main [class*=meat] ol li {  
+main article ul li, main article ol li {  
   margin-left: 15px;  
   margin-bottom: 15px;
 }
 
-main [class*=meat] ul > li {
+main article ul > li {
   list-style-type: disc;
 }
 
-main [class*=meat] ul > li li {
+main article ul > li li {
   list-style-type: circle;
 }
 
-main [class*=meat] ol > li {
+main article ol > li {
   list-style-type: decimal;
 }
 
-main [class*=meat] ol > li > li {
+main article ol > li > li {
   list-style-type: lower-alpha;
 }
 
-main [class*=meat] ol > li > li > li {
+main article ol > li > li > li {
   list-style-type: lower-roman;
 }
 
