@@ -36,3 +36,26 @@ export const Span = ({
   
 }
 
+export const Section = ({
+  ariaLabel = '', 
+  ariaHidden = false,
+  className = '',
+  children}: any) => {
+
+    return (
+      <section 
+        aria-label={ariaLabel} 
+        aria-hidden={ariaHidden}
+        className={className}
+      >
+
+        <div>
+        
+          { children }
+
+        </div>
+
+      </section>
+    )
+
+}
