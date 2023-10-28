@@ -32,7 +32,7 @@ export default async function RootLayout({
 }) {
 
   const { app, lang } = await getBase()
-
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -46,9 +46,9 @@ export default async function RootLayout({
             <Suspense fallback={<Load />}>
               {children}
             </Suspense>
-            </main>                 
-          <Tail />         
-        </ThemeProvider>    
+            </main>
+          <Tail />
+        </ThemeProvider>
       </body>
     </html>
   )
