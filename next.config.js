@@ -3,6 +3,25 @@
 const domainString = process.env.PBDOMAIN_SHORT.toString()
 
 module.exports = {  
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/en',
+        permanent: true
+      },      
+      {
+        source: '/:langs/:type',
+        destination: '/:langs/:type/all',
+        permanent: true
+      },
+      {
+        source: '/:langs/:type/post',
+        destination: '/:langs/:type/all',
+        permanent: true
+      }
+    ]
+  },
   images: {
     remotePatterns: [      
       {
@@ -17,5 +36,5 @@ module.exports = {
         pathname: '/api/files/**'
       },
     ] 
-  },
+  }
 }
