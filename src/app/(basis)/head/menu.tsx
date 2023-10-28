@@ -73,7 +73,9 @@ export default function Menu({app, lang} : any) {
 
   const MenuHead = ({children}: any) => {
     return (
-      <div className={`flex flex-col md:flex-row md:justify-between items-center mb-10`}>
+      <div className={`
+        flex flex-col md:flex-row md:justify-between items-center mb-10
+      `}>
         {children}
       </div>
     )

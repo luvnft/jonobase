@@ -1,6 +1,7 @@
-.animate-bounce {
+/* .animateBounce {
+  animation-name: bounce; 
   animation-iteration-count: 1;   
-  animation-duration: 0.25s; 
+  animation-duration: 0.66s; 
 }
 
 @keyframes bounce {
@@ -10,7 +11,7 @@
   100% {
     transform: translateY(0%);
   }
-}
+} */
 
 nav.menuRich a {
   color: #009900;    
