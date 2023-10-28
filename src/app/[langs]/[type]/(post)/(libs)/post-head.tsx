@@ -56,9 +56,9 @@ export default async function PostHead({lang, post}: any) {
         <p className={`
           text-lg md:text-xl my-5 
         `}>
-          <Link className={`button`} href={post.url} target={post.url_newtab ? '_blank' : ''}>
+          {post.url && <Link className={`button`} href={post.url} target={post.url_newtab ? '_blank' : ''}>
             {lang.visit_link}
-          </Link>
+          </Link>}
         </p>
       
       </StandardFlex>
