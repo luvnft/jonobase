@@ -17,7 +17,7 @@ export default async function PostTags({post, params}: any) {
       { terms && terms.map((term: any) => 
         <Link 
           key={term.id} 
-          className={`button !mr-2 !mb-2 dark:bg-emerald-900 dark:text-white`} 
+          className={`button !mr-2 !my-2 dark:bg-emerald-900 dark:text-white`} 
           href={`/${params.langs}/${post.post_type}/${term.slug}`}
         > 
           {term.slug} 
