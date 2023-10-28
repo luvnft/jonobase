@@ -5,61 +5,65 @@ jonopoco
 head (hero) for single "post" pages
 */
 
-import { getFormattedDate, getFormattedDateTime } from "@/app/(basis)/util/func"
-import { Span, StandardFlex } from "@/app/(basis)/util/tidy-html"
+import { getFormattedDate } from "@/app/(basis)/util/func"
+import { Span, Line, StandardFlex } from "@/app/(basis)/util/tidy-html"
 import Link from "next/link"
 
 export default async function PostHead({lang, post}: any) {  
   
   return (
-    <summary className={`block`}>
-      
-      <h2 className={`
-        text-4xl md:text-6xl mt-5 mb-0 uppercase
-      `}>{post.emoji} {post.title}</h2>
-            
-      <p className={`
-        font-sans text-lg md:text-xl text-gray-500 dark:text-gray-300 mt-2 mb-2        
-      `}>
-      
-        {lang.published} {post.created && getFormattedDateTime(post.created)}     
-
-        {post.updated !== undefined && 
-          <>
-            <Span className={`hidden md:inline text-sm`}> &larr; </Span>
-            <br className={`md:hidden`} />
-            <Span className={`text-sm`}>
-              <em>
-                {`${lang.last_updated} ${getFormattedDateTime(post.updated)}`}
-              </em>
-            </Span>          
-          </>
-        }    
-      
-        {post.backdated !== undefined && 
-          <>
-            <Span className={`text-sm`}> &larr; </Span>            
-            <Span className={`text-sm`}>
-              {`${lang.originally_created} ${getFormattedDate(post.backdated)}`} 
-            </Span>
-          </>
-        }
-              
-      </p>
+    <summary className={`block`}>    
 
       <StandardFlex>
 
-        <p className={`
-          font-sans text-lg md:text-xl my-5
-        `}>{post.summary}</p>
+        <div className={`font-sans w-full`}>
 
-        <p className={`
-          text-lg md:text-xl my-5 
+          <h2 className={`
+            text-4xl md:text-6xl mb-5 uppercase
+          `}>{post.emoji} {post.title}</h2>
+
+          <Line className={`
+            text-lg md:text-xl my-5
+          `}>
+            {post.url && 
+              <Span>                
+                <Link 
+                  className={`button`} 
+                  href={post.url} 
+                  target={post.url_newtab ? '_blank' : ''}
+                >
+                  {lang.visit_link}
+                </Link>                
+              </Span>
+            }
+            <Span>{post.summary}</Span>
+          </Line>
+
+        </div>
+
+        <div className={`
+          font-sans w-full text-lg md:text-xl text-gray-500 dark:text-gray-300 mt-2 mb-2 text-right       
         `}>
-          {post.url && <Link className={`button`} href={post.url} target={post.url_newtab ? '_blank' : ''}>
-            {lang.visit_link}
-          </Link>}
-        </p>
+              
+          {post.updated !== undefined && 
+            <Line>                        
+              <Span className={`text-md mb-0 pb-0`}>              
+                {`${lang.last_updated} ${getFormattedDate(post.updated)}`}              
+              </Span>          
+            </Line>
+          }    
+
+          <Line>{lang.published} {post.created && getFormattedDate(post.created)}</Line>
+        
+          {post.backdated !== undefined && 
+            <Line>            
+              <Span className={`text-md mt-0 pt-0`}>
+                {`${lang.originally_created} ${getFormattedDate(post.backdated)}`} 
+              </Span>
+            </Line>
+          }
+                
+        </div>
       
       </StandardFlex>
 
