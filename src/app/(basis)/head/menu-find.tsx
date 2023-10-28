@@ -18,8 +18,8 @@ export default function MenuFind({lang, showMenu}: any) {
 
   const handleSubmit = (event: any) => {
     event.preventDefault() 
-    router.push(`/search/${searchTerm}`)
-    showMenu(false)
+    router.push(`/en/find/${decodeURIComponent(searchTerm)}`)
+    showMenu && showMenu(false)
   }
 
   const handleSearchChange = (event: any) => {
