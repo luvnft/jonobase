@@ -6,7 +6,8 @@ head (hero) for single "post" pages
 */
 
 import { getFormattedDate, getFormattedDateTime } from "@/app/(basis)/util/func"
-import { Span } from "@/app/(basis)/util/tidy-html"
+import { Span, StandardFlex } from "@/app/(basis)/util/tidy-html"
+import Link from "next/link"
 
 export default async function PostHead({lang, post}: any) {  
   
@@ -46,9 +47,21 @@ export default async function PostHead({lang, post}: any) {
               
       </p>
 
-      <p className={`
-        font-sans text-lg md:text-xl my-5
-      `}>{post.summary}</p>
+      <StandardFlex>
+
+        <p className={`
+          font-sans text-lg md:text-xl my-5
+        `}>{post.summary}</p>
+
+        <p className={`
+          text-lg md:text-xl my-5 
+        `}>
+          <Link className={`button`} href={post.url} target={post.url_newtab ? '_blank' : ''}>
+            {lang.visit_link}
+          </Link>
+        </p>
+      
+      </StandardFlex>
 
     </summary>
   )
