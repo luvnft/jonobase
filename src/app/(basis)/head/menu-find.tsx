@@ -11,7 +11,7 @@ essential site navigation
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
 
-export default function MenuFind({lang, showMenu, ref}: any) {
+export default function MenuFind({lang, showMenu}: any) {
 
   const [ searchTerm, setSearchTerm ] = useState('')
   const router = useRouter()
@@ -41,8 +41,7 @@ export default function MenuFind({lang, showMenu, ref}: any) {
           name="query" 
           className={`border border-black text-black px-5 w-full`}
           placeholder={`🔎 ${lang.search}`}
-          onChange={handleSearchChange}
-          ref={ref}
+          onChange={handleSearchChange}          
         />
         <input 
           type="submit" 
