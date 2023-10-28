@@ -52,7 +52,10 @@ export default async function Tail() {
     return (
       <>
         { footerFat && 
-          <div className={`text-center xl:text-left w-full`} dangerouslySetInnerHTML={{__html: footerFat}} />
+          <div 
+            className={`text-center xl:text-left w-full`} 
+            dangerouslySetInnerHTML={{__html: footerFat}} 
+          />
         }
       </>
     )
@@ -64,7 +67,10 @@ export default async function Tail() {
         className={`xl:w-1/2`}
       >
         { footerCopy && 
-          <div className={`text-center xl:text-left`} dangerouslySetInnerHTML={{__html: footerCopy}} />
+          <div 
+            className={`text-center xl:text-left`} 
+            dangerouslySetInnerHTML={{__html: footerCopy}} 
+          />
         }
       </div>
     )
