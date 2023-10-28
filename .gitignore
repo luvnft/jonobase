@@ -40,5 +40,7 @@ pb_data
 pb_migrations
 
 # extra
-i18n
-yards
+lang
+users
+wares
+zones
