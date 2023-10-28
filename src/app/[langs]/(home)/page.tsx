@@ -21,11 +21,8 @@ export async function generateMetadata({
   const {app, lang} = await getBase() 
   
   return {
-    title: `
-      ${lang.search} 
-      ${params.find} 
-      ${searchParams.p ? `${lang.page} ${searchParams.p}` : ''}
-      @ ${app.title}
+    title: `      
+      ${app.title} - ${app.tagline}
     `
   }
 }
