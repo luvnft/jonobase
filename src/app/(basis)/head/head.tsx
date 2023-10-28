@@ -48,11 +48,12 @@ export default async function Head(_props: any) {
   }
 
   const HeadBrandLink = ({children}: any) => {
+
     return (
       <Link 
         className={`flex flex-row 
           items-center gap-5`}
-        href={`/`}
+        href={`/en/`}
       >
         {children}
       </Link>
