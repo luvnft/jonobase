@@ -34,74 +34,75 @@ export async function getBaseID() {
 
 export async function getFullContentCount(
   type: any,
-  topic: any = '',
+  term: any = '',
+  query: string = '%', 
 ) {
 
   const pb = new PocketBase(process.env.PBDOMAIN)
+  const baseId = await getBaseID()
 
-  const base = await getBaseID()
+  term = (term === 'all') ? '' : term
 
-  const { items: topicMatched } = await pb.collection('cases')
-    .getList(1, 1, { filter: `slug='${topic}'`})   
+  const { items: topicMatched } = await pb.collection('terms')
+    .getList(1, 1, { filter: `slug='${term}'`})   
 
-  let filtering = ''
-  if (base !== '') {
-    filtering += `bases?~'${base}'`
+  let filtering = `post_type='${type.replace(/'/g,'')}'`
+  
+  if (query !== '')
+    filtering = `( title?~'${query}' || summary?~'${query}' || content?~'${query}' )`
+  if (query === 'all') 
+    filtering = `( title?~'%' || summary?~'%' || content?~'%' )`  
+  if (baseId !== '') {
+    filtering += ` && bases?~'${baseId}'`
   }
   if (topicMatched[0]) {
-    filtering += ` && topics~'${topicMatched[0].id}'` 
+    filtering += ` && terms?~'${topicMatched[0].id}'` 
   } else {
-    if (topic) {
-      filtering += ` && topics='NULL'`
+    if (term) {
+      filtering += ` && terms='NULL'`
     }
-  }  
+  } 
 
-  // sorting depending on post type
-  let sorting = ''
-  switch (type) {
-    case "posts":
-    case "works":
-      sorting = `-featured, -backdated`
-      break;    
-    default: 
-      sorting = `-featured, -created`
-  }
-
-  const list = await pb.collection(type)
+  const list = await pb.collection('posts')
     .getFullList({ 
-      sort: sorting,
+      sort: `-featured, -created, -backdated`,
       filter: filtering
     }) 
     
-  return list
+  return list.length
 }
 
 export async function getContentList(
   type: string, 
   page: number = 1, 
-  topic: string = '', 
-  limit: number = 6
+  term: string = '', 
+  limit: number = 6,
+  query: string = ''
 ) {
 
   const pb = new PocketBase(process.env.PBDOMAIN)
 
   const baseId = await getBaseID() 
 
+  term = (term === 'all') ? '' : term
+
+  // terms are tags
+  const { items: topicMatched } = await pb.collection('terms')
+    .getList(1, 1, { filter: `slug='${term}'`})   
   
-  // "topics" are tags and are also known as "cases"
-  const { items: topicMatched } = await pb.collection('cases')
-    .getList(1, 1, { filter: `slug='${topic}'`})   
-    
   let filtering = `post_type='${type.replace(/'/g,'')}'`
+
+  if (query !== '')
+    filtering = `( title?~'${query}' || summary?~'${query}' || content?~'${query}' )`
   if (baseId !== '') 
     filtering += ` && bases?~'${baseId}'`
   if (topicMatched[0]) { 
-    // find the exact topic 
-    filtering += ` && topics?~'${topicMatched[0].id}'` 
+    // find the exact term 
+    filtering += ` && terms?~'${topicMatched[0].id}'` 
   } else {
-    if (topic) {
-      // don't return posts if the topic has no posts
-      filtering += ` && topics='NULL'`
+    if (term) {
+      // don't return posts if the term has no posts
+      filtering += ` && terms='NULL'`
     }
     // otherwise return posts
   }
@@ -129,7 +130,7 @@ export async function getPost(
     const post = await pb.collection('posts')
       .getFirstListItem(`
         slug='${slug}' && post_type='${type}'
-      `, { expand: 'topics' })      
+      `, { expand: 'terms' })      
 
     return { post } 
 
@@ -179,7 +180,7 @@ export async function getAdjacentPost(
 
     const adjacentPost = await pb.collection('posts')
       .getFirstListItem(filtering, 
-        {expand: 'bases,files,path,topics,versions'}
+        {expand: 'bases,files,path,terms,versions'}
       )
       
     return adjacentPost
