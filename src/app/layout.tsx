@@ -43,9 +43,9 @@ export default async function RootLayout({
           <Skip text={lang.skip_to_main_content} />
           <Head />          
             <main tabIndex={0}>
-            <Suspense fallback={<Load />}>
-              {children}
-            </Suspense>
+              <Suspense fallback={<Load />}>
+                {children}
+              </Suspense>
             </main>
           <Tail />
         </ThemeProvider>
