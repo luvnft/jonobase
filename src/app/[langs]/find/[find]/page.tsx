@@ -101,7 +101,7 @@ export default async function Main({ params, searchParams }: any) {
             <FindResultsCount />
           </FindHead>
 
-          <MenuFind lang={lang} />
+          <MenuFind lang={lang} inputName={`search-in-find`} />
           
           <ListWrap>
             { items && items.length > 0 

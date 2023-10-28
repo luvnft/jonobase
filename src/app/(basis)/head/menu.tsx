@@ -172,7 +172,7 @@ export default function Menu({app, lang} : any) {
     <>    
       <MenuButton />
       <MenuFindWrapper className={`hidden lg:block`}>
-        <MenuFind lang={lang} showMenu={setShowMenu} />
+        <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-nav`} />
       </MenuFindWrapper>
       { showMenu && (
         <FocusTrap>  
@@ -188,11 +188,11 @@ export default function Menu({app, lang} : any) {
                   </MenuOptions>                  
                 </MenuHead>     
                 <MenuFindWrapper className={`block lg:hidden`}>
-                  <MenuFind lang={lang} showMenu={setShowMenu} />
+                  <MenuFind lang={lang} showMenu={setShowMenu} inputName={`mobile-search-in-menu`}/>
                 </MenuFindWrapper>           
                 <MenuContent />
                 <MenuFindWrapper className={`hidden lg:block`}>
-                  <MenuFind lang={lang} showMenu={setShowMenu} />
+                  <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-menu`}/>
                 </MenuFindWrapper>
                 { app.footer_extra && <MenuFooter /> }
               </MenuWrapper>
