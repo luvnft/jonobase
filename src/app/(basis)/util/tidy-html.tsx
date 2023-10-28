@@ -1,6 +1,6 @@
 /*
 jonopoco
-/app/(basis)/util/tidy-html.tsx : 
+/app/(basis)/util/tidy-html.tsx 
 tidier HTML in components
 */
 
@@ -15,6 +15,30 @@ export const Line = ({
       {children}
     </p>    
   )
+
+}
+
+export const SectionDiv = ({
+  ariaLabel = '', 
+  ariaHidden = false,
+  className = '',
+  children}: any) => {
+
+    return (
+      <section 
+        aria-label={ariaLabel} 
+        aria-hidden={ariaHidden}
+        className={className}
+      >
+
+        <div>
+        
+          { children }
+
+        </div>
+
+      </section>
+    )
 
 }
 
@@ -36,26 +60,15 @@ export const Span = ({
   
 }
 
-export const Section = ({
-  ariaLabel = '', 
-  ariaHidden = false,
-  className = '',
-  children}: any) => {
+export const StandardFlex = ({
+  children, 
+  breakpoint
+}: any) => {
 
-    return (
-      <section 
-        aria-label={ariaLabel} 
-        aria-hidden={ariaHidden}
-        className={className}
-      >
-
-        <div>
-        
-          { children }
-
-        </div>
-
-      </section>
-    )
+  return (
+    <div className={`flex flex-row justify-between items-center`}>
+      {children}
+    </div>
+  )
 
 }
