@@ -75,8 +75,8 @@ export default async function Main({ params, searchParams }: any) {
 
   const ListWrap = ({children}: any) => {
     return (
-      <ul className={`grid gap-5 
-        grid-cols-1 items-center place-content-center mt-5
+      <ul className={`grid gap-5 mt-5
+        grid-cols-1 items-center place-content-center 
         ${items.length >= 2 && `sm:grid-cols-2`} 
         ${items.length >= 3 && `lg:grid-cols-3`}
       `}>
