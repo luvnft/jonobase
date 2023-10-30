@@ -155,7 +155,7 @@ export async function getAdjacentPost(
     const base = await getBaseID()
 
     if (base !== '') 
-      filtering += ` bases?~'${base}'`    
+      filtering += ` bases?~'${base}' &&`    
 
     switch (filter) {      
       case "site":
