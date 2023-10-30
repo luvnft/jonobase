@@ -7,7 +7,7 @@ tags (taxonomy) for single "post" pages
 
 import Link from "next/link";
 
-export default async function PostTags({post, params}: any) {
+export default function PostTags({post, params}: any) {
   
   const { expand : { lists } } = post  
   

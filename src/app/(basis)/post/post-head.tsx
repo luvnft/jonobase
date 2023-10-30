@@ -9,7 +9,7 @@ import { getFormattedDate } from "@/app/(basis)/util/func"
 import { Span, Line, StandardFlex } from "@/app/(basis)/util/tidy-html"
 import Link from "next/link"
 
-export default async function PostHead({lang, post}: any) {  
+export default function PostHead({lang, post}: any) {  
   
   return (
     <div className={`block`}>    

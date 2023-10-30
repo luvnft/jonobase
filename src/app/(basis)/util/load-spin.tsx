@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export async function Load() {
+export function Load() {
   
   return (
     <section className={`flex flex-row w-full h-[50vh] justify-center items-center`}>

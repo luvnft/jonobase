@@ -8,7 +8,7 @@ apex (breadcrumbs) for single "post" pages
 import Link from "next/link"
 import { Span } from "../util/tidy-html"
 
-export default async function PostApex({siteName, params, post}: any) {
+export default function PostApex({siteName, params, post}: any) {
   
   const { kind, title } = post
 
