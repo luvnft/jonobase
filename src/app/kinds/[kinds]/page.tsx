@@ -81,7 +81,11 @@ export default async function Main({ params, searchParams }: any) {
       
       <SectionDiv>
         
-        <LoopShow lang={lang} items={items} />
+        <LoopShow 
+          kind={kinds === 'all' ? true : false}
+          lang={lang} 
+          items={items} 
+        />
       
       </SectionDiv>
         

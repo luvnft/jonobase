@@ -8,7 +8,7 @@ loop wrapper for finds/kinds/lists etc
 
 import ItemCard from "../item/item-card"
 
-export const LoopShow = ({lang, items}: any) => {
+export const LoopShow = ({kind = true, lang, items}: any) => {
   return (
     <ul className={`grid gap-5 
       grid-cols-1 items-center place-content-center 
@@ -21,7 +21,7 @@ export const LoopShow = ({lang, items}: any) => {
             <ItemCard 
               key={item.id} 
               lang={lang} 
-              kind={''} 
+              kind={kind} 
               item={item}                   
             />
           )

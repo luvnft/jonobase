@@ -9,7 +9,7 @@ import Link from "next/link"
 import { Span, Line } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
-export default function ItemCard({lang, kind = '', item} : any) {
+export default function ItemCard({lang, kind = true, item} : any) {
 
   let itemDate = getFormattedDate(item.created)      
 
@@ -34,7 +34,7 @@ export default function ItemCard({lang, kind = '', item} : any) {
         font-sans text-white dark:text-white uppercase 
         mt-0 bg-gradient-to-b 
         from-black to-gray-700         
-        ${kind ? 'hidden' : ''}
+        ${kind ? '' : 'hidden'}
       `}>
         {item.kind}
       </Line>
