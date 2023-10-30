@@ -12,7 +12,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
 
   const Home = () => {
     return (
-      <Span>{site}</Span>      
+      <Span>{lang.home}</Span>      
     )
   }
 
