@@ -61,12 +61,12 @@ export default async function Main({ params, searchParams }: any) {
 
   return (
     <>
-    
+
       <SectionDiv>
                     
         <LoopHead>
           <LoopApex 
-            site={app.domain}
+            site={app.slug}
             lang={lang}
             params={params}              
             current={pageNumber}              

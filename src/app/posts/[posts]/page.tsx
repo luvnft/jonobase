@@ -45,7 +45,7 @@ export async function generateMetadata({
 
 export default async function Main({ params }: any) {
 
-  const { lang } = await getBase()
+  const { app, lang } = await getBase()
   const { post } = await getPost(params.posts)  
 
   const { lists } = post
@@ -59,7 +59,7 @@ export default async function Main({ params }: any) {
     <>
 
       <SectionDiv>
-        <PostApex post={post} params={params} />
+        <PostApex siteName={app.slug} post={post} params={params} />
       </SectionDiv>
 
       <SectionDiv className={`
