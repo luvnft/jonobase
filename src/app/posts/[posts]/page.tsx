@@ -84,7 +84,7 @@ export default async function Main({ params }: any) {
           dark:from-emerald-900 dark:to-emerald-800
           drop-shadow-md
         `}>
-          <PostTags post={post} />
+          <PostTags lang={lang} post={post} />
         </SectionDiv> 
       }
 

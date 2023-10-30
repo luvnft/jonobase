@@ -44,7 +44,7 @@ export default async function PostTurn({lang, post, params}: any) {
           dark:border-gray-500 md:border-y-0 
           font-bold`}
         > 
-          {criteria} 
+          {lang.navigate_site} : {criteria} 
         </div>
 
         { newer &&           

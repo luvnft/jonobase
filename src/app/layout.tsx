@@ -40,7 +40,7 @@ export default async function RootLayout({
       <body className={`flex flex-col overflow-auto min-h-screen`}>        
         <ThemeProvider attribute={`class`} defaultTheme={`light`} enableSystem>          
           <Head />          
-          <main tabIndex={0}>
+          <main tabIndex={-1}>
             <Suspense fallback={<Load />}>
               {children}
             </Suspense>
