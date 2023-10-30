@@ -150,17 +150,19 @@ export async function getAdjacentPost(
   
   try {
 
-    const pb = new PocketBase(process.env.PBDOMAIN)  
+    const pb = new PocketBase(process.env.PBDOMAIN) 
+    
+    const base = await getBaseID()
 
-    switch (filter) {
+    if (base !== '') 
+      filtering += ` bases?~'${base}'`    
+
+    switch (filter) {      
       case "site":
         filtering += ``
         break;
       case "kind":
         filtering += `kind='${post.kind}' && `
-        break;
-      case "book":
-        filtering += `book='${post.book || `NULL`}' && `
         break;
     }
 
