@@ -4,21 +4,26 @@ const domainString = process.env.PBDOMAIN_SHORT.toString()
 
 module.exports = {  
   async redirects() {
-    return [
+    return [   
       {
-        source: '/',
-        destination: '/en',
-        permanent: true
-      },      
-      {
-        source: '/:langs/:type',
-        destination: '/:langs/:type/all',
+        source: '/finds',
+        destination: '/finds/all',
         permanent: true
       },
       {
-        source: '/:langs/:type/post',
-        destination: '/:langs/:type/all',
+        source: '/kinds',
+        destination: '/kinds/all',
         permanent: true
+      },
+      {
+        source: '/lists',
+        destination: '/lists/all',
+        permanent: true
+      },
+      {
+        source: '/posts',
+        destination: '/',
+        permanent: true        
       }
     ]
   },

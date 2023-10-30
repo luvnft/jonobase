@@ -9,7 +9,7 @@ import Link from "next/link"
 import { Span, Line } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
-export default function ItemCard({type = '', item, lang} : any) {
+export default function ItemCard({lang, kind = '', item} : any) {
 
   let itemDate = getFormattedDate(item.created)      
 
@@ -34,9 +34,9 @@ export default function ItemCard({type = '', item, lang} : any) {
         font-sans text-white dark:text-white uppercase 
         mt-0 bg-gradient-to-b 
         from-black to-gray-700         
-        ${type ? '' : 'hidden'}
+        ${kind ? 'hidden' : ''}
       `}>
-        {item.post_type}
+        {item.kind}
       </Line>
     )
   }
@@ -105,7 +105,7 @@ export default function ItemCard({type = '', item, lang} : any) {
     <li className={`h-full text-center`}>  
 
       <Link 
-        href={`/en/${item.post_type}/post/${item.slug}`} 
+        href={`/posts/${item.slug}`} 
         className={`
           hover:no-underline 
           ${item.featured && `hover:!text-black dark:hover:!text-black`}

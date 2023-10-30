@@ -53,7 +53,7 @@ export default async function Head(_props: any) {
       <Link 
         className={`flex flex-row 
           items-center gap-5`}
-        href={`/en/`}
+        href={`/`}
       >
         {children}
       </Link>
@@ -72,7 +72,7 @@ export default async function Head(_props: any) {
 
   const HeadBrandTitle = () => {
     return (
-      <h1 className={`text-3xl uppercase`}>
+      <h1 className={`text-lg md:text-3xl uppercase`}>
         {app.title}
       </h1>
     )

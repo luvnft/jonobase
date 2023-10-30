@@ -7,11 +7,13 @@ with paginated lists plus paginated tag filtered lists
 */
 
 import { getBase, getContentList, getFullContentCount } from '@/app/(basis)/util/data'
-import ListApex from '../[type]/(list)/(libs)/list-apex'
-import ItemCard from '@/app/(basis)/item/item-card'
-import PageJump from '../[type]/(list)/(libs)/page-jump'
+import { LoopHead } from './loop/loop-head'
+import { LoopApex } from './loop/loop-apex'
+import { FindResultsCount } from '@/app/(basis)/loop/loop-count'
+import { LoopShow } from './loop/loop-show'
+import LoopTurn from './loop/loop-turn'
 import NotFound from '@/app/not-found'
-import { SectionDiv, Span, StandardFlex } from '@/app/(basis)/util/tidy-html'
+import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 import { sanitize } from 'isomorphic-dompurify'
 
 export async function generateMetadata({
@@ -41,28 +43,15 @@ export default async function Main({ params, searchParams }: any) {
   const { app, lang } = await getBase()
 
   const { items } = await getContentList(
-    // don't discriminate by post type (e.g. links, pages, etc.)
-    '%',
-    // current page of results
-    pageNumber,
-    // don't discriminate by post term (i.e. tag)
-    '',
-    // number of posts to show per page
-    postsPerPage,    
-    // sanitized query before finding
-    `%`
+    '',             // find - don't discriminate by content
+    '',             // kind - don't discriminate by post kind 
+    '',             // list - don't discriminate by list (tag)
+    pageNumber,     // page - number (see above)
+    postsPerPage    // page - limit (see above)    
   )  
     
   // need to determine not only the search results shown but the TOTAL search results!
-  const resultsCount = await getFullContentCount('%', '', '%')
-
-  const FindResultsCount = () => {    
-    return (
-      <aside className={`font-sans text-lg`}>        
-        <Span>{lang.posts} : {resultsCount}</Span>        
-      </aside>
-    )
-  }
+  const resultsCount = await getFullContentCount('', '', '')
 
   const HomeIntro = () => {
 
@@ -72,24 +61,12 @@ export default async function Main({ params, searchParams }: any) {
     
     return (
       <article 
-        className={`font-sans text-4xl`} 
+        className={`font-sans font-light text-4xl py-16`} 
         dangerouslySetInnerHTML={{__html: homeIntro}} 
       />
     )
 
   }
-
-  const HomeList = ({children}: any) => {
-    return (
-      <ul className={`grid gap-5 
-        grid-cols-1 items-center place-content-center 
-        ${items.length >= 2 && `sm:grid-cols-2`} 
-        ${items.length >= 3 && `lg:grid-cols-3`}
-      `}>
-        {children}
-      </ul>
-    )
-  }  
 
   const HomeOutro = () => {
 
@@ -98,7 +75,10 @@ export default async function Main({ params, searchParams }: any) {
       : ''
     
       return (
-        <article dangerouslySetInnerHTML={{__html: homeOutro}} />
+        <article 
+          className={`py-10`}
+          dangerouslySetInnerHTML={{__html: homeOutro}} 
+        />
       )
     
   }
@@ -108,16 +88,18 @@ export default async function Main({ params, searchParams }: any) {
 
       <SectionDiv> 
 
-        <StandardFlex>
-          <ListApex 
-            params={params}
-            term={''}
-            current={pageNumber}
+        <LoopHead>
+          <LoopApex 
+            site={lang.home}
             lang={lang}
-            type={'home'}
+            params={params}              
+            current={pageNumber}              
           />          
-          <FindResultsCount />
-        </StandardFlex>
+          <FindResultsCount 
+            label={lang.posts} 
+            resultsCount={resultsCount} 
+          />
+        </LoopHead>
 
       </SectionDiv>
 
@@ -125,41 +107,26 @@ export default async function Main({ params, searchParams }: any) {
         bg-gradient-to-r 
         from-blue-300 to-blue-100 
         dark:from-slate-900 dark:to-slate-800 
-        text-black dark:text-gray-300 mb-0
+        text-black dark:text-gray-300 mt-0 mb-0
       `}>
         <HomeIntro />
       </SectionDiv>  
 
-      <SectionDiv>        
+      <SectionDiv className={`py-2`}>       
 
-        <HomeList>
-          { items && items.length > 0 
-            ? items.map((item: any) => {
-              return (
-                <ItemCard 
-                  type={true}
-                  key={item.id} 
-                  item={item} 
-                  lang={lang} 
-                />
-              )
-            })
-            : <li>{lang.no_items_yet}</li> 
-          }
-        </HomeList>
+        <LoopShow lang={lang} items={items} />
 
-        <PageJump 
+        <LoopTurn 
           params={params}            
           current={pageNumber}
-          limit={postsPerPage} 
-          query={'%'}         
+          limit={postsPerPage}           
         />          
                       
       </SectionDiv>   
 
       <SectionDiv className={`
           bg-gradient-to-r 
-          from-green-200 to-green-100 
+          from-zinc-100 to-zinc-300 
           dark:from-emerald-900 dark:to-emerald-800 
           text-black dark:text-gray-300 mb-0`
         }

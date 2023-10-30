@@ -1,32 +1,35 @@
 
 /*
 jonopoco
-/app/[langs]/[type]/(list)/(libs)/page-jump.tsx
-jump (pagination) for lists
+/app/(basis)/loop/loop-turn.tsx
+pagination for loop-type pages
 */
 
 import Link from "next/link"
 import { getFullContentCount } from "@/app/(basis)/util/data"
 
-export default async function PageJump({
+export default async function LoopTurn({
   params,         // URL dynamic folder params
   current = 1,    // current page # (1 by default)
   limit = 6,      // posts per page (6 by default)
-  query = ''      // query (as in find/search term)
 }: any) {
 
-  const checkType = params.type 
-    ? params.type 
-    : '%'  
-  
-  const checkQuery = params.find 
-    ? params.find 
-    : query
-  
+  const checkFinds = params.finds 
+    ? params.finds 
+    : ''
+
+  const checkKinds = params.kinds 
+    ? params.kinds
+    : ''  
+
+  const checkLists = params.lists
+    ? params.lists
+    : ''
+
   const postCount = await getFullContentCount(
-      checkType, 
-      params.term, 
-      checkQuery
+      checkFinds, 
+      checkKinds, 
+      checkLists,
   )  
   
   const pageLimit = parseInt(limit, 10) || 6  

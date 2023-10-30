@@ -16,18 +16,18 @@ individual post "post" (content)
 import { getBase, getPost } from '@/app/(basis)/util/data'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 import NotFound from '@/app/not-found'
-import PostApex from '../../(libs)/post-apex'
-import PostHead from '../../(libs)/post-head'
-import PostMain from '../../(libs)/post-main'
-import PostTags from '../../(libs)/post-tags'
-import PostTurn from '../../(libs)/post-turn'
+import PostApex from '@/app/(basis)/post/post-apex'
+import PostHead from '@/app/(basis)/post/post-head'
+import { PostMain } from '@/app/(basis)/post/post-main'
+import PostTags from '@/app/(basis)/post/post-tags'
+import PostTurn from '@/app/(basis)/post/post-turn'
 
 export async function generateMetadata({
   params,
 }: any) {
 
   const { app } = await getBase() 
-  const { post } = await getPost(params.post, params.type)  
+  const { post } = await getPost(params.posts)  
 
   if (Object.keys(post).length === 0) {
     return {
@@ -46,11 +46,13 @@ export async function generateMetadata({
 export default async function Main({ params }: any) {
 
   const { lang } = await getBase()
-  const { post } = await getPost(params.post, params.type)  
+  const { post } = await getPost(params.posts)  
+
+  const { lists } = post
   
   if (Object.keys(post).length === 0) {
     return <NotFound />
-  }
+  }    
 
   return (
 
@@ -72,15 +74,17 @@ export default async function Main({ params }: any) {
       <SectionDiv>
         <PostMain post={post} />
       </SectionDiv>
-
-      <SectionDiv className={`
-        border-y dark:border-gray-500
-        bg-gradient-to-r 
-        from-zinc-100 to-zinc-300 
-        dark:from-emerald-900 dark:to-emerald-800
-      `}>
-        <PostTags post={post} params={params} />
-      </SectionDiv>
+      
+      { lists.length > 0 && 
+        <SectionDiv className={`
+          border-y dark:border-gray-500
+          bg-gradient-to-r 
+          from-zinc-100 to-zinc-300 
+          dark:from-emerald-900 dark:to-emerald-800
+        `}>
+          <PostTags post={post} />
+        </SectionDiv> 
+      }
 
       <SectionDiv>
         <PostTurn lang={lang} post={post} params={params} />

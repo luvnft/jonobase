@@ -1,21 +1,21 @@
 
 /*
 jonopoco
-/app/[langs]/[type]/(post)/(libs)/post-apex.tsx
+/app/(basis)/post/post-apex.tsx
 apex (breadcrumbs) for single "post" pages
 */
 
 import Link from "next/link"
-import { Span } from "../../../../(basis)/util/tidy-html"
+import { Span } from "../util/tidy-html"
 
 export default async function PostApex({params, post}: any) {
   
-  const { post_type, title } = post
+  const { kind, title } = post
 
   return (
     <aside className={`font-sans text-lg md:text-2xl uppercase`}>      
 
-      <Link href={`/${params.langs}/${post_type}/`}>{decodeURIComponent(post_type)}</Link>      
+      <Link href={`/kinds/${kind}/`}>{decodeURIComponent(kind)}</Link>      
       <Span ariaHidden="true"> / </Span>
       <Span 
         ariaHidden="true" 

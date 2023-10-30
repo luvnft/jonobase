@@ -1,7 +1,7 @@
 
 /*
 jonopoco
-/app/[langs]/[type]/(post)/(libs)/post-head.tsx
+/app/(basis)/post/post-head.tsx
 head (hero) for single "post" pages
 */
 
@@ -16,7 +16,7 @@ export default async function PostHead({lang, post}: any) {
 
       <StandardFlex>
 
-        <div className={`font-sans w-full`}>
+        <div className={`font-sans grow`}>
 
           <h2 className={`
             text-2xl md:text-6xl mb-5 uppercase
@@ -41,23 +41,26 @@ export default async function PostHead({lang, post}: any) {
         </div>
 
         <div className={`
-          font-sans w-full text-sm md:text-xl text-gray-500 dark:text-gray-300 mt-2 mb-2 text-right       
+          font-sans text-right 
+          text-sm md:text-xl 
+          text-gray-500 dark:text-gray-300
+          grow mt-2 mb-2 
         `}>
               
           {post.updated !== undefined && 
-            <Line>                        
-              <Span>              
-                {`${lang.last_updated} ${getFormattedDate(post.updated)}`}              
-              </Span>          
+            <Line>
+              <Span className={'whitespace-nowrap'}>
+                {`${lang.last_updated} ${getFormattedDate(post.updated)}`}
+              </Span>
             </Line>
           }    
 
           <Line>{lang.published} {post.created && getFormattedDate(post.created)}</Line>
         
           {post.backdated !== undefined && 
-            <Line>            
-              <Span>
-                {`${lang.originally_created} ${getFormattedDate(post.backdated)}`} 
+            <Line>
+              <Span className={'whitespace-nowrap'}>
+                {`${lang.originally_created} ${getFormattedDate(post.backdated)}`}
               </Span>
             </Line>
           }

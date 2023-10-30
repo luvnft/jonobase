@@ -11,14 +11,14 @@ essential site navigation
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
 
-export default function MenuFind({lang, showMenu, inputName}: any) {
+export default function MenuFind({lang, showMenu, inputName, className = ''}: any) {
 
   const [ searchTerm, setSearchTerm ] = useState('')
   const router = useRouter()
 
   const handleSubmit = (event: any) => {
     event.preventDefault() 
-    router.push(`/en/find/${decodeURIComponent(searchTerm)}`)
+    router.push(`/finds/${decodeURIComponent(searchTerm)}`)
     showMenu && showMenu(false)
   }
 

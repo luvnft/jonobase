@@ -28,15 +28,15 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,    
 }) {
 
-  const { app, lang } = await getBase()
+  const { app, lang } = await getBase()  
   
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-      { app.icon && <link rel="icon" href={`${getImageURL(app.collectionId, app.id, app.icon)}?v=${Date.now()}`} />}
+        { app.icon && <link rel="icon" href={`${getImageURL(app.collectionId, app.id, app.icon)}?v=${Date.now()}`} />}        
       </head>      
       <body className={`flex flex-col overflow-auto min-h-screen`}>        
         <ThemeProvider attribute={`class`} defaultTheme={`light`} enableSystem>
@@ -47,7 +47,7 @@ export default async function RootLayout({
                 {children}
               </Suspense>
             </main>
-          <Tail />
+          <Tail />          
         </ThemeProvider>
       </body>
     </html>

@@ -54,7 +54,7 @@ export default function Menu({app, lang} : any) {
     return (
       <dialog 
         aria-label={lang.menu} 
-        className={`${styles.animateBounce} 
+        className={` 
           flex z-20 overflow-y-auto 
           w-full h-full fixed top-0 left-0 p-10          
       `}>
