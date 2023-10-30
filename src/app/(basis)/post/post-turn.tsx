@@ -23,7 +23,7 @@ export default async function PostTurn({lang, post, params}: any) {
     
     return (
       <div className={`
-        border border-2 dark:border-gray-500 my-5 first:mt-0 last:mb-0 
+        border border-2 dark:border-gray-500 my-5 
         font-sans text-lg md:text-xl text-center
         flex flex-col md:flex-row items-center 
         ${older ? 'justify-start' : 'justify-end'}

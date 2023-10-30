@@ -12,7 +12,7 @@ export const PostMain = ({post: { content } }: any) => {
 
   return (  
     
-    <article       
+    <article className={`my-16`}      
       dangerouslySetInnerHTML={{ __html: content }} 
     />
 

@@ -12,14 +12,14 @@ import Link from "next/link"
 export default async function PostHead({lang, post}: any) {  
   
   return (
-    <summary className={`block`}>    
+    <div className={`block`}>    
 
       <StandardFlex>
 
         <div className={`font-sans grow`}>
 
           <h2 className={`
-            text-2xl md:text-6xl mb-5 uppercase
+            text-2xl md:text-6xl my-5 uppercase
           `}>{post.emoji} {post.title}</h2>
 
           <Line>{post.summary}</Line>
@@ -69,7 +69,7 @@ export default async function PostHead({lang, post}: any) {
       
       </StandardFlex>
 
-    </summary>
+    </div>
   )
   
 }
