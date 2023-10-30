@@ -6,7 +6,7 @@ pagination for loop-type pages
 */
 
 import Link from "next/link"
-import { getFullContentCount } from "@/app/(basis)/util/data"
+import { getUnpagedPostsCount } from "@/app/(basis)/util/data"
 
 export default async function LoopTurn({
   params,         // URL dynamic folder params
@@ -26,7 +26,7 @@ export default async function LoopTurn({
     ? params.lists
     : ''
 
-  const postCount = await getFullContentCount(
+  const postCount = await getUnpagedPostsCount(
       checkFinds, 
       checkKinds, 
       checkLists,

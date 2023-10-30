@@ -32,7 +32,7 @@ export async function getBaseID() {
 
 }
 
-export async function getFullContentCount(
+export async function getUnpagedPostsCount(
   find: string = '%', 
   kind: any = '',
   list: any = '',   
@@ -44,7 +44,7 @@ export async function getFullContentCount(
 
   const data = { pb, base, find, kind, list }
   const filtering = await getQueryFilter(data)
-
+  
   const items = await pb.collection('posts')
     .getFullList({ 
       sort: `-featured, -created, -backdated`,
@@ -54,7 +54,7 @@ export async function getFullContentCount(
   return items.length
 }
 
-export async function getContentList(
+export async function getPosts(
   find: string = '%',
   kind: string = '%', 
   list: string = '', 
@@ -156,7 +156,7 @@ export async function getAdjacentPost(
 
 }
 
-// helper for the getFullContentCount and getContentList
+// helper for the getUnpagedPostsCount and getPosts
 
 export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
       

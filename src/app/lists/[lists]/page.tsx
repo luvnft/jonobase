@@ -6,7 +6,7 @@ list of posts by [list] (i.e. tags/topics)
 with pagination
 */
 
-import { getBase, getContentList, getFullContentCount } from '@/app/(basis)/util/data'
+import { getBase, getPosts, getUnpagedPostsCount } from '@/app/(basis)/util/data'
 import { LoopHead } from '@/app/(basis)/loop/loop-head'
 import { LoopApex } from '@/app/(basis)/loop/loop-apex'
 import { FindResultsCount } from '@/app/(basis)/loop/loop-count'
@@ -48,7 +48,7 @@ export default async function Main({ params, searchParams }: any) {
   }
   
   const { app, lang } = await getBase()
-  const { items } = await getContentList(
+  const { items } = await getPosts(
     '',             // find - don't discriminate by content
     '',             // kind - don't discriminate by kind 
     listQuery,      // list - discriminate by post list (tag)
@@ -57,7 +57,7 @@ export default async function Main({ params, searchParams }: any) {
   )    
 
    // need to determine not only the search results shown but the TOTAL results!
-   const resultsCount = await getFullContentCount('', '', listQuery)
+   const resultsCount = await getUnpagedPostsCount('', '', listQuery)
 
   return (
     <>
