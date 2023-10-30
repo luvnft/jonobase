@@ -17,7 +17,7 @@ import { Load } from './(basis)/util/load-spin'
 import { getImageURL } from './(basis)/util/func'
 
 export const dynamic = 'auto'
-export const revalidate = 900
+export const revalidate = 60
 export const fetchCache = 'auto'
 
 export const metadata: Metadata = {
