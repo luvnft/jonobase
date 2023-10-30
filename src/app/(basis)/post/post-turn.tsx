@@ -6,7 +6,7 @@ turn (page-flipper) for single "post" pages
 */
 
 import Link from "next/link";
-import { Span } from "@/app/(basis)/util/tidy-html";
+import { Span, Line } from "@/app/(basis)/util/tidy-html";
 
 import { getAdjacentPost, getBase } from "@/app/(basis)/util/data";
 
@@ -44,7 +44,8 @@ export default async function PostTurn({lang, post, params}: any) {
           dark:border-gray-500 md:border-y-0 
           font-bold`}
         > 
-          {lang.navigate_site} : {criteria} 
+          <Span className={`sr-only`}>{lang.navigate_site} :</Span>
+          <Span>{criteria}</Span>
         </div>
 
         { newer &&           
