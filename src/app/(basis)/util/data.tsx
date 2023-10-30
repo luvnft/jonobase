@@ -133,7 +133,7 @@ export async function getPost(
 
   } catch {
 
-    const post = { title: '' }
+    const post = { title: '', lists: [] }
     return { post }
   
   }
