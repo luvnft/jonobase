@@ -8,6 +8,7 @@ essential component for the app's header
 import Link from 'next/link'
 import Image from 'next/image'
 import { getImageURL } from '../util/func'
+import Skip from '../a11y/skip'
 import Menu from './menu'
 import { getBase } from '../util/data'
 
@@ -97,6 +98,7 @@ export default async function Head(_props: any) {
   return ( 
 
     <HeadFullWidthWrapper>
+      <Skip text={lang.skip_to_main_content} />
       <HeadWrapper>
         <HeadBranding>
           <HeadBrandLink>
