@@ -61,8 +61,7 @@ export const Span = ({
 }
 
 export const StandardFlex = ({
-  children, 
-  breakpoint
+  children
 }: any) => {
 
   return (
