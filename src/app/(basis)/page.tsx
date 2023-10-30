@@ -90,7 +90,7 @@ export default async function Main({ params, searchParams }: any) {
 
         <LoopHead>
           <LoopApex 
-            site={lang.home}
+            site={app.slug}
             lang={lang}
             params={params}              
             current={pageNumber}              
