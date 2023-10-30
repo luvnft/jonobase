@@ -67,6 +67,7 @@ export default async function Main({ params }: any) {
         bg-gradient-to-r 
         from-zinc-100 to-zinc-300 
         dark:from-emerald-900 dark:to-emerald-800
+        drop-shadow-md
       `}>
         <PostHead lang={lang} post={post} />
       </SectionDiv>
@@ -81,6 +82,7 @@ export default async function Main({ params }: any) {
           bg-gradient-to-r 
           from-zinc-100 to-zinc-300 
           dark:from-emerald-900 dark:to-emerald-800
+          drop-shadow-md
         `}>
           <PostTags post={post} />
         </SectionDiv> 

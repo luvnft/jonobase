@@ -86,7 +86,7 @@ export default async function Main({ params, searchParams }: any) {
   return (
     <>
 
-      <SectionDiv> 
+      <SectionDiv className={`drop-shadow-xl`}> 
 
         <LoopHead>
           <LoopApex 
@@ -108,6 +108,7 @@ export default async function Main({ params, searchParams }: any) {
         from-blue-300 to-blue-100 
         dark:from-slate-900 dark:to-slate-800 
         text-black dark:text-gray-300 mt-0 mb-0
+        drop-shadow-xl
       `}>
         <HomeIntro />
       </SectionDiv>  
@@ -125,11 +126,12 @@ export default async function Main({ params, searchParams }: any) {
       </SectionDiv>   
 
       <SectionDiv className={`
-          bg-gradient-to-r 
-          from-zinc-100 to-zinc-300 
-          dark:from-emerald-900 dark:to-emerald-800 
-          text-black dark:text-gray-300 mb-0`
-        }
+        bg-gradient-to-r 
+        from-zinc-100 to-zinc-300 
+        dark:from-emerald-900 dark:to-emerald-800 
+        text-black dark:text-gray-300 mb-0
+        drop-shadow-xl
+      `}
       >
         <HomeOutro />
       </SectionDiv>  

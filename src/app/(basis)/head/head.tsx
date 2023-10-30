@@ -22,7 +22,7 @@ export default async function Head(_props: any) {
       <header 
         className={`z-10 w-full sticky top-0 
           bg-black bg-gradient-to-t from-black to-gray-700 
-          text-white`
+          text-white drop-shadow-xl`
       }>
         {children}
       </header>
