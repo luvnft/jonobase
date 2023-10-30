@@ -36,33 +36,14 @@ export async function getFullContentCount(
   find: string = '%', 
   kind: any = '',
   list: any = '',   
-  
 ) {
 
   const pb = new PocketBase(process.env.PBDOMAIN)
+
   const base = await getBaseID()
 
-  if (list === 'all') list = ''
-
-  const { items: lists } = await pb.collection('lists')
-    .getList(1, 1, { filter: `slug='${list}'`})   
-
-  let filtering = ''
-
-  if (base !== '') 
-    filtering += ` bases?~'${base}'`
-  if (find !== '')
-    filtering += ` && ( title?~'${find}' || summary?~'${find}' || content?~'${find}' )`  
-  if (kind !== '') 
-    filtering += ` && kind='${kind}'`
-  if (lists[0]) { 
-    // find the exact list 
-    filtering += ` && lists?~'${lists[0].id}'` 
-  } else {
-    if (lists[0]) {
-      filtering += ` && lists='NULL'`
-    }
-  }  
+  const data = { pb, base, find, kind, list }
+  const filtering = await getQueryFilter(data)
 
   const items = await pb.collection('posts')
     .getFullList({ 
@@ -82,29 +63,11 @@ export async function getContentList(
 ) {
 
   const pb = new PocketBase(process.env.PBDOMAIN)
+
   const base = await getBaseID() 
 
-  if (list === 'all') list = ''
-
-  // lists are tags
-  const { items: lists } = await pb.collection('lists')
-    .getList(1, 1, { filter: `slug='${list}'`})   
-  
-  let filtering = ''
-
-  if (base !== '') 
-    filtering += ` bases?~'${base}'`
-  if (find !== '')
-    filtering += ` && ( title?~'${find}' || summary?~'${find}' || content?~'${find}' )`  
-  if (kind !== '') 
-    filtering += ` && kind='${kind}'`
-  if (lists[0]) { 
-    // find the exact list 
-    filtering += ` && lists?~'${lists[0].id}'` 
-  } else {
-    if (lists[0])
-      filtering += ` && lists='NULL'`
-  }
+  const data = { pb, base, find, kind, list }
+  const filtering = await getQueryFilter(data)
     
   const items = await pb.collection('posts')
     .getList(page, limit, { 
@@ -143,7 +106,7 @@ export async function getPost(
 export async function getAdjacentPost(
   post: any,
   direction: "newer" | "older", 
-  filter: "site" | "kind" | "book"
+  filter: "site" | "kind"
 ) {
 
   let filtering = ''
@@ -157,10 +120,12 @@ export async function getAdjacentPost(
     if (base !== '') 
       filtering += ` bases?~'${base}' &&`    
 
-    switch (filter) {      
+    switch (filter) { 
+      // get all the posts     
       case "site":
         filtering += ``
         break;
+      // filter by post kind
       case "kind":
         filtering += `kind='${post.kind}' && `
         break;
@@ -188,5 +153,42 @@ export async function getAdjacentPost(
     return null
 
   }
+
+}
+
+// helper for the getFullContentCount and getContentList
+
+export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
+      
+  let filtering = ''
+
+  if (base !== '') 
+    filtering += ` bases?~'${base}'`
+  if (find !== '')
+    filtering += ` && ( 
+      title?~'${find}' || 
+      summary?~'${find}' || 
+      content?~'${find}' 
+    )`  
+  if (kind !== '') 
+    filtering += ` && kind='${kind}'`
+
+  // filtering by list gets a little complicated: 
+  if (list === 'all') list = '%'
+
+  // search for the list in the lists table
+  const { items: lists } = await pb.collection('lists')
+    .getList(1, 1, { filter: `slug='${list}'`})    
+  
+    // if the desired list exists, then get its id
+  if (lists[0]) { 
+    // add the list id to the filter
+    filtering += ` && lists?~'${lists[0].id}'` 
+  } else {
+    // or else, ensure nothing returns by using a bogus query
+    filtering += (list) ? ` && lists='NULL DO NOT SEARCH FFS'` : ''
+  }
+
+  return filtering
 
 }
