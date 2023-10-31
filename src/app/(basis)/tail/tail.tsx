@@ -8,7 +8,7 @@ essential component for the app's footer
 
 import { sanitize } from 'isomorphic-dompurify'
 import { getBase } from '@/app/(basis)/util/data'
-import styles from './styles.module.css'
+import { getTheme, getProse } from '../util/func'
 
 export default async function Tail() {
 
@@ -26,10 +26,14 @@ export default async function Tail() {
     ? sanitize(app.footer_extra, { ADD_ATTR: ['target']}) 
     : ''
 
-  const TailFullWidthWrapper = ({children}: any) => {
+  const TailFullWidthWrapper = ({children, className}: any) => {
     return (
-      <footer className={`${styles.footer} w-full 
-        bg-black text-white py-5 bottom-0`}>
+      <footer className={`${getProse()} ${getTheme('green')} w-full bottom-0 mt-auto 
+        !font-sans 
+        bg-black ${className} 
+        text-white prose-a:text-gray-600 hover:prose-a:text-white
+        prose-headings:!mt-0 
+      `}>
         {children}
       </footer>
     )
@@ -39,8 +43,8 @@ export default async function Tail() {
     return (
       <section 
         className={`flex flex-col  
-          xl:flex-row xl:justify-between xl:items-start 
-          gap-2 xl:gap-10
+          lg:flex-row lg:justify-between lg:items-start 
+          gap-2 lg:gap-10 py-5 max-w-screen-lg mx-auto
         `}
       >
         {children}  
@@ -53,7 +57,7 @@ export default async function Tail() {
       <>
         { footerFat && 
           <div 
-            className={`text-center xl:text-left w-full`} 
+            className={`text-center w-full`} 
             dangerouslySetInnerHTML={{__html: footerFat}} 
           />
         }
@@ -64,11 +68,11 @@ export default async function Tail() {
   const TailCopy = () => {
     return (
       <div
-        className={`xl:w-1/2`}
+        className={`lg:w-1/2`}
       >
         { footerCopy && 
           <div 
-            className={`text-center xl:text-left`} 
+            className={`text-center lg:text-left`} 
             dangerouslySetInnerHTML={{__html: footerCopy}} 
           />
         }
@@ -79,10 +83,10 @@ export default async function Tail() {
   const TailExtra = () => {
     return (
       <div 
-        className={`xl:w-1/2`}
+        className={`lg:w-1/2`}
       >
       { footerLinks && 
-        <div className={`text-center xl:text-right`} dangerouslySetInnerHTML={{__html: footerLinks}} />
+        <div className={`text-center lg:text-right`} dangerouslySetInnerHTML={{__html: footerLinks}} />
       }
       </div>  
     )
@@ -90,13 +94,19 @@ export default async function Tail() {
   
   return ( 
 
-    <TailFullWidthWrapper>
-      <TailWrapper>
-        <TailFat />
-        <TailCopy />
-        <TailExtra />       
-      </TailWrapper>
-    </TailFullWidthWrapper>
+    <>
+      <TailFullWidthWrapper className={`bg-gradient-to-r from-gray-500 to-zinc-700 py-10`}>      
+        <TailWrapper>
+          <TailFat />          
+        </TailWrapper>
+      </TailFullWidthWrapper>    
+      <TailFullWidthWrapper>      
+        <TailWrapper>
+          <TailCopy />
+          <TailExtra />       
+        </TailWrapper>
+      </TailFullWidthWrapper>
+    </>
 
   )
 }

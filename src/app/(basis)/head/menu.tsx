@@ -13,6 +13,7 @@ import { sanitize } from 'isomorphic-dompurify'
 import FocusTrap from 'focus-trap-react'
 import { Span } from '../util/tidy-html'
 import MenuFind from './menu-find'
+import { getTheme, getProse } from '../util/func'
 import styles from './styles.module.css'
 
 export default function Menu({app, lang} : any) {    
@@ -41,6 +42,8 @@ export default function Menu({app, lang} : any) {
     ? sanitize(app.footer_extra, { ADD_ATTR: ['target']}) 
     : ''  
 
+  const richTextClasses = `${getTheme('green')} ${getProse()}`
+
   const MenuButton = () => {
     return (
       <button onClick={handleMenu}>
@@ -50,12 +53,18 @@ export default function Menu({app, lang} : any) {
     )
   }
 
+  const MenuDialogWrapper = ({children}: any) => {
+    return (
+      <div>{children}</div>
+    )
+  }
+
   const MenuDialog = ({children}: any) => {
     return (
       <dialog 
         aria-label={lang.menu} 
         className={` 
-          flex z-20 overflow-y-auto 
+          flex z-20 overflow-y-auto animate-bounce 
           w-full h-screen fixed top-0 left-0 p-10          
       `}>
         {children}
@@ -142,7 +151,7 @@ export default function Menu({app, lang} : any) {
   const MenuContent = () => {
     return (
       <nav 
-        className={`${styles.menuRich} my-5 text-4xl`} 
+        className={`${richTextClasses} !font-sans my-5 text-4xl`} 
         dangerouslySetInnerHTML={{__html: menuContent}} 
       />
     )
@@ -153,7 +162,7 @@ export default function Menu({app, lang} : any) {
       <>
         <hr />
         <nav 
-          className={`${styles.menuRich} my-5 pb-10 text-center`} 
+          className={`${richTextClasses} !font-sans my-5 pb-10 text-center`} 
           dangerouslySetInnerHTML={{__html: menuFooter}} 
         />
       </>
@@ -176,7 +185,7 @@ export default function Menu({app, lang} : any) {
       </MenuFindWrapper>
       { showMenu && (
         <FocusTrap>  
-          <div>
+          <MenuDialogWrapper>
             <MenuDialog>
               <MenuWrapper>
                 <MenuHead>
@@ -197,7 +206,7 @@ export default function Menu({app, lang} : any) {
                 { app.footer_extra && <MenuFooter /> }
               </MenuWrapper>
             </MenuDialog>
-          </div>
+          </MenuDialogWrapper>
         </FocusTrap>
       )}
     </>

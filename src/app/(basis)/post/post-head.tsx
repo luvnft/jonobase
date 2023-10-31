@@ -21,10 +21,10 @@ export default function PostHead({lang, post}: any) {
           text-2xl md:text-4xl lg:text-5xl my-5 uppercase
         `}>{post.emoji} {post.title}</h2>
 
-        <Line>{post.summary}</Line>
+        <Line className={`text-lg md:text-2xl`}>{post.summary}</Line>
 
         <Line className={`
-          text-sm md:text-xl 
+          text-sm md:text-lg 
         `}>
           {post.url &&               
             <Link 

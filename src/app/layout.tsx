@@ -13,7 +13,7 @@ import Head from '@/app/(basis)/head/head'
 import Tail from '@/app/(basis)/tail/tail'
 import { Suspense } from 'react'
 import { Load } from './(basis)/util/load-spin'
-import { getImageURL } from './(basis)/util/func'
+import { getImageURL, getTheme } from './(basis)/util/func'
 
 export const dynamic = 'auto'
 export const revalidate = 60
@@ -31,16 +31,17 @@ export default async function RootLayout({
 }) {
 
   const { app, lang } = await getBase()  
+  const mainProse = getTheme('green')
   
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         { app.icon && <link rel="icon" href={`${getImageURL(app.collectionId, app.id, app.icon)}?v=${Date.now()}`} />}        
       </head>      
-      <body className={`flex flex-col overflow-auto min-h-screen`}>        
+      <body className={`flex flex-col overflow-auto min-h-screen prose-p:mb-4`}>        
         <ThemeProvider attribute={`class`} defaultTheme={`light`} enableSystem>          
           <Head />          
-          <main tabIndex={-1}>
+          <main tabIndex={-1} className={mainProse}>
             <Suspense fallback={<Load />}>
               {children}
             </Suspense>

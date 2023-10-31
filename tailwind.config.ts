@@ -6,7 +6,20 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {},
+  safelist: [
+    {
+      pattern: /(bg|text)-+/,
+      variants: [
+        'prose-a', 
+      ]
+    },
+  ],
+  theme: {
+    fontFamily: {            
+      'sans': ['"Barlow Condensed"', 'system-ui'],
+      'serif': ['"Lora"', 'system-ui'],      
+    },
+  },
   darkMode: 'class', 
   plugins: [
     require('@tailwindcss/typography')

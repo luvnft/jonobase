@@ -82,13 +82,13 @@ export default async function Main({ params }: any) {
           bg-gradient-to-r 
           from-zinc-100 to-zinc-300 
           dark:from-emerald-900 dark:to-emerald-800
-          drop-shadow-md
+          drop-shadow-md py-5
         `}>
           <PostTags lang={lang} post={post} />
         </SectionDiv> 
       }
 
-      <SectionDiv>
+      <SectionDiv className={`py-5`}>
         <PostTurn lang={lang} post={post} params={params} />
       </SectionDiv>
       

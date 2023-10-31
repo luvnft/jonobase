@@ -1,42 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* generics */
+/* custom menu animation */
 
-body {
-  font-family: 'Barlow Condensed', sans-serif;
+.animate-bounce {
+  animation-name: bounce; 
+  animation-iteration-count: 1;   
+  animation-duration: 0.33s; 
 }
 
-p {
-  margin: 12px 0;
+@keyframes bounce {
+  0% {
+    transform: translateY(-100%);          
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 
 
-/* main */
-
-main a {
-  color: #009900;
-  cursor: pointer;
-}
-
-main a:hover {
-  color: black;
-  text-decoration: underline;
-}
-
-.dark main a:hover {
-  color: white;
-}
+/* custom buttons for lists and paginations */
 
 main .button {
   background: transparent;  
   color: black;  
   display: inline-block;
-  border: 2px solid black;
+  border: 1px solid black;
   margin: 0;
   padding: 0.5rem 1.25rem;
   cursor: pointer;
@@ -48,130 +41,64 @@ main .button:hover {
   text-decoration: none;
 }
 
-main .pagination.button.current {
-  background-color: #009900;
+.dark main .button {
+  border: 1px solid white;
   color: white;
 }
 
-article {
-  font-family: 'PT Serif', serif;
-  letter-spacing: 0.5px;
+.dark main .button:hover {
+  background-color: white;
+  color: black;
+  text-decoration: none;
 }
 
-article li p {
-  margin: 12px 0;
+main .pagination.button.current {
+  background-color: #333;
+  border: 1px solid #333;
+  color: white;
 }
 
-/* main content customizations */
+/* custom lists */
 
-table {
-  width: 100%;
-}
-
-table, th, td {
-  border: 1px solid;    
-}
-
-th, td {
-  padding: 10px 20px;
-}
-
-th {
-  background-color: #cccccc;
-  text-align: left;
-}
-
-.dark th {
-  background-color: #333333;
-}
-
-main section article h2, 
-main section article h3, 
-main section article h4 {
-  margin: 16px 0;
-}
-
-main article h2 {
-  font-size: 36px;
-}
-
-main article h3 { 
-  font-size: 30px;
-}
-
-main article h4 {
-  font-size: 24px;
-}
-
-main article ul, main article ol {
-  margin-left: 15px;
-  margin-top: 15px;
-}
-
-main article ul li, main article ol li {  
-  margin-left: 15px;  
-  margin-bottom: 15px;
-}
-
-main article ul > li {
-  list-style-type: disc;
-}
-
-main article ul > li li {
+article ul ul li {
   list-style-type: circle;
 }
 
-main article ol > li {
-  list-style-type: decimal;
-}
-
-main article ol > li > li {
-  list-style-type: lower-alpha;
-}
-
-main article ol > li > li > li {
+article ol ol li {
   list-style-type: lower-roman;
 }
 
-/* responsive */
-
-header section, main section, footer section {
-  margin: 16px 0;
+article ol ol ol li {
+  list-style-type: lower-alpha;
 }
 
-@media screen and (max-width: 1024px) {
-  header section, main section, footer section {
-    padding-left: 16px;
-    padding-right: 16px;
+article  {
+  overflow: scroll
+}
+
+/* custom responsive hacks */
+
+/* mobile and tablet */
+@media screen and (max-width: 1048px) {
+
+  section {
+    padding-left: 24px;
+    padding-right: 24px;
   }
+
 }
 
+/* desktop */
 @media screen and (min-width: 1024px) {
 
-  header section, footer section {
-    gap: 24px;
-    padding: 24px 0;
-  }
-
-  header section, main section > div, footer section {
-    max-width: 1024px;    
-    margin: 0 auto;  
-  }
-
   main section > div {
+    max-width: 1024px;    
     margin: 24px auto;
     padding: 0;
   }
 
   main section:last-child > div {
-    margin: 24px auto 0 auto;
-    padding: 0;
+    margin: 24px auto 0 auto;    
   }
   
-}
-
-@media screen and (min-width: 1024px) and (max-width: 1048px) {
-  header section {
-    padding: 24px;
-  }
 }

@@ -12,7 +12,7 @@ import Skip from '../a11y/skip'
 import Menu from './menu'
 import { getBase } from '../util/data'
 
-export default async function Head(_props: any) {
+export default async function Head() {
 
   const { app, lang } = await getBase()
   const icon = getImageURL(app.collectionId, app.id, app.icon)
@@ -22,7 +22,7 @@ export default async function Head(_props: any) {
       <header 
         className={`w-full sticky top-0 z-10
           bg-black bg-gradient-to-t from-black to-gray-700 
-          text-white drop-shadow-xl`
+          text-white drop-shadow-xl lg:py-5`
       }>
         {children}
       </header>
@@ -33,7 +33,7 @@ export default async function Head(_props: any) {
     return (
       <section 
         className={`flex justify-between 
-          items-center gap-5`}>
+          items-center my-5 lg:my-2 gap-5 max-w-screen-lg mx-auto`}>
         {children}
       </section>
     )
@@ -81,9 +81,9 @@ export default async function Head(_props: any) {
 
   const HeadBrandTagline = () => {
     return (
-      <p className={`hidden md:block`}>
+      <div className={`hidden md:block`}>
         {app.tagline}
-      </p>
+      </div>
     )
   }
 

@@ -15,6 +15,7 @@ import LoopTurn from './loop/loop-turn'
 import NotFound from '@/app/not-found'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 import { sanitize } from 'isomorphic-dompurify'
+import { getProse } from './util/func'
 
 export async function generateMetadata({
   params, searchParams,
@@ -61,7 +62,7 @@ export default async function Main({ params, searchParams }: any) {
     
     return (
       <article 
-        className={` font-light text-4xl py-16`} 
+        className={`text-4xl py-16`} 
         dangerouslySetInnerHTML={{__html: homeIntro}} 
       />
     )
@@ -76,7 +77,7 @@ export default async function Main({ params, searchParams }: any) {
     
       return (
         <article 
-          className={`py-10`}
+          className={`py-10 ${getProse()}`}
           dangerouslySetInnerHTML={{__html: homeOutro}} 
         />
       )
@@ -108,12 +109,12 @@ export default async function Main({ params, searchParams }: any) {
         from-blue-300 to-blue-100 
         dark:from-slate-900 dark:to-slate-800 
         text-black dark:text-gray-300 mt-0 mb-0
-        drop-shadow-xl
+        drop-shadow-xl 
       `}>
         <HomeIntro />
       </SectionDiv>  
 
-      <SectionDiv className={`py-2`}>       
+      <SectionDiv className={`my-5 lg:my-2`}>       
 
         <LoopShow lang={lang} items={items} />
 
@@ -130,7 +131,7 @@ export default async function Main({ params, searchParams }: any) {
         from-zinc-100 to-zinc-300 
         dark:from-emerald-900 dark:to-emerald-800 
         text-black dark:text-gray-300 mb-0
-        drop-shadow-xl
+        drop-shadow-xl prose-headings:mt-0
       `}
       >
         <HomeOutro />
