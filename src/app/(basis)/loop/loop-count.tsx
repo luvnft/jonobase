@@ -8,7 +8,7 @@ results count
 
 export const FindResultsCount = ({label, resultsCount}: any) => {    
   return (
-    <aside className={`font-sans text-sm`}>
+    <aside className={` text-sm`}>
       {label} : {resultsCount}
     </aside>
   )

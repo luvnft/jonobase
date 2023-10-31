@@ -28,7 +28,7 @@ export default function MenuFind({lang, showMenu, inputName, className = ''}: an
   }
 
   return (
-    <div className={`flex justify-center font-sans`}>
+    <div className={`flex justify-center `}>
       <form 
         className={`flex gap-5 w-full`}
         onSubmit={handleSubmit}

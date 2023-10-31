@@ -61,7 +61,7 @@ export default async function Main({ params, searchParams }: any) {
     
     return (
       <article 
-        className={`font-sans font-light text-4xl py-16`} 
+        className={` font-light text-4xl py-16`} 
         dangerouslySetInnerHTML={{__html: homeIntro}} 
       />
     )

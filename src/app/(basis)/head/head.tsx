@@ -20,7 +20,7 @@ export default async function Head(_props: any) {
   const HeadFullWidthWrapper = ({children}: any) => {
     return (
       <header 
-        className={`z-10 w-full sticky top-0 
+        className={`w-full sticky top-0 z-10
           bg-black bg-gradient-to-t from-black to-gray-700 
           text-white drop-shadow-xl`
       }>

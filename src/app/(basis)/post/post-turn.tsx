@@ -24,7 +24,7 @@ export default async function PostTurn({lang, post, params}: any) {
     return (
       <div className={`
         border border-2 dark:border-gray-500 my-5 
-        font-sans text-lg md:text-xl text-center
+         text-lg md:text-xl text-center
         flex flex-col md:flex-row items-center 
         ${older ? 'justify-start' : 'justify-end'}
       `}>
@@ -42,7 +42,7 @@ export default async function PostTurn({lang, post, params}: any) {
           md:w-1/3 w-full p-5 
           border-y-2 md:border-x-2 
           dark:border-gray-500 md:border-y-0 
-          font-bold`}
+          `}
         > 
           <Span className={`sr-only`}>{lang.navigate_site} :</Span>
           <Span>{criteria}</Span>

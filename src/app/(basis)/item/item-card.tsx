@@ -31,7 +31,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <Line className={`
-        font-sans text-white dark:text-white uppercase 
+         text-white dark:text-white uppercase 
         mt-0 bg-gradient-to-b 
         from-black to-gray-700         
         ${kind ? '' : 'hidden'}
@@ -55,7 +55,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <Line className={`
-        font-sans text-black dark:text-gray-500
+         text-black dark:text-gray-500
         ${item.featured && `text-black dark:text-black`}
         ${item.collectionName === 'pages' && `hidden`}
         ${itemDate === '' && `hidden`}        
