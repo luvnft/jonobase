@@ -44,7 +44,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
   const ListCardInner = ({children}: any) => {
 
     return (
-      <div className={`px-5 !hover:prose-a:no-underline`}>
+      <div className={`px-5`}>
         {children}
       </div>
     )
@@ -74,7 +74,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
   const ListCardEmoji = () => {
     return (
       <Line
-        className={`text-6xl no-underline`} 
+        className={`text-6xl`} 
         ariaHidden={true}
       >
         {item.emoji}
