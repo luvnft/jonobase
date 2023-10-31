@@ -95,11 +95,15 @@ export default async function Tail() {
   return ( 
 
     <>
-      <TailFullWidthWrapper className={`bg-gradient-to-r from-gray-500 to-zinc-700 py-10`}>      
-        <TailWrapper>
-          <TailFat />          
-        </TailWrapper>
-      </TailFullWidthWrapper>    
+    
+      { footerFat && 
+        <TailFullWidthWrapper className={`bg-gradient-to-r from-gray-500 to-zinc-700 py-10`}>      
+          <TailWrapper>
+            <TailFat />          
+          </TailWrapper>
+        </TailFullWidthWrapper>    
+      }
+
       <TailFullWidthWrapper>      
         <TailWrapper>
           <TailCopy />
