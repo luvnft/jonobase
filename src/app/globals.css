@@ -102,3 +102,15 @@ article  {
   }
   
 }
+
+/* custom iframes */
+
+iframe {
+  width: 100%;
+}
+
+iframe[title="YouTube video player"] {
+  aspect-ratio: 16 / 9;
+  height: 50vh;    
+  margin: 0 auto;
+}
