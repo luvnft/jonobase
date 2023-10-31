@@ -44,7 +44,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
   const ListCardInner = ({children}: any) => {
 
     return (
-      <div className={`px-5`}>
+      <div className={`px-5 !hover:prose-a:no-underline`}>
         {children}
       </div>
     )
@@ -74,7 +74,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
   const ListCardEmoji = () => {
     return (
       <Line
-        className={`text-6xl`} 
+        className={`text-6xl no-underline`} 
         ariaHidden={true}
       >
         {item.emoji}
@@ -102,12 +102,12 @@ export default function ItemCard({lang, kind = true, item} : any) {
   }
 
   return (
-    <li className={`h-full text-center`}>  
+    <li className={`h-full text-center hover:prose-a:!no-underline`}>  
 
       <Link 
         href={`/posts/${item.slug}`} 
         className={`
-          hover:no-underline 
+          
           ${item.featured && `hover:!text-black dark:hover:!text-black`}
         `}
       >

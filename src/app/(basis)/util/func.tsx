@@ -33,10 +33,9 @@ export const getTheme = (theme: string) => {
 
   return (`
     prose-a:text-${colors.linkText}
-    hover:prose-a:text-black 
+    hover:prose-a:text-black
     hover:prose-a:underline 
     dark:hover:prose-a:text-white 
-    dark:hover:prose-a:underline 
     prose-table:w-full     
     prose-table:border 
     prose-table:border-black 
@@ -52,7 +51,7 @@ export const getTheme = (theme: string) => {
     prose-td:border-black 
     prose-td:px-5
     prose-td:py-2    
-    prose-td:align-top    
+    prose-td:align-top       
   `)
 }
 
