@@ -17,10 +17,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
     return (
       <summary className={`
         block h-full shadow-sm hover:shadow-xl
-        border border-2 border-black dark:border-gray-600
-        ${item.featured && 
-          `bg-gradient-to-b from-yellow-200 to-yellow-300`
-        }         
+        border border-2 border-black dark:border-gray-600      
       `}>
         {children}
       </summary>
