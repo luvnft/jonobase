@@ -16,7 +16,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
   const ListCardWrapper = ({children}: any) => {
     return (
       <summary className={`
-        block h-full
+        block h-full shadow-lg
         border border-2 border-black dark:border-gray-600
         ${item.featured && 
           `bg-gradient-to-b from-yellow-200 to-yellow-300`
