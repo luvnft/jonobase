@@ -13,7 +13,7 @@ import Head from '@/app/(basis)/head/head'
 import Tail from '@/app/(basis)/tail/tail'
 import { Suspense } from 'react'
 import { Load } from './(basis)/util/load-spin'
-import { getImageURL, getTheme } from './(basis)/util/func'
+import { getImageURL, getThemeLink, getTheme } from './(basis)/util/func'
 
 export const dynamic = 'auto'
 export const revalidate = 60
@@ -30,8 +30,7 @@ export default async function RootLayout({
   children: React.ReactNode,    
 }) {
 
-  const { app, lang } = await getBase()  
-  const mainProse = getTheme('green')
+  const { app, lang } = await getBase()    
   
   return (
     <html lang="en" suppressHydrationWarning>
@@ -41,7 +40,7 @@ export default async function RootLayout({
       <body className={`flex flex-col overflow-auto min-h-screen prose-p:mb-4`}>        
         <ThemeProvider attribute={`class`} defaultTheme={`light`} enableSystem>          
           <Head />          
-          <main tabIndex={-1} className={mainProse}>
+          <main tabIndex={-1} className={`${getThemeLink(app.theme)} ${getTheme()}`}>
             <Suspense fallback={<Load />}>
               {children}
             </Suspense>

@@ -8,7 +8,7 @@ essential component for the app's footer
 
 import { sanitize } from 'isomorphic-dompurify'
 import { getBase } from '@/app/(basis)/util/data'
-import { getTheme, getProse } from '../util/func'
+import { getThemeLink, getTheme, getProse } from '../util/func'
 
 export default async function Tail() {
 
@@ -28,7 +28,7 @@ export default async function Tail() {
 
   const TailFullWidthWrapper = ({children, className}: any) => {
     return (
-      <footer className={`${getProse()} ${getTheme('green')} w-full bottom-0 mt-auto 
+      <footer className={`${getThemeLink(app.theme)} ${getTheme()} ${getProse()} w-full bottom-0 mt-auto 
         !font-sans 
         bg-black ${className} 
         text-white prose-a:text-gray-600 hover:prose-a:text-white
@@ -95,7 +95,7 @@ export default async function Tail() {
   return ( 
 
     <>
-    
+
       { footerFat && 
         <TailFullWidthWrapper className={`bg-gradient-to-r from-gray-500 to-zinc-700 py-10`}>      
           <TailWrapper>

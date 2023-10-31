@@ -5,34 +5,61 @@ jonopoco
 loose helper functions to manipulate data
 */
 
-export const getTheme = (theme: string) => {
+export const getThemeLink = (theme: string) => {
 
-  let colors = { linkText: '' }
+  let linkTextColor = ''
 
   switch (theme) {
     case 'green': 
-      colors = { 
-        linkText: 'green-600' 
-      }
+      linkTextColor = 'green-600'       
       break
     case 'blue':
-      colors = { 
-        linkText: 'sky-500' 
-      }
+      linkTextColor = 'sky-500'       
       break
     case 'red': 
-      colors = { 
-        linkText: 'red-600'
-      }
+      linkTextColor = 'red-600'      
+      break
+    case 'gray':      
+      linkTextColor = 'gray-400'      
       break
     default:
-      colors = { 
-        linkText: 'sky-500' 
-      }
+      linkTextColor = 'sky-500'       
   }
 
   return (`
-    prose-a:text-${colors.linkText}
+    prose-a:text-${linkTextColor}
+  `)
+
+}
+
+export const getBgColor = (theme: string) => {
+
+  let bgColor = ''
+
+  switch (theme) {
+    case 'green': 
+      bgColor = 'from-emerald-200 to-emerald-50 dark:from-emerald-800 to-emerald:700'       
+      break
+    case 'blue':
+      bgColor = 'from-sky-200 to-sky-50 dark:from-sky-800 dark:to-sky-700'       
+      break
+    case 'red': 
+      bgColor = 'from-red-300 to-red-50 dark:from-red-950 dark:to-red-800'      
+      break
+    case 'gray':      
+      bgColor = 'from-zinc-300 to-zinc-100 dark:from-stone-800 dark:to-stone-700'      
+      break
+    default:
+      bgColor = 'from-sky-200 to-sky-100'       
+  }
+
+  return bgColor
+
+}
+
+export const getTheme = () => {
+
+  return (`    
     hover:prose-a:text-black
     hover:prose-a:underline 
     dark:hover:prose-a:text-white 

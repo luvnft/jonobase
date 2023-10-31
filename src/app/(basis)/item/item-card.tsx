@@ -28,7 +28,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <Line className={`
-         text-white dark:text-white uppercase 
+        text-white dark:text-white uppercase 
         mt-0 bg-gradient-to-b 
         from-black to-gray-700         
         ${kind ? '' : 'hidden'}
@@ -53,7 +53,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
     return (
       <Line className={`
          text-black dark:text-gray-500 mt-2
-        ${item.featured ? `text-black dark:text-black` : ``}
+        ${item.featured ? `text-black dark:text-yellow-500` : ``}
         ${item.collectionName === 'pages' ? `hidden` : ``}
         ${itemDate === '' ? `hidden` : ``}        
       `}>
@@ -105,7 +105,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
         href={`/posts/${item.slug}`} 
         className={`
           
-          ${item.featured && `hover:!text-black dark:hover:!text-black`}
+          ${item.featured && `hover:!text-black dark:hover:!text-white`}
         `}
       >
 

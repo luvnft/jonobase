@@ -13,7 +13,7 @@ import { sanitize } from 'isomorphic-dompurify'
 import FocusTrap from 'focus-trap-react'
 import { Span } from '../util/tidy-html'
 import MenuFind from './menu-find'
-import { getTheme, getProse } from '../util/func'
+import { getThemeLink, getTheme, getProse } from '../util/func'
 import styles from './styles.module.css'
 
 export default function Menu({app, lang} : any) {    
@@ -42,7 +42,7 @@ export default function Menu({app, lang} : any) {
     ? sanitize(app.footer_extra, { ADD_ATTR: ['target']}) 
     : ''  
 
-  const richTextClasses = `${getTheme('green')} ${getProse()}`
+  const richTextClasses = `${getThemeLink(app.theme)} ${getTheme()} ${getProse()}`
 
   const MenuButton = () => {
     return (

@@ -15,7 +15,7 @@ import LoopTurn from './loop/loop-turn'
 import NotFound from '@/app/not-found'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 import { sanitize } from 'isomorphic-dompurify'
-import { getProse } from './util/func'
+import { getProse, getBgColor } from './util/func'
 
 export async function generateMetadata({
   params, searchParams,
@@ -25,7 +25,7 @@ export async function generateMetadata({
   
   return {
     title: `      
-      ${app.title} - ${app.tagline}
+      ${app.title} ${searchParams.p && `(${lang.page} ${searchParams.p})`} - ${app.tagline}
     `
   }
 }
@@ -104,12 +104,9 @@ export default async function Main({ params, searchParams }: any) {
 
       </SectionDiv>
 
-      <SectionDiv className={`
-        bg-gradient-to-r 
-        from-blue-300 to-blue-100 
-        dark:from-slate-900 dark:to-slate-800 
+      <SectionDiv className={`        
         text-black dark:text-gray-300 mt-0 mb-0
-        drop-shadow-xl 
+        drop-shadow-xl bg-gradient-to-r ${getBgColor(app.theme)}
       `}>
         <HomeIntro />
       </SectionDiv>  
@@ -126,12 +123,10 @@ export default async function Main({ params, searchParams }: any) {
                       
       </SectionDiv>   
 
-      <SectionDiv className={`
-        bg-gradient-to-r 
-        from-zinc-100 to-zinc-300 
-        dark:from-emerald-900 dark:to-emerald-800 
+      <SectionDiv className={`        
         text-black dark:text-gray-300 mb-0
-        drop-shadow-xl prose-headings:mt-0
+        drop-shadow-xl prose-headings:mt-0 
+        bg-gradient-to-r ${getBgColor('gray')} 
       `}
       >
         <HomeOutro />
