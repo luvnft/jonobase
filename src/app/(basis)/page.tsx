@@ -114,7 +114,7 @@ export default async function Main({ params, searchParams }: any) {
         <HomeIntro />
       </SectionDiv>  
 
-      <SectionDiv className={`my-5 lg:my-2`}>       
+      <SectionDiv className={`my-5 lg:my-2 drop-shadow-lg`}>       
 
         <LoopShow lang={lang} items={items} />
 
