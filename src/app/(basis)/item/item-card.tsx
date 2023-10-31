@@ -55,10 +55,10 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <Line className={`
-         text-black dark:text-gray-500
-        ${item.featured && `text-black dark:text-black`}
-        ${item.collectionName === 'pages' && `hidden`}
-        ${itemDate === '' && `hidden`}        
+         text-black dark:text-gray-500 mt-2
+        ${item.featured ? `text-black dark:text-black` : ``}
+        ${item.collectionName === 'pages' ? `hidden` : ``}
+        ${itemDate === '' ? `hidden` : ``}        
       `}>
         {item.featured && 
           <Span 

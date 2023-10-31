@@ -58,7 +58,7 @@ export default async function Main({ params }: any) {
 
     <>
 
-      <SectionDiv>
+      <SectionDiv className={`my-5`}>
         <PostApex siteName={app.slug} post={post} params={params} />
       </SectionDiv>
 

@@ -61,7 +61,7 @@ export default async function Main({ params, searchParams }: any) {
 
   return (
     <>
-      <SectionDiv>
+      <SectionDiv className={`my-5`}>
                     
         <LoopHead>
           <LoopApex 
