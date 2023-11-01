@@ -60,7 +60,7 @@ export default async function Main({ params, searchParams }: any) {
   // need to determine not only the search results shown but the TOTAL search results!
   const resultsCount = await getUnpagedPostsCount(findQuery, '', '')
 
-  return (
+  return (  
     <>
       <SectionDiv className={`my-5`}>       
 

@@ -6,35 +6,34 @@ dynamically-routed find (search results) page
 with paginated lists plus paginated tag filtered lists
 */
 
-import { getBase, getHomePage, getPosts, getTake, getUnpagedPostsCount } from '@/app/(basis)/util/data'
-import { LoopHead } from './loop/loop-head'
-import { LoopApex } from './loop/loop-apex'
+import { getTake, getBase, getPosts, getUnpagedPostsCount } from '@/app/(basis)/util/data'
+import { LoopHead } from '@/app/(basis)/loop/loop-head'
+import { LoopApex } from '@/app/(basis)/loop/loop-apex'
 import { FindResultsCount } from '@/app/(basis)/loop/loop-count'
-import ViewShow from './view/view-show'
-import NotFound from '@/app/not-found'
+import ViewShow from '@/app/(basis)/view/view-show'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
+import NotFound from '@/app/not-found'
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params
+}: any) {
 
-  const { app } = await getHomePage() 
-  const homepage = app.expand?.homepage_content
+  const { take } = await getTake(params.takes)
   
   return {
-    title: homepage.public_name
+    title: `${take.public_name}`
   }
 }
 
 export default async function Main({ params }: any) {
 
-  const { lang } = await getBase()
-  const { app } = await getHomePage() 
-  const homepage = app.expand?.homepage_content 
+  const { app, lang } = await getBase()
 
   /* the total of all the site's published post counts */
   const resultsCount = await getUnpagedPostsCount('', '', '')
 
   /* getting a "take" which bundles the views */
-  const { take } = await getTake(homepage.slug)
+  const { take } = await getTake(params.takes)
   const views = take.expand?.views
   
   if (take.public_name === '') return (<NotFound />)
@@ -52,7 +51,7 @@ export default async function Main({ params }: any) {
   }
 
   const takeViews = await viewLoop()
-
+  
   return (
     <>
 

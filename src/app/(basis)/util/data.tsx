@@ -32,6 +32,25 @@ export async function getBaseID() {
 
 }
 
+export async function getHomePage() {
+
+  try {
+
+    const pb = new PocketBase(process.env.PBDOMAIN) 
+
+    const app = await pb.collection('bases')
+      .getFirstListItem(`slug='${process.env.PBSLUG}'`, { "expand": "homepage_content" })
+
+    return { app }
+
+  } catch {
+    
+    return { app: { expand: { homepage_content: {}}} }
+
+  }
+
+}
+
 export async function getUnpagedPostsCount(
   find: string = '%', 
   kind: any = '',
@@ -152,6 +171,31 @@ export async function getAdjacentPost(
   } catch {
 
     return null
+
+  }
+
+}
+
+export async function getTake(
+  slug: any
+) {
+
+  try {
+
+    const pb = new PocketBase(process.env.PBDOMAIN)  
+
+    const take = await pb.collection('takes')
+      .getFirstListItem(`slug='${slug}'`, 
+        { expand: 'views' }
+      )    
+  
+    return { take }
+  
+  } catch {
+
+    const take = { public_name: '', views: [], expand: { views: [{}]} }
+
+    return { take }
 
   }
 

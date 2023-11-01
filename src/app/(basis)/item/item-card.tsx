@@ -11,7 +11,7 @@ import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemCard({lang, kind = true, item} : any) {
 
-  let itemDate = getFormattedDate(item.created)      
+  let itemDate = getFormattedDate(item.created)     
 
   const ListCardWrapper = ({children}: any) => {
     return (

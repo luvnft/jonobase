@@ -12,7 +12,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
 
   const Home = () => {
     return (
-      <Span>{lang.home} </Span>      
+      <Span>{site} </Span>      
     )
   }
 
@@ -31,7 +31,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
           : <Span> {label} </Span>
         } 
         <Span ariaHidden={true}> / </Span>
-        <Span> {decodeURIComponent(folder)} </Span>
+        { folder && <Span> {decodeURIComponent(folder)} </Span>}
       </>
     )
   }
@@ -41,11 +41,17 @@ export const LoopApex = ({site, lang, params, current}: any) => {
       <Span> ({lang.page} {current})</Span>      
     )
   }
+
+  const Take = () => {
+    return (
+      <Span> {params.takes} </Span>
+    )
+  }
   
   return (
     <aside className={` text-lg md:text-2xl uppercase`}> 
 
-      { (!params.finds && !params.kinds && !params.lists) &&
+      { (!params.finds && !params.kinds && !params.lists && !params.takes) &&
         <Home />                  
       }
 
@@ -63,6 +69,11 @@ export const LoopApex = ({site, lang, params, current}: any) => {
 
       { (params.lists) && 
         <Fold label={`lists`} folder={params.lists} />
+      }
+
+      { 
+        (params.takes) &&
+        <Take />
       }                   
       
       { current > 1 && 
