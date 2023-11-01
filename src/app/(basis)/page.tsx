@@ -54,6 +54,25 @@ export default async function Main({ params, searchParams }: any) {
   // need to determine not only the search results shown but the TOTAL search results!
   const resultsCount = await getUnpagedPostsCount('', '', '')
 
+  
+  // getting all the sections
+
+  const { sections } = app.sections
+
+  const sectionLoop = async () => {
+    const promises = sections.map( async (section : any) => {
+      const { find, kind, list, limit } = section
+      const { items } = await getPosts(find, kind, list, 1, limit)
+      return { section, items }
+    })
+
+    const collections = await Promise.all(promises)
+    return collections
+    
+  }
+
+  const customSections = await sectionLoop()
+
   const HomeIntro = () => {
 
     const homeIntro = app.homepage_intro 
@@ -93,8 +112,8 @@ export default async function Main({ params, searchParams }: any) {
           <LoopApex 
             site={app.slug}
             lang={lang}
-            params={params}              
-            current={pageNumber}              
+            params={params}
+            current={pageNumber}
           />          
           <FindResultsCount 
             label={lang.posts} 
@@ -104,24 +123,35 @@ export default async function Main({ params, searchParams }: any) {
 
       </SectionDiv>
 
-      <SectionDiv className={`        
+      <SectionDiv className={`
         text-black dark:text-gray-300 mt-0 mb-0
         drop-shadow-xl bg-gradient-to-r ${getBgColor(app.theme)}
       `}>
         <HomeIntro />
       </SectionDiv>  
 
-      <SectionDiv className={`my-5 lg:my-2 drop-shadow-lg`}>       
+      {customSections.map(sect => {
 
-        <LoopShow lang={lang} items={items} />
+        const { items, section } = sect
 
-        <LoopTurn 
-          params={params}            
-          current={pageNumber}
-          limit={postsPerPage}           
-        />          
-                      
-      </SectionDiv>   
+        return (
+      
+          <SectionDiv key={section.key} className={`my-5 lg:my-2 drop-shadow-lg`}>
+
+            <h2 className={`text-4xl text-center md:text-left uppercase my-5`}>{section.title}</h2>
+
+            <LoopShow             
+              kind={section.showKind}
+              lang={lang} 
+              items={items} 
+              type={section.type} 
+            />          
+                          
+          </SectionDiv>   
+
+        )
+      
+      })}
 
       <SectionDiv className={`        
         text-black dark:text-gray-300 mb-0
