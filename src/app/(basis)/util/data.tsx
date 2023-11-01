@@ -189,6 +189,9 @@ export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
     filtering += (list) ? ` && lists='NULL DO NOT SEARCH FFS'` : ''
   }
 
+  // ensure all posts are published
+  filtering += ` && status='published'`
+
   return filtering
 
 }
