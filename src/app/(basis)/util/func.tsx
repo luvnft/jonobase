@@ -99,6 +99,8 @@ export const getProse = () => {
     prose-ol:list-decimal      
     prose-li:m-4   
     prose-p:my-5
+    prose-blockquote:font-sans
+    prose-blockquote:text-4xl
   `)
 }
 

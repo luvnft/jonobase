@@ -16,7 +16,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
   const ListCardWrapper = ({children}: any) => {
     return (
       <summary className={`
-        block h-full shadow-sm hover:shadow-xl
+        block h-full shadow-sm hover:shadow-xl bg-zinc-100 dark:bg-black
         border border-2 border-black dark:border-gray-600      
       `}>
         {children}

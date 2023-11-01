@@ -10,7 +10,7 @@ const config: Config = {
     {
       pattern: /(bg|text)-+/,
       variants: [
-        'prose-a', 
+        'dark', 'prose-a', 'hover', 'hover:dark', 'hover:dark:prose-a'
       ]
     },
   ],
