@@ -67,7 +67,7 @@ export default async function PostTurn({lang, post, params}: any) {
         <TurnCard 
           older={olderPostInType} 
           newer={newerPostInType} 
-          criteria={post.kind} 
+          criteria={post.expand.kind.slug} 
         />
       }
       { (olderPostInSite || newerPostInSite) &&

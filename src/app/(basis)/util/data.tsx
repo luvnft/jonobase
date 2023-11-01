@@ -72,7 +72,8 @@ export async function getPosts(
   const items = await pb.collection('posts')
     .getList(page, limit, { 
       sort: `-featured, -created, -backdated`,
-      filter: filtering
+      filter: filtering,
+      expand: 'kind,lists'
     })  
 
   return items 
@@ -90,13 +91,13 @@ export async function getPost(
     const post = await pb.collection('posts')
       .getFirstListItem(`
         slug='${slug}' 
-      `, { expand: 'lists' })      
+      `, { expand: 'kind,lists' })      
 
     return { post } 
 
   } catch {
 
-    const post = { title: '', lists: [] }
+    const post = { title: '', kind: '', lists: [] }
     return { post }
   
   }
@@ -143,7 +144,7 @@ export async function getAdjacentPost(
 
     const adjacentPost = await pb.collection('posts')
       .getFirstListItem(filtering, 
-        {expand: 'bases,files,path,lists'}
+        {expand: 'bases,files,kind,lists'}
       )
       
     return adjacentPost
@@ -170,10 +171,22 @@ export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
       summary?~'${find}' || 
       content?~'${find}' 
     )`  
-  if (kind !== '') 
-    filtering += ` && kind='${kind}'`
 
-  // filtering by list gets a little complicated: 
+  if (kind === 'all') kind = '%'  
+
+  // search for the kind in the kinds table
+  const { items: kinds } = await pb.collection('kinds')
+    .getList(1, 1, { filter: `slug='${kind}'`})
+
+  // if the desired kind exists, then get its id
+  if (kinds[0]) {
+    // add the kind id to the filter
+    filtering += ` && kind?~'${kinds[0].id}'`
+  } else {
+    // or else, ensure nothing returns by using a bogus query    
+    filtering += (kind) ? ` && kind='NULL DO NOT SEARCH'` : ''
+  }
+  
   if (list === 'all') list = '%'
 
   // search for the list in the lists table
@@ -186,7 +199,7 @@ export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
     filtering += ` && lists?~'${lists[0].id}'` 
   } else {
     // or else, ensure nothing returns by using a bogus query
-    filtering += (list) ? ` && lists='NULL DO NOT SEARCH FFS'` : ''
+    filtering += (list) ? ` && lists='NULL DO NOT SEARCH'` : ''
   }
 
   // ensure all posts are published

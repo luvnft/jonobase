@@ -33,7 +33,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
         from-black to-gray-700         
         ${kind ? '' : 'hidden'}
       `}>
-        {item.kind}
+        {item.expand.kind.slug}
       </Line>
     )
   }

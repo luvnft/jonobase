@@ -24,8 +24,9 @@ export default function ItemCard({lang, kind = true, item} : any) {
     )
   }
 
-  const ListCardType = () => {    
+  const ListPostKind = () => {    
 
+    
     return (
       <Line className={`
         text-white dark:text-white uppercase 
@@ -33,7 +34,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
         from-black to-gray-700         
         ${kind ? '' : 'hidden'}
       `}>
-        {item.kind}
+        {item.expand.kind.slug}
       </Line>
     )
   }
@@ -111,7 +112,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
         <ListCardWrapper featured={item.featured}>
           
-          <ListCardType />
+          <ListPostKind />
           
           <ListCardInner>
             <ListCardDate />
