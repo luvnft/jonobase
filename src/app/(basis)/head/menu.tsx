@@ -64,7 +64,7 @@ export default function Menu({app, lang} : any) {
       <dialog 
         aria-label={lang.menu} 
         className={` 
-          flex z-20 overflow-y-auto animate-bounce 
+          flex z-20 overflow-y-auto  
           w-full h-screen fixed top-0 left-0 p-10          
       `}>
         {children}
