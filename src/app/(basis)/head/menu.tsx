@@ -14,7 +14,6 @@ import FocusTrap from 'focus-trap-react'
 import { Span } from '../util/tidy-html'
 import MenuFind from './menu-find'
 import { getThemeLink, getTheme, getProse } from '../util/func'
-import styles from './styles.module.css'
 
 export default function Menu({app, lang} : any) {    
 
