@@ -7,7 +7,7 @@
 
 /* custom menu animation */
 
-.animate-bounce {
+/* .animate-bounce {
   animation-name: bounce; 
   animation-iteration-count: 1;   
   animation-duration: 0.33s; 
@@ -20,8 +20,7 @@
   100% {
     transform: translateY(0%);
   }
-}
-
+} */
 
 /* custom buttons for lists and paginations */
 
