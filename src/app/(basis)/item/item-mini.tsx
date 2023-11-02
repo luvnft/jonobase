@@ -1,17 +1,18 @@
 
 /*
 jonopoco
-/app/(basis)/item/item-nano.tsx
-a post "nano" (date, title, summary with optional kind)
+/app/(basis)/item/item-pico.tsx
+an item link that contains just the title (and optional post "kind")
+minimalism at its finest
 */
 
 import Link from "next/link"
-import { Span, Line } from "@/app/(basis)/util/tidy-html"
-import { getFormattedDate } from "@/app/(basis)/util/func"
+import { Span, Line } from "../util/tidy-html"
+import { getFormattedDateTime } from "@/app/(basis)/util/func"
 
-export default function ItemMini({lang, kind = true, item} : any) {
+export default function ItemMini({item, kind = false, lang} : any) {
 
-  let itemDate = getFormattedDate(item.created)      
+  let itemDate = getFormattedDateTime(item.created)
 
   const ItemMiniDate = () => {
 
@@ -22,70 +23,51 @@ export default function ItemMini({lang, kind = true, item} : any) {
         ${item.collectionName === 'pages' ? `hidden` : ``}
         ${itemDate === '' ? `hidden` : ``}        
       `}>
-        {item.featured && 
-          <Span 
-            ariaLabel={lang.featured}                 
-            className={`mr-2`}
-          >📌</Span>
-        }
+        <ItemMiniFeatured />
         <Span>{itemDate}</Span>
       </Span> 
     )
   }
 
-  const ItemMiniEmoji = () => {
+  const ItemMiniFeatured = () => {
     return (
-      <Span
-        className={`text-2xl mx-3`} 
-        ariaHidden={true}
-      >
-        {item.emoji}
-      </Span>
+      <>
+        {item.featured && 
+          <Span ariaLabel={lang.featured} className={`mr-2`}>📌</Span>
+        } 
+      </>
     )
   }
 
   const ItemMiniTitle = () => {
-    return (
-      <Line className={`
-        hover:underline text-2xl
-      `}> 
-        {item.title}
-      </Line>
+    return (            
+      <Span className={`text-lg md:text-2xl lg:text-4xl`}>{item.title}</Span>      
     )
   }
 
   const ItemMiniKind = () => {
-
-    console.log("====", item)
-    return (
-      <Span className={`mr-2`}>
-        ( {item.expand.kind.slug} )
-      </Span>
-    )
-  }
-  const ItemMiniSummary = () => {
-    return (
-      <Line className={`text-black dark:text-slate-500 text-lg`}> 
-        {item.summary}
-      </Line>
+    return (      
+      <Span>({item.expand.kind.slug})</Span>      
     )
   }
 
   return (
-    <li className={`h-full text-center sm:text-left hover:prose-a:!no-underline`}>  
-      
-      <ItemMiniDate />
-      <ItemMiniEmoji /> 
-      <ItemMiniKind />
-            
-      <Link 
-        href={`/posts/${item.slug}`} 
-        className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
-      >
-        <ItemMiniTitle />
+    <li className={`h-full text-center`}>  
 
-      </Link>
-      <ItemMiniSummary />
+      <Line>
+        <ItemMiniDate />
+        <br />
+        <Link href={`/posts/${item.slug}`}>
+          <ItemMiniTitle />
+        </Link>        
+        {kind && (
+          <>
+            <br />
+            <ItemMiniKind />
+          </>          
+        )}
+      </Line>
+      
 
     </li>
   )

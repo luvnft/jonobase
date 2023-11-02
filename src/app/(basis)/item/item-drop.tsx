@@ -2,7 +2,13 @@
 /*
 jonopoco
 /app/(basis)/item/item-drop.tsx
-a post "drop" for lists but not limited to lists
+"drop" style of item card
+- left side
+  - emoji (optional)
+- right side
+  - date
+  - title
+  - summary
 */
 
 import Link from "next/link"
@@ -26,7 +32,7 @@ export default function ItemCard({lang, kind = false, item} : any) {
   const ItemDropEmoji = () => {
     return (
       <div
-        className={`text-6xl border-2 rounded-full p-5 drop-shadow-xl`} 
+        className={`text-6xl border-2 bg-white rounded-full p-5 drop-shadow-xl`} 
         aria-label="hidden"        
       >
         {item.emoji}
@@ -78,7 +84,7 @@ export default function ItemCard({lang, kind = false, item} : any) {
   }
 
   return (
-    <li className={`h-full text-left hover:prose-a:!no-underline`}>
+    <li className={`text-left hover:prose-a:!no-underline w-max max-w-[100vw] md:w-full`}>
 
       <Link 
         href={`/posts/${item.slug}`} 

@@ -9,9 +9,9 @@ minimalism at its finest
 import Link from "next/link"
 import { Span, Line } from "../util/tidy-html"
 
-export default function ItemPico({item, kind = false, lang} : any) {
+export default function ItemNull({item, kind = false, lang} : any) {
 
-  const ItemPicoFeatured = () => {
+  const ItemNullFeatured = () => {
     return (
       <>
         {item.featured && 
@@ -21,17 +21,15 @@ export default function ItemPico({item, kind = false, lang} : any) {
     )
   }
 
-  const ItemPicoTitle = () => {
+  const ItemNullTitle = () => {
     return (            
       <Span className={`text-xl sm:text-2xl lg:text-3xl`}>{item.title}</Span>      
     )
   }
 
-  const ItemPicoKind = () => {
+  const ItemNullKind = () => {
     return (
-      <>
-        <Span>({item.expand.kind.slug})</Span>
-      </>
+      <Span>({item.expand.kind.slug})</Span>
     )
   }
 
@@ -39,12 +37,14 @@ export default function ItemPico({item, kind = false, lang} : any) {
     <li className={`h-full text-center`}>  
 
       <Line>
-        <ItemPicoFeatured />
+        <ItemNullFeatured />
         <Link href={`/posts/${item.slug}`}>
-          <ItemPicoTitle />
+          <ItemNullTitle />
         </Link>
-        {kind && <ItemPicoKind />}
+        <br />
+        {kind && <ItemNullKind />}
       </Line>
+      
 
     </li>
   )

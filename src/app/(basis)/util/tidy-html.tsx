@@ -9,9 +9,7 @@ export const Line = ({
   children}: any) => {
 
   return (
-    <p 
-      className={className}
-    >
+    <p className={className}>
       {children}
     </p>    
   )
@@ -78,7 +76,7 @@ export const StartFlex = ({
 
   return (
     <div className={`
-      flex flex-row items-start justify-center md:justify-start text-left
+      flex flex-row items-start justify-start text-left
     `}>
       {children}
     </div>

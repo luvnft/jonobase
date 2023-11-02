@@ -8,6 +8,8 @@ import { getProse } from "../util/func"
 import { SectionDiv } from "../util/tidy-html"
 import { LoopShow } from "../loop/loop-show"
 import { sanitize } from "isomorphic-dompurify"
+import Link from "next/link"
+import { Line } from "../util/tidy-html"
 
 export default async function ViewShow({lang, takeView}: any) {
 
@@ -49,6 +51,17 @@ export default async function ViewShow({lang, takeView}: any) {
 
       {view.message_after && 
         <aside className={getProse()} dangerouslySetInnerHTML={{__html: messageAfter}} />                
+      }
+
+      {view.cta_url && 
+        <Line className={`w-full text-center`}>
+          <Link 
+            className={`button shadow-xl`}
+            href={view.cta_url}
+          >
+            {view.cta_label ?? lang.view_more}
+          </Link>
+        </Line>
       }
                     
     </SectionDiv>

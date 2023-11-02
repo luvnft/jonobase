@@ -18,7 +18,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
 
   const HomeLink = () => {
     return (
-      <Link href={`/`}>{site} </Link>
+      <Link href={`/`}>{site}</Link> 
     )
   }
 
@@ -27,7 +27,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
       <>
         <Span ariaHidden={true}> / </Span>
         { linkLabel 
-          ? <Link href={`/${label}/`}>{label} </Link>
+          ? <Link href={`/${label}/`}>{label}</Link> 
           : <Span> {label} </Span>
         } 
         <Span ariaHidden={true}> / </Span>
@@ -44,7 +44,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
 
   const Take = () => {
     return (
-      <Span> {params.takes} </Span>
+      <Span> {params.takes} </Span> 
     )
   }
   

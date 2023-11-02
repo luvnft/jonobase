@@ -2,7 +2,12 @@
 /*
 jonopoco
 /app/(basis)/item/item-card.tsx
-a post "card" for lists but not limited to lists
+"card" style of item card, showing:
+- "kind" optionally indicated
+- date
+- emoji (optional)
+- title
+- summary
 */
 
 import Link from "next/link"
