@@ -129,7 +129,7 @@ export async function getAdjacentPost(
   filter: "site" | "kind"
 ) {
 
-  let filtering = ''
+  let filtering = '', sorting = ''
   
   try {
 
@@ -153,11 +153,12 @@ export async function getAdjacentPost(
 
     switch (direction) {
       case "newer":
-        filtering += `created > '${post.created}'`                  
+        filtering += `created > '${post.created}'` 
+        sorting += `created`                 
         break;
       case "older":
         filtering += `created < '${post.created}'`
-        
+        sorting += `-created`
         break;      
     }    
 
@@ -166,7 +167,11 @@ export async function getAdjacentPost(
 
     const adjacentPost = await pb.collection('posts')
       .getFirstListItem(filtering, 
-        {expand: 'bases,files,kind,lists'}
+        {
+          sort: sorting,
+          filter: filtering,          
+          expand: 'bases,files,kind,lists',          
+        }
       )
       
     return adjacentPost
