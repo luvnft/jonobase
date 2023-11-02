@@ -58,7 +58,6 @@ export default function ItemLite({lang, kind = true, item} : any) {
 
   const ItemLiteKind = () => {
 
-    console.log("====", item)
     return (
       <Span className={`mr-2`}>
         ( {item.expand.kind.slug} )

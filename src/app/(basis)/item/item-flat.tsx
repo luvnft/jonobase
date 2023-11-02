@@ -59,7 +59,6 @@ export default function ItemFlat({lang, kind = true, item} : any) {
 
   const ItemFlatKind = () => {
 
-    console.log("====", item)
     return (
       <Span className={`mr-2`}>
         ( {item.expand.kind.slug} )

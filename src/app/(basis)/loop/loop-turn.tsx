@@ -12,7 +12,7 @@ export default async function LoopTurn({
   params,         // URL dynamic folder params
   current = 1,    // current page # (1 by default)
   limit = 6,      // posts per page (6 by default)
-}: any) {
+}: any) {  
 
   const checkFinds = params.finds 
     ? params.finds 
