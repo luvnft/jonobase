@@ -16,9 +16,7 @@ import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 
 export async function generateMetadata() {
 
-  const { app } = await getBase()
-  const { app: home } = await getHomePage() 
-  const homepage = home.expand?.homepage_content
+  const { app } = await getBase()  
   
   return {
     title: `${app.title} - ${app.tagline}`
