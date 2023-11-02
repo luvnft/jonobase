@@ -52,7 +52,7 @@ export async function getHomePage() {
 }
 
 export async function getUnpagedPostsCount(
-  find: string = '%', 
+  find: string = '', 
   kind: any = '',
   list: any = '',   
 ) {
@@ -65,8 +65,7 @@ export async function getUnpagedPostsCount(
   const filtering = await getQueryFilter(data)
   
   const items = await pb.collection('posts')
-    .getFullList({ 
-      sort: `-featured, -created, -backdated`,
+    .getFullList({       
       filter: filtering
     }) 
     
@@ -217,41 +216,45 @@ export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
 
   if (base !== '') 
     filtering += ` bases?~'${base}'`
-  if (find !== '')
+  if (find !== 'all')
     filtering += ` && ( 
       title?~'${find}' || 
       summary?~'${find}' || 
       content?~'${find}' 
     )`  
 
-  if (kind === 'all') kind = '%'  
+  if (kind !== 'all') {
 
-  // search for the kind in the kinds table
-  const { items: kinds } = await pb.collection('kinds')
-    .getList(1, 1, { filter: `slug='${kind}'`})
+    // search for the kind in the kinds table
+    const { items: kinds } = await pb.collection('kinds')
+      .getList(1, 1, { filter: `slug='${kind}'`})
 
-  // if the desired kind exists, then get its id
-  if (kinds[0]) {
-    // add the kind id to the filter
-    filtering += ` && kind?~'${kinds[0].id}'`
-  } else {
-    // or else, ensure nothing returns by using a bogus query    
-    filtering += (kind) ? ` && kind='NULL DO NOT SEARCH'` : ''
+    // if the desired kind exists, then get its id
+    if (kinds[0]) {
+      // add the kind id to the filter
+      filtering += ` && kind?~'${kinds[0].id}'`
+    } else {
+      // or else, ensure nothing returns by using a bogus query    
+      filtering += (kind) ? ` && kind='NULL DO NOT SEARCH'` : ''
+    }
+  
   }
   
-  if (list === 'all') list = '%'
-
-  // search for the list in the lists table
-  const { items: lists } = await pb.collection('lists')
-    .getList(1, 1, { filter: `slug='${list}'`})    
+  if (list !== 'all') {
   
-    // if the desired list exists, then get its id
-  if (lists[0]) { 
-    // add the list id to the filter
-    filtering += ` && lists?~'${lists[0].id}'` 
-  } else {
-    // or else, ensure nothing returns by using a bogus query
-    filtering += (list) ? ` && lists='NULL DO NOT SEARCH'` : ''
+      // search for the list in the lists table
+    const { items: lists } = await pb.collection('lists')
+      .getList(1, 1, { filter: `slug='${list}'`})    
+    
+      // if the desired list exists, then get its id
+    if (lists[0]) { 
+      // add the list id to the filter
+      filtering += ` && lists?~'${lists[0].id}'` 
+    } else {
+      // or else, ensure nothing returns by using a bogus query
+      filtering += (list) ? ` && lists='NULL DO NOT SEARCH'` : ''
+    }
+  
   }
 
   // ensure all posts are published
