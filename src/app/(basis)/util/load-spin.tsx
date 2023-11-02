@@ -1,13 +1,12 @@
 import Image from 'next/image'
+import { SectionDiv } from './tidy-html'
 
 export function Load() {
   
   return (
-    <section className={`flex flex-row w-full h-[50vh] justify-center items-center`}>
-      <div>
-        <Image src={`/images/load-spin.gif?v=${Date.now()}`} alt={`loading`} height={64} width={64} />          
-      </div>
-    </section>   
+    <SectionDiv className={`min-h-screen flex justify-center items-center`}>
+      <Image src={`/images/load-spin.gif?v=${Date.now()}`} alt={`loading`} height={64} width={64} />          
+    </SectionDiv>
   )
   
 }
