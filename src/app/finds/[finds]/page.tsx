@@ -85,9 +85,9 @@ export default async function Main({ params, searchParams }: any) {
 
       </SectionDiv>
 
-      <SectionDiv>
+      <SectionDiv className={`bg-zinc-50 dark:bg-zinc-950`}>
         
-        <LoopShow lang={lang} items={items} />
+        <LoopShow lang={lang} items={items} type={`flat`} />
 
       </SectionDiv>
 

@@ -13,7 +13,7 @@ import ItemLite from "../item/item-lite"
 import ItemMini from "../item/item-mini"
 import ItemNull from "../item/item-null"
 
-export const LoopShow = ({kind = false, lang, items, type = 'pico'}: any) => {
+export const LoopShow = ({kind = false, lang, items, type = 'card'}: any) => {
 
   return (
 
@@ -22,7 +22,7 @@ export const LoopShow = ({kind = false, lang, items, type = 'pico'}: any) => {
       {(items && items.length > 0) &&       
       
         <ul className={`grid w-max max-w-screen md:w-auto mx-auto gap-5 
-          grid-cols-1 items-start my-10
+          grid-cols-1 items-start py-10
           ${items.length >= 2 && `md:grid-cols-2`} 
           ${items.length >= 3 && `lg:grid-cols-3`}
         `}>

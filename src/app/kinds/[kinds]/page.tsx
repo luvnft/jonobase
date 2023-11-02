@@ -79,7 +79,7 @@ export default async function Main({ params, searchParams }: any) {
 
       </SectionDiv>
       
-      <SectionDiv>
+      <SectionDiv className={`bg-zinc-200 dark:bg-zinc-700`}>
         
         <LoopShow 
           kind={kinds === 'all' ? true : false}
