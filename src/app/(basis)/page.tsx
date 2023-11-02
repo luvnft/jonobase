@@ -16,19 +16,20 @@ import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 
 export async function generateMetadata() {
 
-  const { app } = await getHomePage() 
-  const homepage = app.expand?.homepage_content
+  const { app } = await getBase()
+  const { app: home } = await getHomePage() 
+  const homepage = home.expand?.homepage_content
   
   return {
-    title: homepage.public_name
+    title: `${homepage.public_name} @ ${app.title}`
   }
 }
 
 export default async function Main({ params }: any) {
 
   const { lang } = await getBase()
-  const { app } = await getHomePage() 
-  const homepage = app.expand?.homepage_content 
+  const { app: home } = await getHomePage() 
+  const homepage = home.expand?.homepage_content 
 
   /* the total of all the site's published post counts */
   const resultsCount = await getUnpagedPostsCount('', '', '')
