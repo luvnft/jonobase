@@ -43,20 +43,21 @@ export default function PostHead({lang, post}: any) {
 
   }
 
-  const PostHeadDate = () => {
+  const PostHeadDate = () => {    
     
     return (
       <div className={`
         text-right 
-        text-sm md:text-xl         
+        text-md md:text-lg         
         grow ml-2 my-2
       `}>
             
-        {post.updated !== undefined && 
+        {(post.updated !== undefined && post.backdated != '') && 
           <Line className={'whitespace-nowrap'}>
             <Span>
               {`${lang.last_updated} `} 
             </Span>
+            <br />
             <Span className={`font-semibold`}>
               {getFormattedDateTime(post.updated)}
             </Span>            
@@ -65,16 +66,18 @@ export default function PostHead({lang, post}: any) {
 
         <Line className={'whitespace-nowrap'}>
           <Span>{lang.published} </Span>
+          <br />
           <Span className={`font-semibold`}>
             {getFormattedDateTime(post.created)}
           </Span>
         </Line>
       
-        {post.backdated !== undefined && 
+        {(post.backdated !== undefined && post.backdated !== '') && 
           <Line className={'whitespace-nowrap'}>
             <Span>
               {`${lang.originally_created} `}
             </Span>
+            <br />
             <Span className={`font-semibold`}>
               {getFormattedDateTime(post.backdated)}
             </Span>            

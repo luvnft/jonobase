@@ -161,6 +161,9 @@ export async function getAdjacentPost(
         break;      
     }    
 
+    // ensure all posts are published
+    filtering += ` && status='published'`
+
     const adjacentPost = await pb.collection('posts')
       .getFirstListItem(filtering, 
         {expand: 'bases,files,kind,lists'}

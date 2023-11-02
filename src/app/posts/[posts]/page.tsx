@@ -47,10 +47,9 @@ export default async function Main({ params }: any) {
 
   const { app, lang } = await getBase()
   const { post } = await getPost(params.posts)  
-
   const { lists } = post
-  
-  if (Object.keys(post).length === 0) {
+    
+  if (post.kind === '') {
     return <NotFound />
   }    
 
