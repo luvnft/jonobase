@@ -21,7 +21,7 @@ export async function generateMetadata() {
   const homepage = home.expand?.homepage_content
   
   return {
-    title: `${homepage.public_name} @ ${app.title}`
+    title: `${app.title} - ${app.tagline}`
   }
 }
 
