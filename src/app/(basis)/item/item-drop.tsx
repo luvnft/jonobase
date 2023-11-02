@@ -6,91 +6,70 @@ a post "drop" for lists but not limited to lists
 */
 
 import Link from "next/link"
-import { Span, Line } from "@/app/(basis)/util/tidy-html"
+import { Span, Line, StartFlex } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
-export default function ItemCard({lang, kind = true, item} : any) {
+export default function ItemCard({lang, kind = false, item} : any) {
 
   let itemDate = getFormattedDate(item.created)      
 
-  const ListCardWrapper = ({children}: any) => {
-    return (
-      <summary className={`
-        block h-full shadow-sm hover:shadow-xl
-        border border-2 border-black dark:border-gray-600      
-      `}>
-        {children}
-      </summary>
-    )
-  }
-
-  const ListCardType = () => {    
+  const ItemDropInner = ({children}: any) => {
 
     return (
-      <Line className={`
-        text-white dark:text-white uppercase 
-        mt-0 bg-gradient-to-b 
-        from-black to-gray-700         
-        ${kind ? '' : 'hidden'}
-      `}>
-        {item.expand.kind.slug}
-      </Line>
-    )
-  }
-
-  const ListCardInner = ({children}: any) => {
-
-    return (
-      <div className={`px-5`}>
+      <div className={`mx-5`}>
         {children}
       </div>
     )
 
   }
 
-  const ListCardDate = () => {
+  const ItemDropEmoji = () => {
+    return (
+      <div
+        className={`text-6xl border-2 rounded-full p-5 drop-shadow-xl`} 
+        aria-label="hidden"        
+      >
+        {item.emoji}
+      </div>
+    )
+  }
+
+  const ItemDropDate = () => {
 
     return (
-      <Line className={`
+      <Span className={`
         text-black dark:text-gray-500 mt-2
         ${item.featured ? `text-black dark:text-yellow-500` : ``}
         ${item.collectionName === 'pages' ? `hidden` : ``}
-        ${itemDate === '' ? `hidden` : ``}        
+        ${itemDate === `` ? `hidden` : ``}
       `}>
         {item.featured && 
           <Span 
-            ariaLabel={lang.featured}                 
+            ariaLabel={lang.featured}
             className={`mr-2`}
           >📌</Span>
         }
         <Span>{itemDate}</Span>
-      </Line> 
+        { kind && <ItemDropKind />}
+      </Span> 
     )
   }
 
-  const ListCardEmoji = () => {
+  const ItemDropKind = () => {
     return (
-      <Line
-        className={`text-6xl`} 
-        ariaHidden={true}
-      >
-        {item.emoji}
-      </Line>
+      <Span> ({item.expand.kind.slug}) </Span>
     )
   }
 
-  const ListCardTitle = () => {
+  const ItemDropTitle = () => {
     return (
-      <h3 className={`
-        hover:underline 
-        ${item.emoji ? `text-3xl` : `text-4xl`}
-      `}> 
+      <h3 className={`hover:underline text-3xl`}> 
         {item.title}
       </h3>
     )
   }
 
-  const ListCardSummary = () => {
+  const ItemDropSummary = () => {
     return (
       <Line className={`text-black dark:text-slate-500 text-sm`}> 
         {item.summary}
@@ -99,7 +78,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
   }
 
   return (
-    <li className={`h-full text-center hover:prose-a:!no-underline`}>  
+    <li className={`h-full text-left hover:prose-a:!no-underline`}>
 
       <Link 
         href={`/posts/${item.slug}`} 
@@ -109,18 +88,17 @@ export default function ItemCard({lang, kind = true, item} : any) {
         `}
       >
 
-        {/* <ListCardWrapper featured={item.featured}>
+        <StartFlex>
           
-          <ListCardType />
+          {item.emoji && <ItemDropEmoji />}
           
-          <ListCardInner>
-            <ListCardDate />
-            <ListCardEmoji /> */}
-            <ListCardTitle />
-            {/* <ListCardSummary />
-          </ListCardInner>
+          <ItemDropInner>
+            <ItemDropDate />                      
+            <ItemDropTitle />
+            <ItemDropSummary />          
+          </ItemDropInner>
 
-        </ListCardWrapper>  */}
+        </StartFlex>
 
       </Link>
 
