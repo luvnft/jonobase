@@ -18,10 +18,11 @@ export async function generateMetadata({
   params
 }: any) {
 
+  const { app } = await getBase()
   const { take } = await getTake(params.takes)
   
   return {
-    title: `${take.public_name}`
+    title: `${take.public_name} @ ${app.site}`
   }
 }
 
@@ -71,13 +72,13 @@ export default async function Main({ params }: any) {
         
       </SectionDiv>
 
-      {takeViews && takeViews.map(takeView =>         
-
+      {takeViews && takeViews.map(takeView =>    
+            
         <ViewShow 
           key={takeView.id}
           lang={lang}
           takeView={takeView} 
-        />        
+        />              
       
       )}
           
