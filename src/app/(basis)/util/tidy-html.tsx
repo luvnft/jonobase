@@ -71,3 +71,17 @@ export const StandardFlex = ({
   )
 
 }
+
+export const StartFlex = ({
+  children
+}: any) => {
+
+  return (
+    <div className={`
+      flex flex-row items-start justify-center md:justify-start text-left
+    `}>
+      {children}
+    </div>
+  )
+
+}
