@@ -22,7 +22,7 @@ export async function generateMetadata({
   const { take } = await getTake(params.takes)
   
   return {
-    title: `${take.public_name} @ ${app.site}`
+    title: `${take.public_name} @ ${app.title}`
   }
 }
 
