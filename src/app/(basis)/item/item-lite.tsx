@@ -66,7 +66,7 @@ export default function ItemLite({lang, kind = true, item} : any) {
   }
 
   return (
-    <li className={`h-full text-center md:text-left hover:prose-a:!no-underline`}>  
+    <li className={`text-center md:text-left hover:prose-a:!no-underline`}>  
       
       <ItemLiteDate />
       <ItemLiteEmoji /> 
