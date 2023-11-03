@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/util/func.tsx
 loose helper functions to manipulate data
 */

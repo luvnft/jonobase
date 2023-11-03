@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/item/item-pico.tsx
 an item link that contains just the title (and optional post "kind")
 minimalism at its finest

@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/item/item-drop.tsx
 "drop" style of item card
 - left side

@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/util/data.tsx
 access to the database and other variables
 */

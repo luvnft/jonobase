@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/kinds/[kinds]/page.tsx
 list of posts by [kind] (i.e. minis, notes, pages, works)
 with pagination

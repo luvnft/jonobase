@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/loop/loop-apex.tsx
 apex (breadcrumbs) for loop-type pages (find, kind, list)
 */

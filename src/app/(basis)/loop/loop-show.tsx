@@ -1,7 +1,7 @@
 
 
 /*
-jonopoco
+jonobase
 /app/(basis)/loop/loop-show.tsx
 loop wrapper for finds/kinds/lists etc
 */

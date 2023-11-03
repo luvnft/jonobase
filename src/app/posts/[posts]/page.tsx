@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/[langs]/[type]/(post)/post/[post]/page.tsx
 individual post "post" (content) 
 - apex (breadcrumbs)

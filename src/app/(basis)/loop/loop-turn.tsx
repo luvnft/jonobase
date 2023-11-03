@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/loop/loop-turn.tsx
 pagination for loop-type pages
 */

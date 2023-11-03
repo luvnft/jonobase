@@ -1,7 +1,7 @@
 "use client"
 
 /*
-jonopoco
+jonobase
 /app/(basis)/util/lite-dark.tsx : 
 allows switching between light mode and dark mode 
 

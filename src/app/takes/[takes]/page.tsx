@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/[langs]/(home)/page.tsx
 dynamically-routed find (search results) page
 with paginated lists plus paginated tag filtered lists

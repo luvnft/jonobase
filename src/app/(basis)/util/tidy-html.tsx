@@ -1,5 +1,5 @@
 /*
-jonopoco
+jonobase
 /app/(basis)/util/tidy-html.tsx 
 tidier HTML in components
 */

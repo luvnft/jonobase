@@ -1,7 +1,7 @@
 
 
 /*
-jonopoco
+jonobase
 /app/(basis)/loop/loop-head.tsx
 head of page containing both breadcrumbs and results count
 */

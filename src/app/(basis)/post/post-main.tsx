@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/post/post-main.tsx
 main (body) for single "post" pages
 with sanitized html 

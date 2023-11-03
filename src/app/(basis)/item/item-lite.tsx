@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/item/item-lite.tsx
 "lite" style of item card 
 - first line: date + emoji (optional) + kind (optional)

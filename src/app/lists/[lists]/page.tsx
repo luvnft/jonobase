@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/lists/[lists]/page.tsx
 list of posts by [list] (i.e. tags/topics)
 with pagination

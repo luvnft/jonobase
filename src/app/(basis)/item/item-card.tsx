@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/item/item-card.tsx
 "card" style of item card, showing:
 - "kind" optionally indicated

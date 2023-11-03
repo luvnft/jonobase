@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/finds/[finds]/page.tsx
 dynamically-routed finds page of search results
 with pagination

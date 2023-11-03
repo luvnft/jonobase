@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/layout.tsx
 the general page skeleton
 */
@@ -30,7 +30,7 @@ export default async function RootLayout({
   children: React.ReactNode,    
 }) {
 
-  const { app, lang } = await getBase()    
+  const { app, lang } = await getBase()      
   
   return (
     <html lang="en" suppressHydrationWarning>

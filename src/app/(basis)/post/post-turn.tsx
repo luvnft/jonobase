@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/post/post-turn.tsx
 turn (page-flipper) for single "post" pages
 */

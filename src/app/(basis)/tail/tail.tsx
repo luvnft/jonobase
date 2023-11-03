@@ -1,6 +1,6 @@
 
 /* 
-jonopoco 
+jonobase 
 /app/(basis)/tail/tail.tsx 
 essential component for the app's footer 
 ("tail" in my terminology) 

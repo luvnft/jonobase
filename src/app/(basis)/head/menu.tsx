@@ -1,6 +1,6 @@
 
 /* 
-jonopoco 
+jonobase 
 /app/(basis)/head/menu.tsx : 
 essential site navigation
 */

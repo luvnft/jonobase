@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/post/post-head.tsx
 head (hero) for single "post" pages
 */

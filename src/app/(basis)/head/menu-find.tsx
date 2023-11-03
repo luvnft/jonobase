@@ -1,6 +1,6 @@
 
 /* 
-jonopoco 
+jonobase 
 /app/(basis)/head/menu-find.tsx : 
 essential site navigation
 (search subcomponent)

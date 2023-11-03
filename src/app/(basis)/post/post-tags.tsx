@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/post/post-tags.tsx
 tags (taxonomy) for single "post" pages
 */

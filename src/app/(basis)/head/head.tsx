@@ -1,6 +1,6 @@
 
 /* 
-jonopoco 
+jonobase 
 /app/(basis)/head/head.tsx 
 essential component for the app's header 
 */

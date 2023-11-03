@@ -1,6 +1,6 @@
 
 /*
-jonopoco
+jonobase
 /app/(basis)/post/post-apex.tsx
 apex (breadcrumbs) for single "post" pages
 */

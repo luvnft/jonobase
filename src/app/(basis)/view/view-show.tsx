@@ -1,5 +1,5 @@
 /*
-jonopoco
+jonobase
 /app/(basis)/view/view-show.tsx
 loop wrapper for "take view" sections
 */
