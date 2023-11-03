@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const domainString = process.env.PBDOMAIN_SHORT.toString()
-
 module.exports = {  
   async redirects() {
     return [   
@@ -24,6 +22,11 @@ module.exports = {
         source: '/posts',
         destination: '/',
         permanent: true        
+      },
+      {
+        source: '/views',
+        destination: '/', 
+        permanent: true
       }
     ]
   },
@@ -37,7 +40,12 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: domainString,        
+        hostname: process.env.PBDOMAIN,        
+        pathname: '/api/files/**'
+      },
+      {
+        protocol: 'https',
+        hostname: process.env.PBDOMAIN_SHORT,        
         pathname: '/api/files/**'
       },
     ] 
