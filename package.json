@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^14.0.1",
     "@tailwindcss/typography": "^0.5.10",
     "bufferutil": "^4.0.8",
     "focus-trap-react": "^10.2.3",
