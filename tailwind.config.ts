@@ -17,7 +17,7 @@ const config: Config = {
   theme: {
     fontFamily: {            
       'sans': ['"Barlow Condensed"', 'system-ui'],
-      'serif': ['"Lora"', 'system-ui'],      
+      'serif': ['"Nunito"', 'system-ui'],      
     },
   },
   darkMode: 'class', 
