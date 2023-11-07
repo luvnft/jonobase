@@ -84,7 +84,7 @@ export default function ItemCard({lang, kind = false, item} : any) {
   }
 
   return (
-    <li className={`h-full text-left hover:prose-a:!no-underline w-max max-w-[100vw] md:w-full`}>
+    <li className={`h-full text-left hover:prose-a:!no-underline w-max max-w-full md:w-full`}>
 
       <Link 
         href={`/posts/${item.slug}`} 
