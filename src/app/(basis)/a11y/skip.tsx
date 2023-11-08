@@ -9,7 +9,6 @@ un-hides before the header by pressing shift+tab
 'use client'
 
 import Link from "next/link"
-import styles from './styles.module.css'
 
 export default function Skip({ text } : any) {
 
@@ -21,7 +20,11 @@ export default function Skip({ text } : any) {
     <Link 
       href="#main" 
       onClick={handleSkip}
-      className={styles.skiplink}
+      className={`
+        absolute top-0 right-full z-[1000] 
+        focus:right-auto focus:bg-zinc-600 focus:text-white focus:border-2 
+        focus:border-white focus:p-4
+      `} 
     >
       {text}
     </Link>
