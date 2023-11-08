@@ -26,9 +26,9 @@ export const getThemeLink = (theme: string) => {
       linkTextColor = 'sky-500'       
   }
 
-  return (`
-    prose-a:text-${linkTextColor}
-  `)
+  const textColor = `prose-a:text-${linkTextColor}`
+
+  return textColor
 
 }
 

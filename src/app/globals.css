@@ -85,6 +85,10 @@ article  {
     padding-right: 24px;
   }
 
+  pre {
+    padding: 24px 0;
+  }
+
 }
 
 /* desktop */
