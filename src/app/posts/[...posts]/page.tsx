@@ -10,7 +10,6 @@ individual post "post" (content)
 - tags (post taxonomy)
 - turn (post page-turner to previous or next post)
 - turn (post page-turner to previous or next post, for post_type)
-- turn (post page-turner to previous or next post, for series)
 */
 
 import { getBase, getPost } from '@/app/(basis)/util/data'
@@ -22,9 +21,15 @@ import { PostMain } from '@/app/(basis)/post/post-main'
 import PostTags from '@/app/(basis)/post/post-tags'
 import PostTurn from '@/app/(basis)/post/post-turn'
 
+interface PostProps {
+  params: {
+    posts: string
+  }
+}
+
 export async function generateMetadata({
-  params,
-}: any) {
+  params  
+}: PostProps) {
 
   const { app } = await getBase() 
   const { post } = await getPost(params.posts)  
@@ -43,7 +48,9 @@ export async function generateMetadata({
 
 }
 
-export default async function Main({ params }: any) {
+export default async function Main({ 
+  params 
+}: PostProps) {
 
   const { app, lang } = await getBase()
   const { post } = await getPost(params.posts)  
