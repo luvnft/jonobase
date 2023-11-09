@@ -22,7 +22,7 @@ export default async function Head() {
       <header 
         className={`w-full sticky top-0 z-10
           bg-black bg-gradient-to-t from-black to-gray-700 
-          text-white drop-shadow-xl lg:py-5`
+          text-white drop-shadow-xl`
       }>
         {children}
       </header>
@@ -33,7 +33,7 @@ export default async function Head() {
     return (
       <section 
         className={`flex justify-between 
-          items-center my-5 lg:my-2 gap-5 max-w-screen-lg mx-auto`}>
+          items-center my-2 md:my-5 gap-5 max-w-screen-lg mx-auto`}>
         {children}
       </section>
     )
@@ -73,7 +73,7 @@ export default async function Head() {
 
   const HeadBrandTitle = () => {
     return (
-      <h1 className={`text-lg md:text-3xl uppercase`}>
+      <h1 className={`text-2xl md:text-3xl uppercase`}>
         {app.title}
       </h1>
     )
