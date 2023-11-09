@@ -11,12 +11,10 @@ import { ThemeProvider } from '@/app/(basis)/util/lite-dark'
 import { getBase } from '@/app/(basis)/util/data'
 import Head from '@/app/(basis)/head/head'
 import Tail from '@/app/(basis)/tail/tail'
-import { Suspense } from 'react'
-import { Load } from './(basis)/util/load-spin'
 import { getImageURL, getThemeLink, getTheme } from './(basis)/util/func'
 
 export const dynamic = 'auto'
-export const revalidate = 60
+export const revalidate = 10
 export const fetchCache = 'auto'
 
 export const metadata: Metadata = {
@@ -30,7 +28,7 @@ export default async function RootLayout({
   children: React.ReactNode,    
 }) {
 
-  const { app, lang } = await getBase()      
+  const { app } = await getBase()      
   
   return (
     <html lang="en" suppressHydrationWarning>
@@ -41,9 +39,9 @@ export default async function RootLayout({
         <ThemeProvider attribute={`class`} defaultTheme={`light`} enableSystem>          
           <Head />          
           <main tabIndex={-1} className={`${getThemeLink(app.theme)} ${getTheme()}`}>
-            <Suspense fallback={<Load />}>
+            
               {children}
-            </Suspense>
+            
           </main>
           <Tail />          
         </ThemeProvider>
