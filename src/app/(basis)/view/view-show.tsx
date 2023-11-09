@@ -34,10 +34,13 @@ export default async function ViewShow({lang, takeView}: any) {
         dark:text-white
       `}>
 
-      <h2 className={`text-4xl text-center md:text-left uppercase my-5`}>{view.heading}</h2>
+      <h2 className={`text-4xl text-center md:text-left uppercase`}>{view.heading}</h2>
 
       {view.message_before && 
-        <aside className={getProse()} dangerouslySetInnerHTML={{__html: messageBefore}} />                
+        <aside 
+          className={`${getProse()} text-center md:text-left mt-5`} 
+          dangerouslySetInnerHTML={{__html: messageBefore}} 
+        />
       }
 
       {!view.hide_posts && 
@@ -50,7 +53,10 @@ export default async function ViewShow({lang, takeView}: any) {
       }
 
       {view.message_after && 
-        <aside className={getProse()} dangerouslySetInnerHTML={{__html: messageAfter}} />                
+        <aside 
+          className={`${getProse()} text-center md:text-left mt-5`} 
+          dangerouslySetInnerHTML={{__html: messageAfter}} 
+        />
       }
 
       {view.cta_url && 

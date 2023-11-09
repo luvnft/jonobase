@@ -58,7 +58,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <Line className={`
-         text-black dark:text-gray-500 mt-2
+         text-black dark:text-gray-500 mt-5
         ${item.featured ? `text-black dark:text-yellow-500` : ``}
         ${item.collectionName === 'pages' ? `hidden` : ``}
         ${itemDate === '' ? `hidden` : ``}        
