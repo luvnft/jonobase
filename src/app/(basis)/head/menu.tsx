@@ -52,12 +52,6 @@ export default function Menu({app, lang} : any) {
     )
   }
 
-  const MenuDialogWrapper = ({children}: any) => {
-    return (
-      <div>{children}</div>
-    )
-  }
-
   const MenuDialog = ({children}: any) => {
     return (
       <dialog 
@@ -175,16 +169,17 @@ export default function Menu({app, lang} : any) {
       </div>
     )
   }
+  /* end menu ui */
 
   return (
-    <>    
+    <>
       <MenuButton />
       <MenuFindWrapper className={`hidden lg:block`}>
         <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-nav`} />
       </MenuFindWrapper>
       { showMenu && (
-        <FocusTrap>  
-          <MenuDialogWrapper>
+        <FocusTrap>          
+          <div>
             <MenuDialog>
               <MenuWrapper>
                 <MenuHead>
@@ -205,8 +200,8 @@ export default function Menu({app, lang} : any) {
                 { app.footer_extra && <MenuFooter /> }
               </MenuWrapper>
             </MenuDialog>
-          </MenuDialogWrapper>
-        </FocusTrap>
+          </div>
+        </FocusTrap>    
       )}
     </>
   )
