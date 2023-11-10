@@ -66,7 +66,7 @@ export default function ItemLite({lang, kind = true, item} : any) {
         <ItemLiteTitle />
       </Link>
 
-      <ItemLiteDate />
+      {item.show_date && <ItemLiteDate />}
 
     </li>
   )

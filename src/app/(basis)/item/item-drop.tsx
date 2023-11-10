@@ -117,7 +117,7 @@ export default function ItemDrop({lang, kind = false, item} : any) {
           <ItemDropIcon />
                     
           <ItemDropMeat>
-            <ItemDropDate />
+            {item.showDate && <ItemDropDate />}
             <ItemDropTitle />
             <ItemDropSummary />
           </ItemDropMeat>

@@ -160,7 +160,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
         <ItemCardHead>
 
-          <ItemCardDate />
+          {item.show_date && <ItemCardDate />}
           <ItemCardKind />
 
         </ItemCardHead>

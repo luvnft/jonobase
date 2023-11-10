@@ -76,7 +76,7 @@ export default function ItemFlat({lang, kind = true, item} : any) {
     <li className={`h-full text-center md:text-left hover:prose-a:!no-underline`}>  
       
       <ItemFlatEmoji />
-      <ItemFlatDate />
+      {item.show_date && <ItemFlatDate />}
       {kind && <ItemFlatKind />}
             
       <Link 
