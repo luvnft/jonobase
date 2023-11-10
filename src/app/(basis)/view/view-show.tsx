@@ -5,7 +5,7 @@ loop wrapper for "take view" sections
 */
 
 import { getProse } from "../util/func"
-import { SectionDiv, SuperFlex, Paragraph } from "../util/tidy-html"
+import { SectionDiv, SuperFlex } from "../util/tidy-html"
 import { LoopShow } from "../loop/loop-show"
 import { sanitize } from "isomorphic-dompurify"
 import Link from "next/link"
@@ -26,7 +26,7 @@ export default async function ViewShow({lang, takeView}: any) {
     <SectionDiv 
       key={view.id} 
       className={`
-        py-5 drop-shadow-lg 
+        py-10 drop-shadow-lg 
         bg-${view.bg_color}${view.bg_color_intensity ? `-${view.bg_color_intensity}` : ``} 
         text-${view.text_color}
         dark:bg-${view.bg_color}${view.bg_color_intensity ? `-900` : ``}

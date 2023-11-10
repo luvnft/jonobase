@@ -2,40 +2,56 @@
 /*
 jonobase
 /app/(basis)/item/item-drop.tsx
-"drop" style of item card
-- left side
-  - emoji (optional)
-- right side
-  - date
-  - title
-  - summary
+"drop" style of list item
 */
 
 import Link from "next/link"
-import { Span, Paragraph, StartFlex } from "@/app/(basis)/util/tidy-html"
-import { getFormattedDate } from "@/app/(basis)/util/func"
+import { Span, Paragraph, SuperFlex, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
+import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
 
-export default function ItemCard({lang, kind = false, item} : any) {
+export default function ItemDrop({lang, kind = false, item} : any) {
 
-  let itemDate = getFormattedDate(item.created)      
+  let itemDate = getFormattedDate(item.created)
 
-  const ItemDropInner = ({children}: any) => {
+  const ItemDropMain = ({children}: any) => {
+    return (
+      <SuperFlex justify="start" items="start">
+        {children}
+      </SuperFlex>
+    )    
+  }
 
+  const ItemDropMeat = ({children}: any) => {
     return (
       <div className={`mx-5`}>
         {children}
       </div>
     )
-
   }
 
-  const ItemDropEmoji = () => {
+  const ItemDropIcon = () => {
+
+    const bgImage = item.thumbnail 
+      ? getImageURL(item.collectionId, item.id, item.thumbnail, '100x100')
+      : ''    
+
+    const icon = item.thumbnail 
+      ? '' 
+      : (item.emoji 
+        ? item.emoji 
+        : `🤷🏻‍♂️`)
+
     return (
       <div
-        className={`text-6xl border-2 bg-white rounded-full p-5 drop-shadow-xl`} 
-        aria-label="hidden"        
+        className={`
+          border bg-white rounded-full min-h-[100px] min-w-[100px] shadow-sm shadow-gray-500
+          p-5 text-5xl text-center`} 
+        aria-label="hidden"
+        style={{
+          backgroundImage: `url(${bgImage})`
+        }}
       >
-        {item.emoji}
+        {icon}
       </div>
     )
   }
@@ -44,18 +60,11 @@ export default function ItemCard({lang, kind = false, item} : any) {
 
     return (
       <Span className={`
-        text-black dark:text-gray-500 mt-2
+        text-black dark:text-gray-500
         ${item.featured ? `text-black dark:text-yellow-500` : ``}
-        ${item.collectionName === 'pages' ? `hidden` : ``}
-        ${itemDate === `` ? `hidden` : ``}
       `}>
-        {item.featured && 
-          <Span 
-            ariaLabel={lang.featured}
-            className={`mr-2`}
-          >📌</Span>
-        }
-        <Span>{itemDate}</Span>
+        {item.featured && <FeaturedIcon />}
+        <Span className="text-2xl mr-1">{itemDate}</Span>
         { kind && <ItemDropKind />}
       </Span> 
     )
@@ -77,34 +86,36 @@ export default function ItemCard({lang, kind = false, item} : any) {
 
   const ItemDropSummary = () => {
     return (
-      <Paragraph className={`text-black dark:text-slate-500 text-sm`}> 
+      <Paragraph className={`font-serif text-black dark:text-slate-300 text-sm`}> 
         {item.summary}
       </Paragraph>
     )
   }
 
   return (
-    <li className={`h-full text-left hover:prose-a:!no-underline w-max max-w-full md:w-full`}>
+    <li className={`item-drop
+      h-full w-max max-w-full md:w-full
+      text-left hover:prose-a:!no-underline 
+    `}>
 
       <Link 
         href={`/posts/${item.slug}`} 
-        className={`
-          
+        className={`          
           ${item.featured && `hover:!text-black dark:hover:!text-white`}
         `}
       >
 
-        <StartFlex>
+        <ItemDropMain>
           
-          {item.emoji && <ItemDropEmoji />}
-          
-          <ItemDropInner>
-            <ItemDropDate />                      
+          <ItemDropIcon />
+                    
+          <ItemDropMeat>
+            <ItemDropDate />
             <ItemDropTitle />
-            <ItemDropSummary />          
-          </ItemDropInner>
+            <ItemDropSummary />
+          </ItemDropMeat>
 
-        </StartFlex>
+        </ItemDropMain>
 
       </Link>
 

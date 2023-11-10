@@ -17,7 +17,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <SuperFlex 
-        className={`item-card-head         
+        className={`item-card-head
           text-gray-800 dark:text-gray-200 uppercase
         `}
         items={`end`}
@@ -32,7 +32,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <div 
-        className={`item-card-date 
+        className={`item-card-date
           text-md md:text-xl
         `}
       >
@@ -46,7 +46,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <div
-        className={`item-card-kind           
+        className={`item-card-kind
           ${kind ? '' : 'hidden'}
         `}
       >
@@ -70,7 +70,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
           text-center flex justify-center items-center
         `}
         style={{
-          backgroundImage: `url(${bgImage})`          
+          backgroundImage: `url(${bgImage})`
         }}
       >
         {children}
@@ -86,7 +86,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
           mx-5 lg:mx-auto my-5 px-5 py-2 
           ${item.thumbnail && `
             backdrop-opacity-70 bg-gray-900/90 max-w-fit
-          `}        
+          `}
         `}
       >
         {children}
@@ -142,7 +142,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
   return (
     <li className={`item-card 
       h-auto hover:prose-a:!no-underline 
-      ${item.thumbnail && `hover:prose-a:!text-white dark:hover:prose-a:!text-white`}      
+      ${item.thumbnail && `hover:prose-a:!text-white dark:hover:prose-a:!text-white`}
     `}>  
 
       <Link href={`/posts/${item.slug}`}>
@@ -155,7 +155,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
         </ItemCardHead>
 
         <ItemCardMain featured={item.featured}>
-                        
+
           <ItemCardMeat>
             
             {!item.thumbnail && <ItemCardIcon />}
