@@ -3,6 +3,12 @@
 jonobase
 /app/(basis)/item/item-drop.tsx
 "drop" style of list item
+- entire item as a link
+- icon as thumbnail or emoji
+- meat
+  - date 
+  - title
+  - summary
 */
 
 import Link from "next/link"

@@ -3,6 +3,11 @@
 jonobase
 /app/(basis)/item/item-flat.tsx
 "flat" style of list item
+- emoji as a non-link
+- date as a non-link
+- kind as an optional non-link
+- title as a link
+- summary as a non-link
 */
 
 import Link from "next/link"
@@ -41,6 +46,14 @@ export default function ItemFlat({lang, kind = true, item} : any) {
     )
   }
 
+  const ItemFlatKind = () => {
+    return (
+      <Span className={`ml-1`}>
+        ( {item.expand.kind.slug} )
+      </Span>
+    )
+  }
+
   const ItemFlatTitle = () => {
     return (
       <Paragraph className={`
@@ -48,14 +61,6 @@ export default function ItemFlat({lang, kind = true, item} : any) {
       `}> 
         {item.title}
       </Paragraph>
-    )
-  }
-
-  const ItemFlatKind = () => {
-    return (
-      <Span className={`ml-1`}>
-        ( {item.expand.kind.slug} )
-      </Span>
     )
   }
 

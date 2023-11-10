@@ -3,6 +3,9 @@
 jonobase
 /app/(basis)/item/item-lite.tsx
 "lite" style of list item
+- emoji as a non-link
+- title as a link
+- date as a non-link
 */
 
 import Link from "next/link"

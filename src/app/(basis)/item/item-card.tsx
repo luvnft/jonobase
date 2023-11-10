@@ -3,6 +3,17 @@
 jonobase
 /app/(basis)/item/item-card.tsx
 "card" style of list item
+(the most complex list item type!)
+- card head (non-link)
+  - date
+  - kind (if specified by editor in database)
+- card main (entirety as link)
+  - meat (background as thumbnail or...)
+    - icon (if no thumbnail)
+    - title 
+- card tail (non-link)
+  - summary
+
 */
 
 import Link from "next/link"

@@ -3,6 +3,8 @@
 jonobase
 /app/(basis)/item/item-mini.tsx
 "mini" style of list item
+- shows emoji as a non-link
+- shows title as a link
 */
 
 import Link from "next/link"
