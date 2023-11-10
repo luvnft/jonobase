@@ -58,7 +58,9 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
   const ItemCardMain = ({children}: any) => {
 
-    const bgImage = item.thumbnail ? getImageURL(item.collectionId, item.id, item.thumbnail) : ''
+    const bgImage = item.thumbnail 
+      ? getImageURL(item.collectionId, item.id, item.thumbnail, '500x200') 
+      : ''
 
     return (
       <div 
