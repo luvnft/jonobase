@@ -32,7 +32,7 @@ export default function ItemFlat({lang, kind = true, item} : any) {
   const ItemFlatDate = () => {
     return (
       <Span className={`
-        text-md md:text-xl text-black dark:text-gray-500 mt-2
+        text-md md:text-xl text-black dark:text-white mt-2
         ${item.featured ? `text-black dark:text-yellow-500` : ``}
       `}>
         {item.featured && 
@@ -48,7 +48,7 @@ export default function ItemFlat({lang, kind = true, item} : any) {
 
   const ItemFlatKind = () => {
     return (
-      <Span className={`ml-1`}>
+      <Span className={`ml-1 dark:text-gray-500`}>
         ( {item.expand.kind.slug} )
       </Span>
     )
