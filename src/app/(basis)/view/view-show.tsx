@@ -66,7 +66,7 @@ export default async function ViewShow({lang, takeView}: any) {
           text="center"
         >        
           <Link 
-            className={`button shadow-xl`}
+            className={`button shadow-sm`}
             href={view.cta_url}
           >
             {view.cta_label ?? lang.view_more}
