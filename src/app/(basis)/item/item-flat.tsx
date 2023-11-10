@@ -2,10 +2,7 @@
 /*
 jonobase
 /app/(basis)/item/item-flat.tsx
-"flat" style of item card 
-- first line: date + emoji (optional) + kind (optional)
-- second line: title
-- third line: summary
+"flat" style of list item
 */
 
 import Link from "next/link"
@@ -14,20 +11,28 @@ import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemFlat({lang, kind = true, item} : any) {
 
-  let itemDate = getFormattedDate(item.created)      
+  let itemDate = getFormattedDate(item.created)
+
+  const ItemFlatEmoji = () => {
+    return (
+      <Span
+        className={`text-2xl mr-1`} 
+        ariaHidden={true}
+      >
+        {item.emoji ? item.emoji : `🤷🏻‍♂️`}
+      </Span>
+    )
+  }
 
   const ItemFlatDate = () => {
-
     return (
       <Span className={`
-        text-black dark:text-gray-500 mt-2
+        text-md md:text-xl text-black dark:text-gray-500 mt-2
         ${item.featured ? `text-black dark:text-yellow-500` : ``}
-        ${item.collectionName === 'pages' ? `hidden` : ``}
-        ${itemDate === '' ? `hidden` : ``}        
       `}>
         {item.featured && 
           <Span 
-            ariaLabel={lang.featured}                 
+            ariaLabel={lang.featured}
             className={`mr-2`}
           >📌</Span>
         }
@@ -36,21 +41,10 @@ export default function ItemFlat({lang, kind = true, item} : any) {
     )
   }
 
-  const ItemFlatEmoji = () => {
-    return (
-      <Span
-        className={`text-2xl mx-3`} 
-        ariaHidden={true}
-      >
-        {item.emoji}
-      </Span>
-    )
-  }
-
   const ItemFlatTitle = () => {
     return (
       <Paragraph className={`
-        hover:underline text-2xl
+        hover:underline text-2xl !mb-0
       `}> 
         {item.title}
       </Paragraph>
@@ -58,16 +52,16 @@ export default function ItemFlat({lang, kind = true, item} : any) {
   }
 
   const ItemFlatKind = () => {
-
     return (
-      <Span className={`mr-2`}>
+      <Span className={`ml-1`}>
         ( {item.expand.kind.slug} )
       </Span>
     )
   }
+
   const ItemFlatSummary = () => {
     return (
-      <Paragraph className={`text-black dark:text-slate-500 text-lg`}> 
+      <Paragraph className={`font-serif text-black dark:text-slate-500 mt-0`}> 
         {item.summary}
       </Paragraph>
     )
@@ -76,17 +70,17 @@ export default function ItemFlat({lang, kind = true, item} : any) {
   return (
     <li className={`h-full text-center md:text-left hover:prose-a:!no-underline`}>  
       
+      <ItemFlatEmoji />
       <ItemFlatDate />
-      <ItemFlatEmoji /> 
-      <ItemFlatKind />
+      {kind && <ItemFlatKind />}
             
       <Link 
         href={`/posts/${item.slug}`} 
         className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
       >
         <ItemFlatTitle />
-
       </Link>
+
       <ItemFlatSummary />
 
     </li>
