@@ -64,22 +64,20 @@ export default function ItemDrop({lang, kind = false, item} : any) {
 
 
   const ItemDropDate = () => {
-
     return (
       <Span className={`
         text-black dark:text-gray-500
         ${item.featured ? `text-black dark:text-yellow-500` : ``}
       `}>
         {item.featured && <FeaturedIcon />}
-        <Span className="text-2xl mr-1">{itemDate}</Span>
-        { kind && <ItemDropKind />}
+        <Span className="text-2xl mr-1">{itemDate}</Span>        
       </Span> 
     )
   }
 
   const ItemDropKind = () => {
     return (
-      <Span> ({item.expand.kind.slug}) </Span>
+      <Span className={`text-black dark:text-white`}> ({item.expand.kind.slug}) </Span>
     )
   }
 
@@ -118,6 +116,7 @@ export default function ItemDrop({lang, kind = false, item} : any) {
                     
           <ItemDropMeat>
             {item.showDate && <ItemDropDate />}
+            {kind && <ItemDropKind />}
             <ItemDropTitle />
             <ItemDropSummary />
           </ItemDropMeat>
