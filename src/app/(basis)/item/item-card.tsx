@@ -2,12 +2,7 @@
 /*
 jonobase
 /app/(basis)/item/item-card.tsx
-"card" style of item card, showing:
-- "kind" optionally indicated
-- date
-- emoji (optional)
-- title
-- summary
+"card" style of list item
 */
 
 import Link from "next/link"
@@ -22,7 +17,8 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <SuperFlex 
-        className={`item-card-head          
+        className={`item-card-head         
+          text-gray-800 dark:text-gray-200 uppercase
         `}
         items={`end`}
       >
@@ -37,7 +33,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
     return (
       <div 
         className={`item-card-date 
-          text-black text-md md:text-xl
+          text-md md:text-xl
         `}
       >
         {item.featured && <FeaturedIcon ariaLabel={lang.featured} />}
@@ -50,8 +46,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <div
-        className={`item-card-kind 
-          text-black uppercase 
+        className={`item-card-kind           
           ${kind ? '' : 'hidden'}
         `}
       >
