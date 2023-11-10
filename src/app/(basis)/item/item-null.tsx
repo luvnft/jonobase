@@ -1,50 +1,35 @@
 
 /*
 jonobase
-/app/(basis)/item/item-pico.tsx
-an item link that contains just the title (and optional post "kind")
-minimalism at its finest
+/app/(basis)/item/item-null.tsx
+"null" style of list item
+- shows just the title as a link
 */
 
 import Link from "next/link"
-import { Span, Paragraph } from "../util/tidy-html"
+import { Span } from "@/app/(basis)/util/tidy-html"
 
-export default function ItemNull({item, kind = false, lang} : any) {
-
-  const ItemNullFeatured = () => {
-    return (
-      <>
-        {item.featured && 
-          <Span ariaLabel={lang.featured} className={`mr-2`}>📌</Span>
-        } 
-      </>
-    )
-  }
+export default function ItemNull({item} : any) {  
 
   const ItemNullTitle = () => {
-    return (            
-      <Span className={`text-xl sm:text-2xl lg:text-3xl`}>{item.title}</Span>      
-    )
-  }
-
-  const ItemNullKind = () => {
     return (
-      <Span>({item.expand.kind.slug})</Span>
+      <Span className={`
+        hover:underline text-2xl
+      `}> 
+        {item.title}
+      </Span>
     )
   }
 
   return (
-    <li className={`h-full text-center`}>  
-
-      <Paragraph>
-        <ItemNullFeatured />
-        <Link href={`/posts/${item.slug}`}>
-          <ItemNullTitle />
-        </Link>
-        <br />
-        {kind && <ItemNullKind />}
-      </Paragraph>
-      
+    <li className={`h-full text-left hover:prose-a:!no-underline`}>            
+            
+      <Link 
+        href={`/posts/${item.slug}`} 
+        className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
+      >
+        <ItemNullTitle />
+      </Link>
 
     </li>
   )
