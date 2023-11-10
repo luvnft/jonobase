@@ -6,7 +6,7 @@ head (hero) for single "post" pages
 */
 
 import { getFormattedDateTime } from "@/app/(basis)/util/func"
-import { Span, Line, StandardFlex } from "@/app/(basis)/util/tidy-html"
+import { Span, Paragraph, StandardFlex } from "@/app/(basis)/util/tidy-html"
 import Link from "next/link"
 
 export default function PostHead({lang, post}: any) {  
@@ -21,9 +21,9 @@ export default function PostHead({lang, post}: any) {
           text-2xl md:text-4xl lg:text-5xl my-5 uppercase
         `}>{post.emoji} {post.title}</h2>
 
-        <Line className={`text-lg md:text-2xl`}>{post.summary}</Line>
+        <Paragraph className={`text-lg md:text-2xl`}>{post.summary}</Paragraph>
 
-        <Line className={`
+        <Paragraph className={`
           text-sm md:text-lg 
         `}>
           {post.url &&               
@@ -35,7 +35,7 @@ export default function PostHead({lang, post}: any) {
               {lang.visit_link}
             </Link>                              
           }
-        </Line>
+        </Paragraph>
             
       </div>
 
@@ -53,7 +53,7 @@ export default function PostHead({lang, post}: any) {
       `}>
             
         {(post.updated !== undefined && post.backdated != '') && 
-          <Line className={'whitespace-nowrap'}>
+          <Paragraph className={'whitespace-nowrap'}>
             <Span>
               {`${lang.last_updated} `} 
             </Span>
@@ -61,19 +61,19 @@ export default function PostHead({lang, post}: any) {
             <Span className={`font-semibold`}>
               {getFormattedDateTime(post.updated)}
             </Span>            
-          </Line>
+          </Paragraph>
         }    
 
-        <Line className={'whitespace-nowrap'}>
+        <Paragraph className={'whitespace-nowrap'}>
           <Span>{lang.published} </Span>
           <br />
           <Span className={`font-semibold`}>
             {getFormattedDateTime(post.created)}
           </Span>
-        </Line>
+        </Paragraph>
       
         {(post.backdated !== undefined && post.backdated !== '') && 
-          <Line className={'whitespace-nowrap'}>
+          <Paragraph className={'whitespace-nowrap'}>
             <Span>
               {`${lang.originally_created} `}
             </Span>
@@ -81,7 +81,7 @@ export default function PostHead({lang, post}: any) {
             <Span className={`font-semibold`}>
               {getFormattedDateTime(post.backdated)}
             </Span>            
-          </Line>
+          </Paragraph>
         }
               
       </div>

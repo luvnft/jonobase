@@ -9,7 +9,7 @@ jonobase
 */
 
 import Link from "next/link"
-import { Span, Line } from "@/app/(basis)/util/tidy-html"
+import { Span, Paragraph } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemFlat({lang, kind = true, item} : any) {
@@ -49,11 +49,11 @@ export default function ItemFlat({lang, kind = true, item} : any) {
 
   const ItemFlatTitle = () => {
     return (
-      <Line className={`
+      <Paragraph className={`
         hover:underline text-2xl
       `}> 
         {item.title}
-      </Line>
+      </Paragraph>
     )
   }
 
@@ -67,9 +67,9 @@ export default function ItemFlat({lang, kind = true, item} : any) {
   }
   const ItemFlatSummary = () => {
     return (
-      <Line className={`text-black dark:text-slate-500 text-lg`}> 
+      <Paragraph className={`text-black dark:text-slate-500 text-lg`}> 
         {item.summary}
-      </Line>
+      </Paragraph>
     )
   }
 

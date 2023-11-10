@@ -7,7 +7,7 @@ minimalism at its finest
 */
 
 import Link from "next/link"
-import { Span, Line } from "../util/tidy-html"
+import { Span, Paragraph } from "../util/tidy-html"
 import { getFormattedDateTime } from "@/app/(basis)/util/func"
 
 export default function ItemMini({item, kind = false, lang} : any) {
@@ -54,7 +54,7 @@ export default function ItemMini({item, kind = false, lang} : any) {
   return (
     <li className={`h-full text-center`}>  
 
-      <Line>
+      <Paragraph>
         <ItemMiniDate />
         <br />
         <Link href={`/posts/${item.slug}`}>
@@ -66,7 +66,7 @@ export default function ItemMini({item, kind = false, lang} : any) {
             <ItemMiniKind />
           </>          
         )}
-      </Line>
+      </Paragraph>
       
 
     </li>

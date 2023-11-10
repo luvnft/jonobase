@@ -7,7 +7,7 @@ minimalism at its finest
 */
 
 import Link from "next/link"
-import { Span, Line } from "../util/tidy-html"
+import { Span, Paragraph } from "../util/tidy-html"
 
 export default function ItemNull({item, kind = false, lang} : any) {
 
@@ -36,14 +36,14 @@ export default function ItemNull({item, kind = false, lang} : any) {
   return (
     <li className={`h-full text-center`}>  
 
-      <Line>
+      <Paragraph>
         <ItemNullFeatured />
         <Link href={`/posts/${item.slug}`}>
           <ItemNullTitle />
         </Link>
         <br />
         {kind && <ItemNullKind />}
-      </Line>
+      </Paragraph>
       
 
     </li>

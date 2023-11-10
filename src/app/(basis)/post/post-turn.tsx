@@ -6,7 +6,7 @@ turn (page-flipper) for single "post" pages
 */
 
 import Link from "next/link";
-import { Span, Line } from "@/app/(basis)/util/tidy-html";
+import { Span, Paragraph } from "@/app/(basis)/util/tidy-html";
 
 import { getAdjacentPost, getBase } from "@/app/(basis)/util/data";
 

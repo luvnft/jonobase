@@ -8,7 +8,7 @@ jonobase
 */
 
 import Link from "next/link"
-import { Span, Line } from "@/app/(basis)/util/tidy-html"
+import { Span, Paragraph } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemLite({lang, kind = true, item} : any) {
@@ -48,11 +48,11 @@ export default function ItemLite({lang, kind = true, item} : any) {
 
   const ItemLiteTitle = () => {
     return (
-      <Line className={`
+      <Paragraph className={`
         hover:underline text-2xl
       `}> 
         {item.title}
-      </Line>
+      </Paragraph>
     )
   }
 

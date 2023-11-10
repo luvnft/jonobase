@@ -4,7 +4,7 @@ jonobase
 tidier HTML in components
 */
 
-export const Line = ({
+export const Paragraph = ({
   className = '', 
   children}: any) => {
 

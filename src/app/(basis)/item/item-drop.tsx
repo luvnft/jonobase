@@ -12,7 +12,7 @@ jonobase
 */
 
 import Link from "next/link"
-import { Span, Line, StartFlex } from "@/app/(basis)/util/tidy-html"
+import { Span, Paragraph, StartFlex } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemCard({lang, kind = false, item} : any) {
@@ -77,9 +77,9 @@ export default function ItemCard({lang, kind = false, item} : any) {
 
   const ItemDropSummary = () => {
     return (
-      <Line className={`text-black dark:text-slate-500 text-sm`}> 
+      <Paragraph className={`text-black dark:text-slate-500 text-sm`}> 
         {item.summary}
-      </Line>
+      </Paragraph>
     )
   }
 

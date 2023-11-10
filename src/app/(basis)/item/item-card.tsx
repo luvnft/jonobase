@@ -11,21 +11,31 @@ jonobase
 */
 
 import Link from "next/link"
-import { Span, Line } from "@/app/(basis)/util/tidy-html"
-import { getFormattedDate } from "@/app/(basis)/util/func"
+import { Span, Paragraph } from "@/app/(basis)/util/tidy-html"
+import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
 
 export default function ItemCard({lang, kind = true, item} : any) {
 
   let itemDate = getFormattedDate(item.created)     
 
-  const ListCardWrapper = ({children}: any) => {
+  const ListCardWrapper = ({children}: any) => {  
+
+    const bgImage = getImageURL(item.collectionId, item.id, item.thumbnail)
+
     return (
-      <summary className={`
-        block h-full shadow-sm hover:shadow-xl bg-zinc-100 dark:bg-black
-        border border-2 border-black dark:border-gray-600      
-      `}>
+      <div 
+        className={`
+          block h-full shadow-sm hover:shadow-xl 
+          border border-2 border-black dark:border-gray-600 
+          bg-zinc-100 dark:bg-black 
+        `}  
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: 'cover'
+        }}     
+      >
         {children}
-      </summary>
+      </div>
     )
   }
 
@@ -33,21 +43,24 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     
     return (
-      <Line className={`
+      <Paragraph className={`
         text-white dark:text-white uppercase 
         mt-0 bg-gradient-to-b 
         from-black to-gray-700         
         ${kind ? '' : 'hidden'}
       `}>
         {item.expand.kind.slug}
-      </Line>
+      </Paragraph>
     )
   }
 
   const ListCardInner = ({children}: any) => {
 
     return (
-      <div className={`px-5`}>
+      <div className={`
+        mx-5 lg:mx-auto my-5 p-5 
+        ${item.thumbnail && `backdrop-opacity-90 backdrop-invert bg-gray-900/70 max-w-fit`}        
+      `}>
         {children}
       </div>
     )
@@ -57,9 +70,10 @@ export default function ItemCard({lang, kind = true, item} : any) {
   const ListCardDate = () => {
 
     return (
-      <Line className={`
+      <Span className={`
          text-black dark:text-gray-500 mt-5
         ${item.featured ? `text-black dark:text-yellow-500` : ``}
+        ${item.thumbnail ? `text-white dark:text-yellow-500` : ``}
         ${item.collectionName === 'pages' ? `hidden` : ``}
         ${itemDate === '' ? `hidden` : ``}        
       `}>
@@ -70,18 +84,18 @@ export default function ItemCard({lang, kind = true, item} : any) {
           >📌</Span>
         }
         <Span>{itemDate}</Span>
-      </Line> 
+      </Span> 
     )
   }
 
   const ListCardEmoji = () => {
     return (
-      <Line
+      <Paragraph
         className={`text-6xl`} 
         ariaHidden={true}
       >
         {item.emoji}
-      </Line>
+      </Paragraph>
     )
   }
 
@@ -89,7 +103,8 @@ export default function ItemCard({lang, kind = true, item} : any) {
     return (
       <h3 className={`
         hover:underline 
-        ${item.emoji ? `text-3xl` : `text-4xl`}
+        ${item.emoji ? `text-3xl` : `text-4xl`}        
+        ${item.thumbnail ? `hover:text-gray-200` : ``}
       `}> 
         {item.title}
       </h3>
@@ -98,9 +113,12 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
   const ListCardSummary = () => {
     return (
-      <Line className={`text-black dark:text-slate-500 text-sm`}> 
+      <Span className={`
+        font-serif text-black dark:text-slate-500 text-lg
+        ${item.thumbnail ? `text-white dark:text-slate-500` : ``}
+      `}> 
         {item.summary}
-      </Line>
+      </Span>
     )
   }
 
@@ -121,7 +139,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
           
           <ListCardInner>
             <ListCardDate />
-            <ListCardEmoji />
+            {!item.thumbnail && <ListCardEmoji />}
             <ListCardTitle />
             <ListCardSummary />
           </ListCardInner>
