@@ -1,73 +1,47 @@
 
 /*
 jonobase
-/app/(basis)/item/item-pico.tsx
-an item link that contains just the title (and optional post "kind")
-minimalism at its finest
+/app/(basis)/item/item-mini.tsx
+"mini" style of list item
 */
 
 import Link from "next/link"
-import { Span, Paragraph } from "../util/tidy-html"
-import { getFormattedDateTime } from "@/app/(basis)/util/func"
+import { Span } from "@/app/(basis)/util/tidy-html"
 
-export default function ItemMini({item, kind = false, lang} : any) {
+export default function ItemMini({item} : any) {  
 
-  let itemDate = getFormattedDateTime(item.created)
-
-  const ItemMiniDate = () => {
-
+  const ItemMiniEmoji = () => {
     return (
-      <Span className={`
-        text-black dark:text-gray-500 mt-2
-        ${item.featured ? `text-black dark:text-yellow-500` : ``}
-        ${item.collectionName === 'pages' ? `hidden` : ``}
-        ${itemDate === '' ? `hidden` : ``}        
-      `}>
-        <ItemMiniFeatured />
-        <Span>{itemDate}</Span>
-      </Span> 
-    )
-  }
-
-  const ItemMiniFeatured = () => {
-    return (
-      <>
-        {item.featured && 
-          <Span ariaLabel={lang.featured} className={`mr-2`}>📌</Span>
-        } 
-      </>
+      <Span
+        className={`text-2xl mr-1`} 
+        ariaHidden={true}
+      >
+        {item.emoji ? item.emoji : `🤷🏻‍♂️`}
+      </Span>
     )
   }
 
   const ItemMiniTitle = () => {
-    return (            
-      <Span className={`text-lg md:text-2xl lg:text-4xl`}>{item.title}</Span>      
-    )
-  }
-
-  const ItemMiniKind = () => {
-    return (      
-      <Span>({item.expand.kind.slug})</Span>      
+    return (
+      <Span className={`
+        hover:underline text-2xl
+      `}> 
+        {item.title}
+      </Span>
     )
   }
 
   return (
-    <li className={`h-full text-center`}>  
-
-      <Paragraph>
-        <ItemMiniDate />
-        <br />
-        <Link href={`/posts/${item.slug}`}>
-          <ItemMiniTitle />
-        </Link>        
-        {kind && (
-          <>
-            <br />
-            <ItemMiniKind />
-          </>          
-        )}
-      </Paragraph>
+    <li className={`h-full text-left hover:prose-a:!no-underline`}>  
       
+      <ItemMiniEmoji />      
+            
+      <Link 
+        href={`/posts/${item.slug}`} 
+        className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
+      >
+        <ItemMiniTitle />
+      </Link>
 
     </li>
   )
