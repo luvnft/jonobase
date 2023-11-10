@@ -5,11 +5,10 @@ loop wrapper for "take view" sections
 */
 
 import { getProse } from "../util/func"
-import { SectionDiv } from "../util/tidy-html"
+import { SectionDiv, SuperFlex, Paragraph } from "../util/tidy-html"
 import { LoopShow } from "../loop/loop-show"
 import { sanitize } from "isomorphic-dompurify"
 import Link from "next/link"
-import { Paragraph } from "../util/tidy-html"
 
 export default async function ViewShow({lang, takeView}: any) {
 
@@ -60,14 +59,19 @@ export default async function ViewShow({lang, takeView}: any) {
       }
 
       {view.cta_url && 
-        <Paragraph className={`w-full text-center`}>
+        <SuperFlex 
+          className={`w-full`}
+          justify="center"
+          items="center"
+          text="center"
+        >        
           <Link 
             className={`button shadow-xl`}
             href={view.cta_url}
           >
             {view.cta_label ?? lang.view_more}
-          </Link>
-        </Paragraph>
+          </Link>          
+        </SuperFlex>
       }
                     
     </SectionDiv>

@@ -21,8 +21,10 @@ export const LoopShow = ({kind = false, lang, items, type = 'card'}: any) => {
 
       {(items && items.length > 0) &&       
       
-        <ul className={`grid w-max max-w-full md:w-auto mx-auto gap-5 
-          grid-cols-1 items-start py-10
+        <ul className={`loop-list
+          w-max max-w-full md:w-auto mx-auto 
+          items-start py-10
+          grid gap-5 grid-cols-1 
           ${items.length >= 2 && `md:grid-cols-2`} 
           ${items.length >= 3 && `lg:grid-cols-3`}
         `}>

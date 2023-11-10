@@ -4,18 +4,6 @@ jonobase
 tidier HTML in components
 */
 
-export const Paragraph = ({
-  className = '', 
-  children}: any) => {
-
-  return (
-    <p className={className}>
-      {children}
-    </p>    
-  )
-
-}
-
 export const SectionDiv = ({
   ariaLabel = '', 
   ariaHidden = false,
@@ -40,6 +28,18 @@ export const SectionDiv = ({
 
 }
 
+export const Paragraph = ({
+  className = '', 
+  children}: any) => {
+
+  return (
+    <p className={className}>
+      {children}
+    </p>    
+  )
+
+}
+
 export const Span = ({
   ariaLabel = '', 
   ariaHidden = false, 
@@ -58,12 +58,40 @@ export const Span = ({
   
 }
 
-export const StandardFlex = ({
+export const SuperFlex = ({
+  orientation = 'row', 
+  justify = 'between',
+  items = 'center',
+  textAlign = 'left',
+  className = '',
   children
 }: any) => {
 
   return (
-    <div className={`flex flex-row justify-between items-center`}>
+    <div 
+      className={`
+        flex flex-${orientation} 
+        justify-${justify} 
+        items-${items} 
+        text-${textAlign} 
+        ${className}
+      `}
+    >
+      {children}
+    </div>
+  )
+
+}
+
+/* deprecated */
+
+export const StandardFlex = ({
+  className = '', 
+  children
+}: any) => {
+
+  return (
+    <div className={`flex flex-row justify-between items-center ${className}`}>
       {children}
     </div>
   )
@@ -71,15 +99,44 @@ export const StandardFlex = ({
 }
 
 export const StartFlex = ({
+  className = '', 
   children
 }: any) => {
 
   return (
     <div className={`
-      flex flex-row items-start justify-start text-left
+      flex flex-row justify-start items-start ${className}
     `}>
       {children}
     </div>
+  )
+
+}
+
+export const EndFlex = ({
+  className = '', 
+  children
+}: any) => {
+
+  return (
+    <div className={`
+      flex flex-row justify-start items-end ${className}
+    `}>
+      {children}
+    </div>
+  )
+
+}
+
+export const FeaturedIcon = ({
+  ariaLabel
+}: any) => {
+
+  return (    
+    <Span 
+      ariaLabel={ariaLabel}                 
+      className={`feat-icon mr-2`}
+    >📌</Span>    
   )
 
 }
