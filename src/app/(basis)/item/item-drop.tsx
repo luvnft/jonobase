@@ -21,14 +21,6 @@ export default function ItemDrop({lang, kind = false, item} : any) {
     )    
   }
 
-  const ItemDropMeat = ({children}: any) => {
-    return (
-      <div className={`mx-5`}>
-        {children}
-      </div>
-    )
-  }
-
   const ItemDropIcon = () => {
 
     const bgImage = item.thumbnail 
@@ -55,6 +47,15 @@ export default function ItemDrop({lang, kind = false, item} : any) {
       </div>
     )
   }
+
+  const ItemDropMeat = ({children}: any) => {
+    return (
+      <div className={`mx-5`}>
+        {children}
+      </div>
+    )
+  }
+
 
   const ItemDropDate = () => {
 

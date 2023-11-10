@@ -15,6 +15,19 @@ import ItemNull from "../item/item-null"
 
 export const LoopShow = ({kind = false, lang, items, type = 'card'}: any) => {
 
+  let trio = false
+  let gap = 'gap-10'
+
+  switch (type) {
+    case "lite":
+    case "mini":
+    case "null": 
+      gap = 'gap-0 md:gap-5'      
+      break
+    default:
+      trio = true      
+  }
+
   return (
 
     <>
@@ -24,9 +37,9 @@ export const LoopShow = ({kind = false, lang, items, type = 'card'}: any) => {
         <ul className={`loop-list
           w-max max-w-full md:w-auto mx-auto 
           items-start py-10
-          grid gap-10 grid-cols-1 
+          grid ${gap} grid-cols-1 
           ${items.length >= 2 && `md:grid-cols-2`} 
-          ${items.length >= 3 && `lg:grid-cols-3`}
+          ${(items.length >= 3 && trio) && `lg:grid-cols-3`}
         `}>
     
           {items.map((item: any) => {
