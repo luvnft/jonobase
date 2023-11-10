@@ -2,9 +2,7 @@
 /*
 jonobase
 /app/(basis)/item/item-lite.tsx
-"lite" style of item card 
-- first line: date + emoji (optional) + kind (optional)
-- second line: title
+"lite" style of list item
 */
 
 import Link from "next/link"
@@ -13,72 +11,59 @@ import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemLite({lang, kind = true, item} : any) {
 
-  let itemDate = getFormattedDate(item.created)      
-
-  const ItemLiteDate = () => {
-
-    return (
-      <Span className={`
-        text-black dark:text-gray-500 mt-2
-        ${item.featured ? `text-black dark:text-yellow-500` : ``}
-        ${item.collectionName === 'pages' ? `hidden` : ``}
-        ${itemDate === '' ? `hidden` : ``}        
-      `}>
-        {item.featured && 
-          <Span 
-            ariaLabel={lang.featured}                 
-            className={`mr-2`}
-          >📌</Span>
-        }
-        <Span>{itemDate}</Span>
-      </Span> 
-    )
-  }
+  let itemDate = getFormattedDate(item.created)
 
   const ItemLiteEmoji = () => {
     return (
       <Span
-        className={`text-2xl mx-3`} 
+        className={`text-2xl mr-1`} 
         ariaHidden={true}
       >
-        {item.emoji}
+        {item.emoji ? item.emoji : `🤷🏻‍♂️`}
       </Span>
+    )
+  }
+
+  const ItemLiteDate = () => {
+    return (
+      <Paragraph className={`
+        text-sm text-black dark:text-gray-500 mt-2
+        ${item.featured ? `text-black dark:text-yellow-500` : ``}
+      `}>
+        {item.featured && 
+          <Span 
+            ariaLabel={lang.featured}
+            className={`mr-2`}
+          >📌</Span>
+        }
+        <Span>{itemDate}</Span>
+      </Paragraph> 
     )
   }
 
   const ItemLiteTitle = () => {
     return (
-      <Paragraph className={`
+      <Span className={`
         hover:underline text-2xl
       `}> 
         {item.title}
-      </Paragraph>
-    )
-  }
-
-  const ItemLiteKind = () => {
-
-    return (
-      <Span className={`mr-2`}>
-        ( {item.expand.kind.slug} )
       </Span>
     )
   }
 
   return (
-    <li className={`text-center md:text-left hover:prose-a:!no-underline`}>  
+    <li className={`h-full text-center md:text-left hover:prose-a:!no-underline`}>  
       
-      <ItemLiteDate />
-      <ItemLiteEmoji /> 
-      <ItemLiteKind />
+      <ItemLiteEmoji />      
             
       <Link 
         href={`/posts/${item.slug}`} 
         className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
       >
         <ItemLiteTitle />
-
       </Link>
+
+      <ItemLiteDate />
 
     </li>
   )
