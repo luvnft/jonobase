@@ -13,12 +13,12 @@ import ItemLite from "../item/item-lite"
 import ItemMini from "../item/item-mini"
 import ItemNull from "../item/item-null"
 
-export const LoopShow = ({kind = false, lang, items, type = 'card'}: any) => {
+export const LoopShow = ({lang, items, view = null}: any) => {
 
   let trio = false
   let gap = 'gap-10'
 
-  switch (type) {
+  switch (view.type) {
     case "lite":
     case "mini":
     case "null": 
@@ -43,34 +43,30 @@ export const LoopShow = ({kind = false, lang, items, type = 'card'}: any) => {
         `}>
     
           {items.map((item: any) => {
-            switch (type) {
+            switch (view.type) {
               case "card":
                 return (
-                  <ItemCard key={item.id} lang={lang} kind={kind} item={item} />
+                  <ItemCard key={item.id} lang={lang} item={item} view={view} />
                 )
               case "drop":
                 return (
-                  <ItemDrop key={item.id} lang={lang} kind={kind} item={item} />
+                  <ItemDrop key={item.id} lang={lang} item={item} view={view} />
                 )
               case "flat":
                 return (
-                  <ItemFlat key={item.id} lang={lang} kind={kind} item={item} />
+                  <ItemFlat key={item.id} lang={lang} item={item} view={view} />
                 )
               case "lite":
                 return (                  
-                  <ItemLite key={item.id} lang={lang} kind={kind} item={item} />
+                  <ItemLite key={item.id} lang={lang} item={item} view={view} />
                 )
               case "mini":
                 return (
-                  <ItemMini key={item.id} lang={lang} kind={kind} item={item} />
+                  <ItemMini key={item.id} lang={lang} item={item} view={view} />
                 )
-              case "null": 
-                return (
-                  <ItemNull key={item.id} lang={lang} kind={kind} item={item} />
-                  )
               default:
                 return (
-                  <ItemCard key={item.id} lang={lang} kind={kind} item={item} />
+                  <ItemNull key={item.id} lang={lang} item={item} view={view} />
                 )
             }
           })}        

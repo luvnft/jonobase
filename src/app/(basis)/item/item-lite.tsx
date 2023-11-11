@@ -12,7 +12,7 @@ import Link from "next/link"
 import { Span, Paragraph } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
-export default function ItemLite({lang, kind = true, item} : any) {
+export default function ItemLite({item, view} : any) {
 
   let itemDate = getFormattedDate(item.created)
 

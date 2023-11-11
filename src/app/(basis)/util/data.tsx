@@ -78,6 +78,7 @@ export async function getPosts(
   list: string = '', 
   page: number = 1,   
   limit: number = 6,  
+  descending: 'asc' | 'desc' | '' = 'desc'
 ) {
 
   const pb = new PocketBase(process.env.PBDOMAIN)
@@ -86,10 +87,15 @@ export async function getPosts(
 
   const data = { pb, base, find, kind, list }
   const filtering = await getQueryFilter(data)
-    
+
+  let sorting = `-featured, -created, -backdated`
+  if (descending === 'asc') {
+    sorting = `-featured, +created, +backdated`
+  } 
+
   const items = await pb.collection('posts')
     .getList(page, limit, { 
-      sort: `-featured, -created, -backdated`,
+      sort: sorting,
       filter: filtering,
       expand: 'kind,lists'
     })  
@@ -218,16 +224,16 @@ export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
     filtering += ` bases?~'${base}'`
   if (find !== 'all')
     filtering += ` && ( 
-      title?~'${find}' || 
-      summary?~'${find}' || 
-      content?~'${find}' 
+      title?~'${find}%' || 
+      summary?~'${find}%' || 
+      content?~'${find}%' 
     )`  
 
   if (kind !== 'all') {
 
     // search for the kind in the kinds table
     const { items: kinds } = await pb.collection('kinds')
-      .getList(1, 1, { filter: `slug='${kind}'`})
+      .getList(1, 1, { filter: `slug='${kind}' || id='${kind}'`})
 
     // if the desired kind exists, then get its id
     if (kinds[0]) {
@@ -244,8 +250,8 @@ export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
   
       // search for the list in the lists table
     const { items: lists } = await pb.collection('lists')
-      .getList(1, 1, { filter: `slug='${list}'`})    
-    
+      .getList(1, 1, { filter: `slug='${list}' || id='${list}'`})    
+
       // if the desired list exists, then get its id
     if (lists[0]) { 
       // add the list id to the filter

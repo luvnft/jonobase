@@ -44,10 +44,9 @@ export default async function ViewShow({lang, takeView}: any) {
 
       {!view.hide_posts && 
         <LoopShow             
-          kind={view.show_kind}
           lang={lang} 
           items={items} 
-          type={view.type} 
+          view={view}
         />
       }
 

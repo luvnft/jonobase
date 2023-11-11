@@ -15,7 +15,7 @@ import Link from "next/link"
 import { Span, Paragraph, SuperFlex, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
 
-export default function ItemDrop({lang, kind = false, item} : any) {
+export default function ItemDrop({item, view} : any) {
 
   let itemDate = getFormattedDate(item.created)
 

@@ -20,7 +20,7 @@ import Link from "next/link"
 import { Span, Paragraph, SuperFlex, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
 
-export default function ItemCard({lang, kind = true, item} : any) {
+export default function ItemCard({lang, item, view} : any) {
 
   let itemDate = getFormattedDate(item.created)
 
@@ -57,8 +57,7 @@ export default function ItemCard({lang, kind = true, item} : any) {
 
     return (
       <div
-        className={`item-card-kind
-          ${kind ? '' : 'hidden'}
+        className={`item-card-kind          
         `}
       >
         {item.expand.kind.slug}
