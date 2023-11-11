@@ -17,7 +17,7 @@ import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
 
 export default function ItemDrop({item, view} : any) {
 
-  let itemDate = getFormattedDate(item.created)
+  let itemDate = getFormattedDate(item.created, view.show_time)
 
   const ItemDropMain = ({children}: any) => {
     return (

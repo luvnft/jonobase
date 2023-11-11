@@ -14,7 +14,7 @@ import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemLite({item, view} : any) {
 
-  let itemDate = getFormattedDate(item.created)
+  let itemDate = getFormattedDate(item.created, view.show_time)
 
   const ItemLiteEmoji = () => {
     return (

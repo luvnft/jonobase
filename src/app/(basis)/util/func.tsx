@@ -114,10 +114,12 @@ export const getImageURL = (
 }  
 
 export const getFormattedDate = (
-  oldDate: string
+  oldDate: string,
+  time: boolean = false
 ) => {
   // YYYY-MM-DD
-  return oldDate.substring(0, 10)
+  const ending = time ? 16 : 10
+  return oldDate.substring(0, ending)
 }
 
 export const getFormattedDateTime = (

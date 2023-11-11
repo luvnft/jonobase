@@ -16,7 +16,7 @@ import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemFlat({item, view} : any) {
 
-  let itemDate = getFormattedDate(item.created)
+  let itemDate = getFormattedDate(item.created, view.show_time)
 
   const ItemFlatEmoji = () => {
     return (
