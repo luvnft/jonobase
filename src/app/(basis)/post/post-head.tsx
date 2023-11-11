@@ -6,34 +6,34 @@ head (hero) for single "post" pages
 */
 
 import { getFormattedDateTime } from "@/app/(basis)/util/func"
-import { Span, Paragraph, SuperFlex } from "@/app/(basis)/util/tidy-html"
+import { SuperFlex, Paragraph } from "@/app/(basis)/util/tidy-html"
 import Link from "next/link"
 
-export default function PostHead({lang, post}: any) { 
+export default function PostHead({lang, post}: any) {
 
   const PostHeadMeta = () => {
 
     return (
     
-      <div className={` grow`}>
+      <div className={`grow`}>
 
-        <h2 className={`
-          text-4xl lg:text-5xl my-5 uppercase
-        `}>{post.emoji} {post.title}</h2>
+        <h2 className={`post-head-meta
+          text-4xl sm:text-5xl lg:text-6xl my-5 uppercase
+        `}>{post.thumbnail ? '' : post.emoji} {post.title}</h2>
 
         <Paragraph className={`text-lg sm:text-2xl`}>{post.summary}</Paragraph>
 
         <Paragraph className={`
           text-sm sm:text-lg 
         `}>
-          {post.url &&               
+          {post.url &&
             <Link 
               className={`button !border-white !text-white`} 
               href={post.url} 
               target={post.url_newtab ? '_blank' : '_top'}
             >
               {lang.visit_link}
-            </Link>                              
+            </Link>
           }
         </Paragraph>
             
@@ -43,70 +43,87 @@ export default function PostHead({lang, post}: any) {
 
   }
 
-  const PostHeadDate = () => {    
+  const PostHeadDate = () => {
     
     return (
-      <div className={`
-        text-center sm:text-right 
-        text-md sm:text-lg         
-        grow ml-0 sm:ml-2 my-2        
-      `}>
+      <SuperFlex
+        className={`post-head-date
+          grow sm:flex-col sm:items-end gap-5
+          text-sm sm:text-lg max-w-full
+        `}
+      >
             
         {(post.updated !== undefined && post.updated != '') && 
-          <Paragraph className={'whitespace-nowrap'}>
-            <Span>
+          <SuperFlex
+            orientation="col"
+            className={`post-head-updated 
+              grow sm:items-end sm:text-right
+              whitespace-nowrap hidden sm:flex 
+            `}
+          >
+            <div className={`font-light`}>
               {`${lang.last_updated} `} 
-            </Span>
-            <br />
-            <Span className={`font-semibold`}>
+            </div>
+            <div className={`font-semibold`}>
               {getFormattedDateTime(post.updated)}
-            </Span>            
-          </Paragraph>
+            </div>
+          </SuperFlex>
         }    
 
-        <Paragraph className={'whitespace-nowrap'}>
-          <Span>{lang.published} </Span>
-          <br />
-          <Span className={`font-semibold`}>
+        <SuperFlex
+          orientation="col"
+          className={`post-head-created
+            grow sm:items-end sm:text-right
+            whitespace-nowrap
+          `}
+        >
+          <div className={`font-light`}>
+            {`${lang.published} `} 
+          </div>          
+          <div className={`font-semibold`}>
             {getFormattedDateTime(post.created)}
-          </Span>
-        </Paragraph>
+          </div> 
+        </SuperFlex>
       
         {(post.backdated !== undefined && post.backdated !== '') && 
-          <Paragraph className={'whitespace-nowrap hidden sm:block'}>
-            <Span>
+          <SuperFlex
+            orientation="col"
+            className={`post-head-backdated
+              grow sm:items-end sm:text-right
+              whitespace-nowrap hidden sm:flex
+            `}>
+            <div className={`font-light`}>
               {`${lang.originally_created} `}
-            </Span>
-            <br />
-            <Span className={`font-semibold`}>
+            </div>
+            <div className={`font-semibold`}>
               {getFormattedDateTime(post.backdated)}
-            </Span>            
-          </Paragraph>
+            </div>
+          </SuperFlex>
         }
               
-      </div>
+      </SuperFlex>
     )
   }
   
   return (
-    <div className={`block`}>    
 
-      <SuperFlex         
-        className={`
-          ${post.thumbnail && 
-            `bg-gray-900/60 rounded-md my-5 p-5 text-white`
-          } 
-          flex-col sm:flex-row text-center sm:text-left
-        `}
-      >
+    <SuperFlex
+      orientation="col"
+      textAlign="center"
+      className={`
+        ${post.thumbnail && 
+          `bg-gray-900/70 rounded-md my-5 p-5 text-white`
+        } 
+        sm:flex-row sm:text-left gap-5
+      `}
+    >
 
-        <PostHeadMeta />
+      <PostHeadMeta />
 
-        <PostHeadDate />
-      
-      </SuperFlex>
+      <PostHeadDate />
+    
+    </SuperFlex>
 
-    </div>
   )
   
 }
