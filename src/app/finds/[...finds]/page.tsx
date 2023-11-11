@@ -37,9 +37,12 @@ export async function generateMetadata({
 export default async function Main({ params, searchParams }: any) {
 
   const { finds } = params
-  const { p: pageNumber, l: postsPerPage } = searchParams
+  const { p: pageNumber, l } = searchParams
   const findQuery = (decodeURIComponent(finds) === 'all') 
     ? '' : decodeURIComponent(finds)
+
+  const { app, lang } = await getBase()
+  const postsPerPage = isNaN(l) ? app.find_list_limit : l
   
   // reject any non-numeric injections in the URL bar
   if (
@@ -47,8 +50,7 @@ export default async function Main({ params, searchParams }: any) {
     (pageNumber !== undefined || postsPerPage !== undefined)) {
     return <NotFound />
   }
-  
-  const { app, lang } = await getBase()
+
   const { items } = await getPosts(
     findQuery,      // find - discriminate by content
     '',             // kind - don't discriminate by post kind
@@ -59,6 +61,14 @@ export default async function Main({ params, searchParams }: any) {
     
   // need to determine not only the search results shown but the TOTAL search results!
   const resultsCount = await getUnpagedPostsCount(findQuery, '', '')
+  
+  // view options object for the loopshow
+  const view = {
+    type: app.find_list_type,
+    show_date: true, 
+    show_time: true, 
+    show_kind: true  
+  }
 
   return (  
     <>
@@ -87,7 +97,7 @@ export default async function Main({ params, searchParams }: any) {
 
       <SectionDiv className={`bg-zinc-50 dark:bg-zinc-950`}>
         
-        <LoopShow lang={lang} items={items} type={`flat`} />
+        <LoopShow items={items} lang={lang} view={view} />
 
       </SectionDiv>
 

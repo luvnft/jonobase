@@ -224,9 +224,9 @@ export async function getQueryFilter({ pb, base, find, kind, list }: any ) {
     filtering += ` bases?~'${base}'`
   if (find !== 'all')
     filtering += ` && ( 
-      title?~'${find}%' || 
-      summary?~'${find}%' || 
-      content?~'${find}%' 
+      title?~'%${find}%' || 
+      summary?~'%${find}%' || 
+      content?~'%${find}%' 
     )`  
 
   if (kind !== 'all') {

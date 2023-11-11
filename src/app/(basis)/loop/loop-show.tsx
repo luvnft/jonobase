@@ -13,19 +13,7 @@ import ItemLite from "../item/item-lite"
 import ItemMini from "../item/item-mini"
 import ItemNull from "../item/item-null"
 
-export const LoopShow = ({lang, items, view = null}: any) => {
-
-  let trio = false
-  let gap = 'gap-10'
-
-  switch (view.type) {    
-    case "mini":
-    case "null": 
-      gap = 'gap-0 sm:gap-5'      
-      break
-    default:
-      trio = true      
-  }
+export const LoopShow = ({items, lang, view}: any) => {
 
   return (
 
@@ -36,9 +24,9 @@ export const LoopShow = ({lang, items, view = null}: any) => {
         <ul className={`loop-list
           w-max max-w-full sm:w-auto mx-auto 
           items-start py-10
-          grid ${gap} grid-cols-1 
-          ${items.length >= 2 && `sm:grid-cols-2`} 
-          ${(items.length >= 3 && trio) && `xl:grid-cols-3`}
+          grid gap-10 grid-cols-1 
+          ${items.length >= 2 && `sm:grid-cols-2`}
+          ${view.type !== 'drop' && items.length >= 3 && `xl:grid-cols-3`}
         `}>
     
           {items.map((item: any) => {

@@ -36,9 +36,13 @@ export async function generateMetadata({
 export default async function Main({ params, searchParams }: any) {
 
   const { kinds } = params
-  const { p: pageNumber, l: postsPerPage } = searchParams  
+  const { p: pageNumber, l } = searchParams  
   const kindQuery = (decodeURIComponent(kinds) === 'all') 
     ? '' : decodeURIComponent(kinds)
+
+  const { app, lang } = await getBase()  
+
+  const postsPerPage = isNaN(l) ? app.kind_list_limit : l
   
   // reject any non-numeric injections in the URL bar
   if (
@@ -47,7 +51,7 @@ export default async function Main({ params, searchParams }: any) {
     return <NotFound />
   }
   
-  const { app, lang } = await getBase()
+  
   const { items } = await getPosts(
     '',             // find - don't discriminate by content
     kindQuery,      // kind - discriminate by post kind or not)
@@ -57,7 +61,15 @@ export default async function Main({ params, searchParams }: any) {
   )    
 
   // need to determine not only the search results shown but the TOTAL results!
-  const resultsCount = await getUnpagedPostsCount('', kindQuery, '')  
+  const resultsCount = await getUnpagedPostsCount('', kindQuery, '')
+  
+  // view options object for the loopshow
+  const view = {
+    type: app.kind_list_type,
+    show_date: true, 
+    show_time: false, 
+    show_kind: false  
+  }
 
   return (
     <>
@@ -81,10 +93,10 @@ export default async function Main({ params, searchParams }: any) {
       
       <SectionDiv className={`bg-zinc-200 dark:bg-zinc-700`}>
         
-        <LoopShow 
-          kind={kinds === 'all' ? true : false}
-          lang={lang} 
+        <LoopShow           
           items={items} 
+          lang={lang} 
+          view={view}
         />
       
       </SectionDiv>
