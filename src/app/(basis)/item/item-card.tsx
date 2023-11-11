@@ -76,8 +76,9 @@ export default function ItemCard({lang, item, view} : any) {
       <div 
         className={`item-card-main 
           h-48 h-min-full 
-          bg-zinc-100 dark:bg-gray-800 shadow-sm hover:shadow-xl bg-center bg-cover
+          bg-zinc-100 dark:bg-gray-800 bg-center bg-cover
           text-center flex justify-center items-center
+          shadow-sm hover:shadow-xl 
         `}
         style={{
           backgroundImage: `url(${bgImage})`
@@ -112,7 +113,9 @@ export default function ItemCard({lang, item, view} : any) {
           text-6xl
         `}
       >
-        <Span ariaHidden={true}>{item.emoji}</Span>
+        <Span ariaHidden={true}>
+          {item.emoji}
+        </Span>
       </div>
     )
   }
@@ -129,11 +132,13 @@ export default function ItemCard({lang, item, view} : any) {
 
   const ItemCardTail = ({children}: any) => {
     return (
-      <div 
+      <SuperFlex         
         className={`item-card-tail 
-          text-center 
+          text-center mt-2 gap-5
         `}
-      >{children}</div>
+        text="center"
+        items="start"
+      >{children}</SuperFlex>
     )
   }
 
@@ -141,7 +146,8 @@ export default function ItemCard({lang, item, view} : any) {
     return (
       <div 
         className={`item-card-summary 
-          mt-2 font-serif text-sm text-gray-800 dark:text-gray-200
+          mt-2 font-serif text-sm text-gray-800 dark:text-gray-200 
+          text-left
         `}
       > 
         <Paragraph>{item.summary}</Paragraph>
@@ -149,9 +155,38 @@ export default function ItemCard({lang, item, view} : any) {
     )
   }
 
+  const ItemCardLink = () => {
+
+    const target = item.url_newtab ? '_blank' : ''
+
+    return (
+      <div className="flex gap-2 whitespace-nowrap">
+        <Link href={`/posts/${item.slug}`}>
+          <div
+            className={`item-card-link
+              button
+            `}
+          >
+            {lang.view_more}
+          </div>
+        </Link>      
+        <Link href={item.url} target={target}>
+          <div
+            className={`item-card-link
+              button
+            `}
+          >
+            {lang.visit_link}
+          </div>
+        </Link>      
+      </div>
+    )
+
+  }
+
   return (
     <li className={`item-card 
-      h-auto hover:prose-a:!no-underline 
+      h-auto hover:prose-a:!no-underline text-center
       ${item.thumbnail && `hover:prose-a:!text-white dark:hover:prose-a:!text-white`}
     `}>  
 
@@ -175,13 +210,14 @@ export default function ItemCard({lang, item, view} : any) {
 
         </ItemCardMain> 
 
-        <ItemCardTail>
-
-          <ItemCardSummary />
-        
-        </ItemCardTail>
-
       </Link>
+
+      <ItemCardTail>
+
+        <ItemCardSummary />
+        {item.url && <ItemCardLink />}
+      
+      </ItemCardTail>
 
     </li>
   )

@@ -73,7 +73,7 @@ export const SuperFlex = ({
         flex flex-${orientation} 
         justify-${justify} 
         items-${items} 
-        text-${textAlign} 
+        text-${textAlign}         
         ${className}
       `}
     >

@@ -9,20 +9,26 @@ jonobase
 import Link from "next/link"
 import { Span } from "@/app/(basis)/util/tidy-html"
 
-export default function ItemNull({item} : any) {  
+export default function ItemNull({item} : any) {
 
   const ItemNullTitle = () => {
     return (
-      <Span className={`
-        hover:underline text-2xl
-      `}> 
+      <Span 
+        className={`item-null-title
+          hover:underline text-2xl
+        `}
+      > 
         {item.title}
       </Span>
     )
   }
 
   return (
-    <li className={`h-full text-left hover:prose-a:!no-underline`}>            
+    <li
+      className={`item-null
+        h-full text-left hover:prose-a:!no-underline
+      `}
+    >
             
       <Link 
         href={`/posts/${item.slug}`} 

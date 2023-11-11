@@ -9,7 +9,7 @@ jonobase
 */
 
 import Link from "next/link"
-import { Span, Paragraph } from "@/app/(basis)/util/tidy-html"
+import { Span, Paragraph, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
 export default function ItemLite({item, view} : any) {
@@ -19,7 +19,9 @@ export default function ItemLite({item, view} : any) {
   const ItemLiteEmoji = () => {
     return (
       <Span
-        className={`text-2xl mr-1`} 
+        className={`item-lite-emoji
+          text-2xl mr-1
+        `} 
         ariaHidden={true}
       >
         {item.emoji ? item.emoji : `🤷🏻‍♂️`}
@@ -29,16 +31,13 @@ export default function ItemLite({item, view} : any) {
 
   const ItemLiteDate = () => {
     return (
-      <Paragraph className={`
-        text-sm text-black dark:text-gray-500 mt-2
-        ${item.featured ? `text-black dark:text-yellow-500` : ``}
-      `}>
-        {item.featured && 
-          <Span 
-            ariaLabel={lang.featured}
-            className={`mr-2`}
-          >📌</Span>
-        }
+      <Paragraph 
+        className={`item-lite-date
+          text-sm text-black dark:text-gray-500 mt-2
+          ${item.featured ? `text-black dark:text-yellow-500` : ``}
+        `}
+      >
+        {item.featured && <FeaturedIcon />}
         <Span>{itemDate}</Span>
       </Paragraph> 
     )
@@ -55,7 +54,11 @@ export default function ItemLite({item, view} : any) {
   }
 
   return (
-    <li className={`h-full text-center md:text-left hover:prose-a:!no-underline`}>  
+    <li 
+      className={`item-lite
+        h-full text-center md:text-left hover:prose-a:!no-underline
+      `}
+    >  
       
       <ItemLiteEmoji />      
             

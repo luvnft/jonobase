@@ -15,7 +15,9 @@ export default function ItemMini({item} : any) {
   const ItemMiniEmoji = () => {
     return (
       <Span
-        className={`text-2xl mr-1`} 
+        className={`item-mini-emoji 
+          text-2xl mr-1
+        `} 
         ariaHidden={true}
       >
         {item.emoji ? item.emoji : `🤷🏻‍♂️`}
@@ -25,16 +27,22 @@ export default function ItemMini({item} : any) {
 
   const ItemMiniTitle = () => {
     return (
-      <Span className={`
-        hover:underline text-2xl
-      `}> 
+      <Span 
+        className={`item-mini-title
+          hover:underline text-2xl
+        `}
+      > 
         {item.title}
       </Span>
     )
   }
 
   return (
-    <li className={`h-full text-left hover:prose-a:!no-underline`}>  
+    <li 
+      className={`item-mini
+        h-full text-left hover:prose-a:!no-underline
+      `}
+    >  
       
       <ItemMiniEmoji />      
             

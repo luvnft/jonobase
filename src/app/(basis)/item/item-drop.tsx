@@ -21,7 +21,11 @@ export default function ItemDrop({item, view} : any) {
 
   const ItemDropMain = ({children}: any) => {
     return (
-      <SuperFlex justify="start" items="start">
+      <SuperFlex 
+        className={`item-drop-main`}
+        justify="start" 
+        items="start"
+      >
         {children}
       </SuperFlex>
     )    
@@ -41,7 +45,7 @@ export default function ItemDrop({item, view} : any) {
 
     return (
       <div
-        className={`
+        className={`item-drop-icon 
           border bg-white rounded-full min-h-[100px] min-w-[100px] shadow-sm shadow-gray-500
           p-5 text-5xl text-center`} 
         aria-label="hidden"
@@ -56,7 +60,11 @@ export default function ItemDrop({item, view} : any) {
 
   const ItemDropMeat = ({children}: any) => {
     return (
-      <div className={`mx-5`}>
+      <div 
+        className={`item-drop-meat 
+          mx-5
+        `}
+      >
         {children}
       </div>
     )
@@ -65,10 +73,12 @@ export default function ItemDrop({item, view} : any) {
 
   const ItemDropDate = () => {
     return (
-      <Span className={`
-        text-black dark:text-gray-500
-        ${item.featured ? `text-black dark:text-yellow-500` : ``}
-      `}>
+      <Span 
+        className={`item-drop-date 
+          text-black dark:text-gray-500
+          ${item.featured ? `text-black dark:text-yellow-500` : ``}
+        `}
+      >
         {item.featured && <FeaturedIcon />}
         <Span className="text-2xl mr-1">{itemDate}</Span>        
       </Span> 
@@ -77,13 +87,21 @@ export default function ItemDrop({item, view} : any) {
 
   const ItemDropKind = () => {
     return (
-      <Span className={`text-black dark:text-white`}> ({item.expand.kind.slug}) </Span>
+      <Span 
+        className={`item-drop-kind 
+          text-black dark:text-white
+        `}
+      > ({item.expand.kind.slug}) </Span>
     )
   }
 
   const ItemDropTitle = () => {
     return (
-      <h3 className={`hover:underline text-3xl`}> 
+      <h3 
+        className={`item-drop-title 
+          hover:underline text-3xl
+        `}
+      > 
         {item.title}
       </h3>
     )
@@ -91,17 +109,23 @@ export default function ItemDrop({item, view} : any) {
 
   const ItemDropSummary = () => {
     return (
-      <Paragraph className={`font-serif text-black dark:text-slate-300 text-sm`}> 
+      <Paragraph 
+        className={`item-drop-summary 
+          font-serif text-black dark:text-slate-300 text-sm
+        `}
+      > 
         {item.summary}
       </Paragraph>
     )
   }
 
   return (
-    <li className={`item-drop
-      h-full w-max max-w-full md:w-full
-      text-left hover:prose-a:!no-underline 
-    `}>
+    <li 
+      className={`item-drop
+        h-full w-max max-w-full md:w-full
+        text-left hover:prose-a:!no-underline 
+      `}
+    >
 
       <Link 
         href={`/posts/${item.slug}`} 
@@ -115,8 +139,8 @@ export default function ItemDrop({item, view} : any) {
           <ItemDropIcon />
                     
           <ItemDropMeat>
-            {item.showDate && <ItemDropDate />}
-            {kind && <ItemDropKind />}
+            {view.show_date ? <ItemDropDate /> : ''}
+            {view.show_kind && <ItemDropKind />}
             <ItemDropTitle />
             <ItemDropSummary />
           </ItemDropMeat>
