@@ -15,7 +15,7 @@ import Link from "next/link"
 import { Span, Paragraph, SuperFlex, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
 
-export default function ItemDrop({item, view} : any) {
+export default function ItemDrop({item, lang, view} : any) {
 
   let itemDate = getFormattedDate(item.created, view.show_time)
 
@@ -119,6 +119,26 @@ export default function ItemDrop({item, view} : any) {
     )
   }
 
+  const ItemDropLink = () => {
+
+    const target = item.url_newtab ? '_blank' : ''
+
+    return (
+      <div className="flex gap-2 whitespace-nowrap">     
+        <Link href={item.url} target={target}>
+          <div
+            className={`item-card-link
+              button
+            `}
+          >
+            {lang.visit_link}
+          </div>
+        </Link>      
+      </div>
+    )
+
+  }  
+
   return (
     <li 
       className={`item-drop
@@ -143,10 +163,11 @@ export default function ItemDrop({item, view} : any) {
             {view.show_kind && <ItemDropKind />}
             <ItemDropTitle />
             <ItemDropSummary />
-          </ItemDropMeat>
+            {item.url && <ItemDropLink />}
+          </ItemDropMeat>          
 
         </ItemDropMain>
-
+        
       </Link>
 
     </li>

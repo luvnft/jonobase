@@ -18,8 +18,7 @@ export const LoopShow = ({lang, items, view = null}: any) => {
   let trio = false
   let gap = 'gap-10'
 
-  switch (view.type) {
-    case "lite":
+  switch (view.type) {    
     case "mini":
     case "null": 
       gap = 'gap-0 md:gap-5'      
@@ -46,27 +45,27 @@ export const LoopShow = ({lang, items, view = null}: any) => {
             switch (view.type) {
               case "card":
                 return (
-                  <ItemCard key={item.id} lang={lang} item={item} view={view} />
+                  <ItemCard key={item.id} item={item} lang={lang} view={view} />
                 )
               case "drop":
                 return (
-                  <ItemDrop key={item.id} lang={lang} item={item} view={view} />
+                  <ItemDrop key={item.id} item={item} lang={lang} view={view} />
                 )
               case "flat":
                 return (
-                  <ItemFlat key={item.id} lang={lang} item={item} view={view} />
+                  <ItemFlat key={item.id} item={item} lang={lang} view={view} />
                 )
               case "lite":
                 return (                  
-                  <ItemLite key={item.id} lang={lang} item={item} view={view} />
+                  <ItemLite key={item.id} item={item} lang={lang} view={view} />
                 )
               case "mini":
                 return (
-                  <ItemMini key={item.id} lang={lang} item={item} view={view} />
+                  <ItemMini key={item.id} item={item} lang={lang} view={view} />
                 )
               default:
                 return (
-                  <ItemNull key={item.id} lang={lang} item={item} view={view} />
+                  <ItemNull key={item.id} item={item} lang={lang} view={view} />
                 )
             }
           })}        

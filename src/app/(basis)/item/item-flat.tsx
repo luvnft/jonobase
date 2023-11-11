@@ -14,7 +14,7 @@ import Link from "next/link"
 import { Span, Paragraph, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
-export default function ItemFlat({item, view} : any) {
+export default function ItemFlat({item, lang, view} : any) {
 
   let itemDate = getFormattedDate(item.created, view.show_time)
 
@@ -81,6 +81,26 @@ export default function ItemFlat({item, view} : any) {
     )
   }
 
+  const ItemFlatLink = () => {
+
+    const target = item.url_newtab ? '_blank' : ''
+
+    return (
+      <div className="flex gap-2 justify-center md:justify-start whitespace-nowrap">     
+        <Link href={item.url} target={target}>
+          <div
+            className={`item-card-link
+              button
+            `}
+          >
+            {lang.visit_link}
+          </div>
+        </Link>      
+      </div>
+    )
+
+  }  
+
   return (
     <li 
       className={`item-flat 
@@ -100,6 +120,7 @@ export default function ItemFlat({item, view} : any) {
       </Link>
 
       <ItemFlatSummary />
+      {item.url && <ItemFlatLink />}
 
     </li>
   )

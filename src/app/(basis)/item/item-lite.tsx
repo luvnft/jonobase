@@ -12,7 +12,7 @@ import Link from "next/link"
 import { Span, Paragraph, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
 
-export default function ItemLite({item, view} : any) {
+export default function ItemLite({item, lang, view} : any) {
 
   let itemDate = getFormattedDate(item.created, view.show_time)
 
@@ -33,7 +33,7 @@ export default function ItemLite({item, view} : any) {
     return (
       <Paragraph 
         className={`item-lite-date
-          text-sm text-black dark:text-gray-500 mt-2
+          text-sm text-black dark:text-gray-500
           ${item.featured ? `text-black dark:text-yellow-500` : ``}
         `}
       >
@@ -53,6 +53,8 @@ export default function ItemLite({item, view} : any) {
     )
   }
 
+  const target = (item.url && item.url_newtab) ? '_blank' : ''
+
   return (
     <li 
       className={`item-lite
@@ -60,7 +62,7 @@ export default function ItemLite({item, view} : any) {
       `}
     >  
       
-      <ItemLiteEmoji />      
+      <ItemLiteEmoji />            
             
       <Link 
         href={`/posts/${item.slug}`} 
@@ -70,6 +72,20 @@ export default function ItemLite({item, view} : any) {
       </Link>
 
       {view.show_date && <ItemLiteDate />}
+
+      {item.url && 
+        ( 
+          <Paragraph className={`mb-5`}>
+            <Link
+              className={`button`}          
+              href={item.url}
+              target={target}        
+            >
+              {lang.visit_link}
+            </Link> 
+          </Paragraph>
+        )
+      }
 
     </li>
   )
