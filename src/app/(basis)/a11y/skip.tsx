@@ -20,7 +20,7 @@ export default function Skip({ text } : any) {
     <Link 
       href="#main" 
       onClick={handleSkip}
-      className={`
+      className={`skip-link 
         absolute top-0 right-full z-[1000] 
         focus:right-auto focus:bg-zinc-600 focus:text-white focus:border-2 
         focus:border-white focus:p-4
