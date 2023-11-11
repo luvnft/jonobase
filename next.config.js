@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 
-module.exports = {  
+module.exports = {
   async redirects() {
-    return [   
+    return [
       {
         source: '/finds',
         destination: '/finds/all',
@@ -21,33 +21,45 @@ module.exports = {
       {
         source: '/posts',
         destination: '/',
-        permanent: true        
+        permanent: true
       },
       {
         source: '/views',
-        destination: '/', 
+        destination: '/',
         permanent: true
       }
-    ]
+    ];
   },
   images: {
-    remotePatterns: [      
+    domains: [], // Add any specific domains you want to allow for images
+    loader: 'default',
+    path: '/_next/image',
+    deviceSizes: [320, 420, 768, 1024, 1200], // Adjust as needed
+    iconSizes: [],
+    domains: [],
+    loader: 'default',
+    minimumCacheTTL: 60,
+    disableStaticImages: false,
+    formats: ['image/avif', 'image/webp'],
+    imageSizes: [],
+    screenSizes: [],
+    remotePatterns: [
       {
         protocol: 'http',
-        hostname: '127.0.0.1',        
+        hostname: '127.0.0.1',
         port: '8090',
         pathname: '/api/files/**'
       },
       {
         protocol: 'https',
-        hostname: process.env.PBDOMAIN,        
+        hostname: process.env.PBDOMAIN || '',
         pathname: '/api/files/**'
       },
       {
         protocol: 'https',
-        hostname: process.env.PBDOMAIN_SHORT,        
+        hostname: process.env.PBDOMAIN_SHORT || '',
         pathname: '/api/files/**'
-      },
-    ] 
+      }
+    ]
   }
-}
+};
