@@ -160,16 +160,7 @@ export default function ItemCard({lang, item, view} : any) {
     const target = item.url_newtab ? '_blank' : ''
 
     return (
-      <div className="flex gap-2 !mt-0 md:!mt-2 whitespace-nowrap">
-        <Link href={`/posts/${item.slug}`}>
-          <div
-            className={`item-card-link
-              button
-            `}
-          >
-            {lang.view_more}
-          </div>
-        </Link>      
+      <div className="!mt-0 md:!mt-2 whitespace-nowrap">     
         <Link href={item.url} target={target}>
           <div
             className={`item-card-link
