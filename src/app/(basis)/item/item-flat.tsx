@@ -76,8 +76,8 @@ export default function ItemFlat({item, view} : any) {
     <li className={`h-full text-center md:text-left hover:prose-a:!no-underline`}>  
       
       <ItemFlatEmoji />
-      {item.show_date && <ItemFlatDate />}
-      {kind && <ItemFlatKind />}
+      {view.show_date && <ItemFlatDate />}
+      {view.show_kind && <ItemFlatKind />}
             
       <Link 
         href={`/posts/${item.slug}`} 

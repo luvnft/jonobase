@@ -159,8 +159,8 @@ export default function ItemCard({lang, item, view} : any) {
 
         <ItemCardHead>
 
-          {item.show_date && <ItemCardDate />}
-          <ItemCardKind />
+          {view.show_date && <ItemCardDate />}
+          {view.show_kind && <ItemCardKind />}
 
         </ItemCardHead>
 
