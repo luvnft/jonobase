@@ -35,31 +35,9 @@ module.exports = {
     loader: 'default',
     path: '/_next/image',
     deviceSizes: [320, 420, 768, 1024, 1200], // Adjust as needed
-    iconSizes: [],
-    domains: [],
-    loader: 'default',
     minimumCacheTTL: 60,
     disableStaticImages: false,
     formats: ['image/avif', 'image/webp'],
-    imageSizes: [],
-    screenSizes: [],
-    remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '8090',
-        pathname: '/api/files/**'
-      },
-      {
-        protocol: 'https',
-        hostname: process.env.PBDOMAIN || '',
-        pathname: '/api/files/**'
-      },
-      {
-        protocol: 'https',
-        hostname: process.env.PBDOMAIN_SHORT || '',
-        pathname: '/api/files/**'
-      }
-    ]
+    imageSizes: []
   }
 };
