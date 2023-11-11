@@ -124,7 +124,7 @@ export default function ItemDrop({item, lang, view} : any) {
     const target = item.url_newtab ? '_blank' : ''
 
     return (
-      <div className="flex gap-2 whitespace-nowrap">     
+      <div className="flex gap-2 whitespace-nowrap justify-end">     
         <Link href={item.url} target={target}>
           <div
             className={`item-card-link
@@ -162,13 +162,14 @@ export default function ItemDrop({item, lang, view} : any) {
             {view.show_date ? <ItemDropDate /> : ''}
             {view.show_kind && <ItemDropKind />}
             <ItemDropTitle />
-            <ItemDropSummary />
-            {item.url && <ItemDropLink />}
+            <ItemDropSummary />            
           </ItemDropMeat>          
 
         </ItemDropMain>
         
       </Link>
+
+      {item.url && <ItemDropLink />}
 
     </li>
   )
