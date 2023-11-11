@@ -121,7 +121,14 @@ export async function getPost(
 
   } catch {
 
-    const post = { title: '', kind: '', lists: [] }
+    const post = { 
+      title: '', 
+      kind: '', 
+      lists: [], 
+      thumbnail: '',
+      collectionId: '', 
+      id: ''    
+    }
     return { post }
   
   }

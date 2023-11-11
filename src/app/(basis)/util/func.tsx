@@ -108,9 +108,9 @@ export const getImageURL = (
   collectionId: string, 
   id: string, 
   filename: string,
-  size: string = '500x200'
+  size: string = ''
 ) => {
-  return `${process.env.PBDOMAIN}/api/files/${collectionId}/${id}/${filename}?thumb=${size}`
+  return `${process.env.PBDOMAIN}/api/files/${collectionId}/${id}/${filename}${size ? `?thumb=${size}` : ``}`
 }  
 
 export const getFormattedDate = (

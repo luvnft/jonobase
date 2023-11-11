@@ -6,10 +6,10 @@ head (hero) for single "post" pages
 */
 
 import { getFormattedDateTime } from "@/app/(basis)/util/func"
-import { Span, Paragraph, StandardFlex } from "@/app/(basis)/util/tidy-html"
+import { Span, Paragraph, SuperFlex } from "@/app/(basis)/util/tidy-html"
 import Link from "next/link"
 
-export default function PostHead({lang, post}: any) {  
+export default function PostHead({lang, post}: any) { 
 
   const PostHeadMeta = () => {
 
@@ -18,7 +18,7 @@ export default function PostHead({lang, post}: any) {
       <div className={` grow`}>
 
         <h2 className={`
-          text-2xl sm:text-4xl lg:text-5xl my-5 uppercase
+          text-4xl lg:text-5xl my-5 uppercase
         `}>{post.emoji} {post.title}</h2>
 
         <Paragraph className={`text-lg sm:text-2xl`}>{post.summary}</Paragraph>
@@ -28,9 +28,9 @@ export default function PostHead({lang, post}: any) {
         `}>
           {post.url &&               
             <Link 
-              className={`button`} 
+              className={`button !border-white !text-white`} 
               href={post.url} 
-              target={post.url_newtab ? '_blank' : ''}
+              target={post.url_newtab ? '_blank' : '_top'}
             >
               {lang.visit_link}
             </Link>                              
@@ -47,12 +47,12 @@ export default function PostHead({lang, post}: any) {
     
     return (
       <div className={`
-        text-right 
+        text-center sm:text-right 
         text-md sm:text-lg         
-        grow ml-2 my-2
+        grow ml-0 sm:ml-2 my-2        
       `}>
             
-        {(post.updated !== undefined && post.backdated != '') && 
+        {(post.updated !== undefined && post.updated != '') && 
           <Paragraph className={'whitespace-nowrap'}>
             <Span>
               {`${lang.last_updated} `} 
@@ -73,7 +73,7 @@ export default function PostHead({lang, post}: any) {
         </Paragraph>
       
         {(post.backdated !== undefined && post.backdated !== '') && 
-          <Paragraph className={'whitespace-nowrap'}>
+          <Paragraph className={'whitespace-nowrap hidden sm:block'}>
             <Span>
               {`${lang.originally_created} `}
             </Span>
@@ -91,13 +91,20 @@ export default function PostHead({lang, post}: any) {
   return (
     <div className={`block`}>    
 
-      <StandardFlex>
+      <SuperFlex         
+        className={`
+          ${post.thumbnail && 
+            `bg-gray-900/60 rounded-md my-5 p-5 text-white`
+          } 
+          flex-col sm:flex-row text-center sm:text-left
+        `}
+      >
 
         <PostHeadMeta />
 
         <PostHeadDate />
       
-      </StandardFlex>
+      </SuperFlex>
 
     </div>
   )

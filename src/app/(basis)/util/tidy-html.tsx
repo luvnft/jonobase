@@ -8,6 +8,7 @@ export const SectionDiv = ({
   ariaLabel = '', 
   ariaHidden = false,
   className = '',
+  style = {}, 
   children}: any) => {
 
     return (
@@ -15,6 +16,7 @@ export const SectionDiv = ({
         aria-label={ariaLabel} 
         aria-hidden={ariaHidden}
         className={className}
+        style={style}
       >
 
         <div>

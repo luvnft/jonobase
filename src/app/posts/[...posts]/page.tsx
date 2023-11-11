@@ -13,6 +13,7 @@ individual post "post" (content)
 */
 
 import { getBase, getPost } from '@/app/(basis)/util/data'
+import { getImageURL } from "@/app/(basis)/util/func"
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 import NotFound from '@/app/not-found'
 import PostApex from '@/app/(basis)/post/post-apex'
@@ -58,7 +59,11 @@ export default async function Main({
     
   if (post.kind === '') {
     return <NotFound />
-  }    
+  } 
+
+  const bgImage = post.thumbnail 
+  ? getImageURL(post.collectionId, post.id, post.thumbnail)
+  : null
 
   return (
 
@@ -68,13 +73,21 @@ export default async function Main({
         <PostApex siteName={app.slug} post={post} params={params} />
       </SectionDiv>
 
-      <SectionDiv className={`
-        border-y dark:border-gray-500
-        bg-gradient-to-r 
-        from-zinc-100 to-zinc-300 
-        dark:from-emerald-900 dark:to-emerald-800
-        drop-shadow-md
-      `}>
+      <SectionDiv 
+        className={`post-head
+          dark:border-gray-500
+          bg-gradient-to-r 
+          from-zinc-100 to-zinc-300 
+          dark:from-emerald-900 dark:to-emerald-800
+          py-5 drop-shadow-md 
+        `}
+        style={{ 
+          background: `${bgImage && `url(${bgImage})`}`, 
+          backgroundRepeat: `no-repeat`,
+          backgroundPosition: `center`,
+          backgroundSize: `cover`
+        }}
+      >
         <PostHead lang={lang} post={post} />
       </SectionDiv>
 
