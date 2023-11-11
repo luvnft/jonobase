@@ -6,9 +6,9 @@ jonobase
 results count
 */
 
-export const FindResultsCount = ({label, resultsCount}: any) => {    
+export const LoopCount = ({label, resultsCount}: any) => {    
   return (
-    <aside className={` text-sm`}>
+    <aside className={`loop-count text-sm`}>
       {label} : {resultsCount}
     </aside>
   )

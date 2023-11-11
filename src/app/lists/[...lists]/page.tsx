@@ -9,7 +9,7 @@ with pagination
 import { getBase, getPosts, getUnpagedPostsCount } from '@/app/(basis)/util/data'
 import { LoopHead } from '@/app/(basis)/loop/loop-head'
 import { LoopApex } from '@/app/(basis)/loop/loop-apex'
-import { FindResultsCount } from '@/app/(basis)/loop/loop-count'
+import { LoopCount } from '@/app/(basis)/loop/loop-count'
 import { LoopShow } from '@/app/(basis)/loop/loop-show'
 import LoopTurn from '@/app/(basis)/loop/loop-turn'
 import NotFound from '@/app/not-found'
@@ -49,14 +49,14 @@ export default async function Main({ params, searchParams }: any) {
     (pageNumber !== undefined || postsPerPage !== undefined)) {
     return <NotFound />
   }
-    
+
   const { items } = await getPosts(
     '',             // find - don't discriminate by content
     '',             // kind - don't discriminate by kind 
     listQuery,      // list - discriminate by post list (tag)
     pageNumber,     // page - number (see above)
     postsPerPage    // page - limit (see above)
-  )    
+  )
 
   // need to determine not only the search results shown but the TOTAL results!
   const resultsCount = await getUnpagedPostsCount('', '', listQuery)
@@ -71,16 +71,16 @@ export default async function Main({ params, searchParams }: any) {
 
   return (
     <>
-      <SectionDiv className={`my-5`}>
+      <SectionDiv className={`page-lists-apex my-5`}>
                     
         <LoopHead>
           <LoopApex 
             site={app.slug}
             lang={lang}
-            params={params}              
-            current={pageNumber}              
-          />          
-          <FindResultsCount 
+            params={params}
+            current={pageNumber}
+          />
+          <LoopCount 
             label={lang.search_results} 
             resultsCount={resultsCount} 
           />
@@ -88,7 +88,7 @@ export default async function Main({ params, searchParams }: any) {
 
       </SectionDiv>
 
-      <SectionDiv className={`bg-zinc-50 dark:bg-zinc-950`}>
+      <SectionDiv className={`page-lists-loop bg-zinc-50 dark:bg-zinc-950`}>
         
         <LoopShow 
           items={items} 
@@ -98,14 +98,14 @@ export default async function Main({ params, searchParams }: any) {
 
       </SectionDiv>
 
-      <SectionDiv>
+      <SectionDiv className={`page-lists-turn`}>
         
-        <LoopTurn             
-          params={params}            
-          current={pageNumber}                        
-          limit={postsPerPage}          
+        <LoopTurn
+          params={params}
+          current={pageNumber}
+          limit={postsPerPage}
         />
-                      
+
       </SectionDiv>
     </>
   )

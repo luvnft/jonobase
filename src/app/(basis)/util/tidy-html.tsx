@@ -5,10 +5,10 @@ tidier HTML in components
 */
 
 export const SectionDiv = ({
-  ariaLabel = '', 
+  ariaLabel = '',
   ariaHidden = false,
   className = '',
-  style = {}, 
+  style = {},
   children}: any) => {
 
     return (
@@ -51,7 +51,7 @@ export const Span = ({
   return (
     <span 
       aria-label={ariaLabel}
-      aria-hidden={ariaHidden} 
+      aria-hidden={ariaHidden}
       className={className}
     >
       {children}
@@ -61,7 +61,7 @@ export const Span = ({
 }
 
 export const SuperFlex = ({
-  orientation = 'row', 
+  orientation = 'row',
   justify = 'between',
   items = 'center',
   textAlign = 'left',
@@ -72,10 +72,11 @@ export const SuperFlex = ({
   return (
     <div 
       className={`
-        flex flex-${orientation} 
-        justify-${justify} 
-        items-${items} 
-        text-${textAlign}         
+        superflex
+        flex flex-${orientation}
+        justify-${justify}
+        items-${items}
+        text-${textAlign}
         ${className}
       `}
     >
@@ -89,11 +90,11 @@ export const FeaturedIcon = ({
   ariaLabel
 }: any) => {
 
-  return (    
+  return (
     <Span 
-      ariaLabel={ariaLabel}                 
+      ariaLabel={ariaLabel}
       className={`feat-icon mr-2`}
-    >📌</Span>    
+    >📌</Span>
   )
 
 }

@@ -57,7 +57,7 @@ export default function ItemCard({lang, item, view} : any) {
 
     return (
       <div
-        className={`item-card-kind          
+        className={`item-card-kind
         `}
       >
         {item.expand.kind.slug}
@@ -68,7 +68,7 @@ export default function ItemCard({lang, item, view} : any) {
 
   const ItemCardMain = ({children}: any) => {
 
-    const bgImage = item.thumbnail 
+    const bgImage = item.thumbnail
       ? getImageURL(item.collectionId, item.id, item.thumbnail, '500x200') 
       : ''
 
@@ -160,7 +160,7 @@ export default function ItemCard({lang, item, view} : any) {
     const target = item.url_newtab ? '_blank' : ''
 
     return (
-      <div className="!mt-0 md:!mt-2 whitespace-nowrap">     
+      <div className="!mt-0 md:!mt-2 whitespace-nowrap">
         <Link href={item.url} target={target}>
           <div
             className={`item-card-link
@@ -169,7 +169,7 @@ export default function ItemCard({lang, item, view} : any) {
           >
             {lang.visit_link}
           </div>
-        </Link>      
+        </Link>
       </div>
     )
 

@@ -21,7 +21,9 @@ export const PostMain = ({post: { content } }: any) => {
   return (  
     
     <article 
-      className={getProse()}
+      className={`post-main
+        ${getProse()}
+      `}
       dangerouslySetInnerHTML={{ __html: content }} 
     />
 

@@ -69,12 +69,12 @@ export default async function Main({
 
     <>
 
-      <SectionDiv className={`my-5`}>
+      <SectionDiv className={`page-posts-apex my-5`}>
         <PostApex siteName={app.slug} post={post} params={params} />
       </SectionDiv>
 
       <SectionDiv 
-        className={`post-head
+        className={`page-posts-head
           dark:border-gray-500
           bg-gradient-to-r 
           from-slate-100 to-slate-400 
@@ -91,23 +91,33 @@ export default async function Main({
         <PostHead lang={lang} post={post} />
       </SectionDiv>
 
-      <SectionDiv>
+      <SectionDiv 
+        className={`
+          page-posts-main`
+        }
+      >
         <PostMain post={post} />
       </SectionDiv>
       
       { lists.length > 0 && 
-        <SectionDiv className={`
-          border-y dark:border-gray-500
-          bg-gradient-to-r 
-          from-slate-100 to-slate-400 
-          dark:from-emerald-900 dark:to-emerald-800
-          drop-shadow-md py-5
-        `}>
+        <SectionDiv 
+          className={`page-posts-tags
+            border-y dark:border-gray-500
+            bg-gradient-to-r 
+            from-slate-100 to-slate-400 
+            dark:from-emerald-900 dark:to-emerald-800
+            drop-shadow-md py-5
+          `}
+        >
           <PostTags lang={lang} post={post} />
         </SectionDiv> 
       }
 
-      <SectionDiv className={`py-5`}>
+      <SectionDiv 
+        className={`page-posts-turn 
+          py-5
+        `}
+      >
         <PostTurn lang={lang} post={post} params={params} />
       </SectionDiv>
       

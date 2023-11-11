@@ -45,7 +45,7 @@ export default function ItemLite({item, lang, view} : any) {
 
   const ItemLiteTitle = () => {
     return (
-      <Span className={`
+      <Span className={`item-lite-title
         hover:underline text-2xl
       `}> 
         {item.title}
@@ -60,32 +60,36 @@ export default function ItemLite({item, lang, view} : any) {
       className={`item-lite
         h-full text-center sm:text-left hover:prose-a:!no-underline
       `}
-    >  
-      
-      <ItemLiteEmoji />            
-            
+    >
+
+      <ItemLiteEmoji />
+
       <Link 
         href={`/posts/${item.slug}`} 
-        className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
+        className={`item-lite-title-link
+          ${item.featured && `hover:!text-black dark:hover:!text-white`}
+        `}
       >
         <ItemLiteTitle />
       </Link>
 
       {view.show_date && <ItemLiteDate />}
 
-      {item.url && 
-        ( 
-          <Paragraph className={`mb-5`}>
-            <Link
-              className={`button`}          
-              href={item.url}
-              target={target}        
-            >
-              {lang.visit_link}
-            </Link> 
-          </Paragraph>
-        )
-      }
+      {item.url && ( 
+        <Paragraph 
+          className={`item-lite-url 
+            mb-5
+          `}
+        >
+          <Link
+            className={`button`}
+            href={item.url}
+            target={target}
+          >
+            {lang.visit_link}
+          </Link> 
+        </Paragraph>
+      )}
 
     </li>
   )

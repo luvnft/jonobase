@@ -15,24 +15,28 @@ export default async function Tail() {
   const { app } = await getBase()
 
   const footerFat = app.footer_fat 
-    ? sanitize(app.footer_fat, { ADD_ATTR: ['target']}) 
+    ? sanitize(app.footer_fat, { ADD_ATTR: ['target']})
     : ''
 
   const footerCopy = app.footer_copyright 
-    ? sanitize(app.footer_copyright, { ADD_ATTR: ['target']}) 
+    ? sanitize(app.footer_copyright, { ADD_ATTR: ['target']})
     : ''
   
   const footerLinks = app.footer_extra 
-    ? sanitize(app.footer_extra, { ADD_ATTR: ['target']}) 
+    ? sanitize(app.footer_extra, { ADD_ATTR: ['target']})
     : ''
 
   const TailFullWidthWrapper = ({children, className}: any) => {
     return (
-      <footer className={`${getThemeLink(app.theme)} ${getTheme()} ${getProse()} w-full bottom-0 mt-auto 
-        !font-sans 
-        bg-black ${className} 
-        text-white prose-a:text-gray-600 hover:prose-a:text-white
-        prose-headings:!mt-0 
+      <footer className={`tail-full-wrapper
+        ${getThemeLink(app.theme)}
+        ${getTheme()} ${getProse()}
+        w-full bottom-0 
+        bg-black 
+        !font-sans text-white 
+        prose-a:text-gray-600 hover:prose-a:text-white 
+        prose-headings:!mt-0 mt-auto
+        ${className} 
       `}>
         {children}
       </footer>
@@ -42,12 +46,14 @@ export default async function Tail() {
   const TailWrapper = ({children}: any) => {
     return (
       <section 
-        className={`flex flex-col  
-          lg:flex-row lg:justify-between lg:items-start 
-          gap-2 lg:gap-10 py-5 max-w-screen-lg mx-auto
+        className={`tail-wrapper 
+          flex flex-col lg:flex-row 
+          lg:justify-between lg:items-start 
+          gap-2 lg:gap-10 
+          max-w-screen-lg mx-auto py-5
         `}
       >
-        {children}  
+        {children}
       </section>
     )
   }
@@ -55,10 +61,12 @@ export default async function Tail() {
   const TailFat = () => {
     return (
       <>
-        { footerFat && 
+        { footerFat &&
           <div 
-            className={`text-center w-full`} 
-            dangerouslySetInnerHTML={{__html: footerFat}} 
+            className={`tail-fat
+              text-center w-full
+            `}
+            dangerouslySetInnerHTML={{__html: footerFat}}
           />
         }
       </>
@@ -68,11 +76,15 @@ export default async function Tail() {
   const TailCopy = () => {
     return (
       <div
-        className={`lg:w-1/2`}
+        className={`tail-copy-wrapper 
+          lg:w-1/2
+        `}
       >
-        { footerCopy && 
+        { footerCopy &&
           <div 
-            className={`text-center lg:text-left`} 
+            className={`tail-copy
+              text-center lg:text-left
+            `} 
             dangerouslySetInnerHTML={{__html: footerCopy}} 
           />
         }
@@ -83,31 +95,40 @@ export default async function Tail() {
   const TailExtra = () => {
     return (
       <div 
-        className={`lg:w-1/2`}
+        className={`tail-extra-wrapper
+          lg:w-1/2
+        `}
       >
       { footerLinks && 
-        <div className={`text-center lg:text-right`} dangerouslySetInnerHTML={{__html: footerLinks}} />
+        <div 
+          className={`tail-extra
+            text-center lg:text-right
+          `} 
+          dangerouslySetInnerHTML={{__html: footerLinks}}
+        />
       }
-      </div>  
+      </div>
     )
   }
   
-  return ( 
+  return (
 
     <>
-
-      { footerFat && 
-        <TailFullWidthWrapper className={`bg-gradient-to-r from-gray-500 to-zinc-700 py-10`}>      
+      { footerFat &&
+        <TailFullWidthWrapper
+          className={`
+            bg-gradient-to-r from-gray-500 to-zinc-700 py-10
+          `}>
           <TailWrapper>
-            <TailFat />          
+            <TailFat />
           </TailWrapper>
-        </TailFullWidthWrapper>    
+        </TailFullWidthWrapper>
       }
 
-      <TailFullWidthWrapper>      
+      <TailFullWidthWrapper>
         <TailWrapper>
           <TailCopy />
-          <TailExtra />       
+          <TailExtra />
         </TailWrapper>
       </TailFullWidthWrapper>
     </>

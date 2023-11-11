@@ -19,9 +19,9 @@ export const LoopShow = ({items, lang, view}: any) => {
 
     <>
 
-      {(items && items.length > 0) &&       
+      {(items && items.length > 0) &&
       
-        <ul className={`loop-list
+        <ul className={`loop-show-list
           w-max max-w-full sm:w-auto mx-auto 
           items-start py-10
           grid gap-10 grid-cols-1 
@@ -56,10 +56,10 @@ export const LoopShow = ({items, lang, view}: any) => {
                   <ItemNull key={item.id} item={item} lang={lang} view={view} />
                 )
             }
-          })}        
+          })}
 
         </ul>
-        
+
       }
 
     </>

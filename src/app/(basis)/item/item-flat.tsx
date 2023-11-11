@@ -86,7 +86,7 @@ export default function ItemFlat({item, lang, view} : any) {
     const target = item.url_newtab ? '_blank' : ''
 
     return (
-      <div className="flex gap-2 justify-center sm:justify-start whitespace-nowrap">     
+      <div className="flex gap-2 justify-center sm:justify-start whitespace-nowrap">
         <Link href={item.url} target={target}>
           <div
             className={`item-card-link
@@ -95,7 +95,7 @@ export default function ItemFlat({item, lang, view} : any) {
           >
             {lang.visit_link}
           </div>
-        </Link>      
+        </Link>
       </div>
     )
 

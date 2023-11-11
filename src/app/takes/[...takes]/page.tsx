@@ -9,7 +9,7 @@ with paginated lists plus paginated tag filtered lists
 import { getTake, getBase, getPosts, getUnpagedPostsCount } from '@/app/(basis)/util/data'
 import { LoopHead } from '@/app/(basis)/loop/loop-head'
 import { LoopApex } from '@/app/(basis)/loop/loop-apex'
-import { FindResultsCount } from '@/app/(basis)/loop/loop-count'
+import { LoopCount } from '@/app/(basis)/loop/loop-count'
 import ViewShow from '@/app/(basis)/view/view-show'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 import NotFound from '@/app/not-found'
@@ -64,24 +64,24 @@ export default async function Main({ params }: any) {
             lang={lang}
             params={params}
           />          
-          <FindResultsCount 
-            label={lang.posts} 
-            resultsCount={resultsCount} 
+          <LoopCount 
+            label={lang.posts}
+            resultsCount={resultsCount}
           />
         </LoopHead>
         
       </SectionDiv>
 
-      {takeViews && takeViews.map(takeView =>    
-            
+      {takeViews && takeViews.map(takeView =>
+
         <ViewShow 
           key={takeView.id}
           lang={lang}
           takeView={takeView} 
-        />              
+        />
       
       )}
-          
+
     </>
   )
 }

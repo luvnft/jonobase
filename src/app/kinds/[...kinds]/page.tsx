@@ -9,7 +9,7 @@ with pagination
 import { getBase, getPosts, getUnpagedPostsCount } from '@/app/(basis)/util/data'
 import { LoopHead } from '@/app/(basis)/loop/loop-head'
 import { LoopApex } from '@/app/(basis)/loop/loop-apex'
-import { FindResultsCount } from '@/app/(basis)/loop/loop-count'
+import { LoopCount } from '@/app/(basis)/loop/loop-count'
 import { LoopShow } from '@/app/(basis)/loop/loop-show'
 import LoopTurn from '@/app/(basis)/loop/loop-turn'
 import NotFound from '@/app/not-found'
@@ -51,14 +51,13 @@ export default async function Main({ params, searchParams }: any) {
     return <NotFound />
   }
   
-  
   const { items } = await getPosts(
     '',             // find - don't discriminate by content
     kindQuery,      // kind - discriminate by post kind or not)
     '',             // list - don't discriminate by list (tag)
     pageNumber,     // page - number (see above)
     postsPerPage    // page - limit (see above)
-  )    
+  )
 
   // need to determine not only the search results shown but the TOTAL results!
   const resultsCount = await getUnpagedPostsCount('', kindQuery, '')
@@ -66,34 +65,34 @@ export default async function Main({ params, searchParams }: any) {
   // view options object for the loopshow
   const view = {
     type: app.kind_list_type,
-    show_date: true, 
-    show_time: false, 
-    show_kind: false  
+    show_date: true,
+    show_time: false,
+    show_kind: false
   }
 
   return (
     <>
 
-      <SectionDiv className={`my-5`}>
-                    
+      <SectionDiv className={`page-kinds-apex my-5`}>
+
         <LoopHead>
           <LoopApex 
             site={app.slug}
             lang={lang}
-            params={params}              
-            current={pageNumber}              
-          />          
-          <FindResultsCount 
-            label={lang.search_results} 
-            resultsCount={resultsCount} 
+            params={params}
+            current={pageNumber}
+          />
+          <LoopCount
+            label={lang.search_results}
+            resultsCount={resultsCount}
           />
         </LoopHead>
 
       </SectionDiv>
       
-      <SectionDiv className={`bg-zinc-200 dark:bg-zinc-700`}>
+      <SectionDiv className={`page-kinds-loop bg-zinc-200 dark:bg-zinc-700`}>
         
-        <LoopShow           
+        <LoopShow
           items={items} 
           lang={lang} 
           view={view}
@@ -101,14 +100,14 @@ export default async function Main({ params, searchParams }: any) {
       
       </SectionDiv>
         
-      <SectionDiv>
+      <SectionDiv className={`page-kinds-turn`}>
 
-        <LoopTurn             
-          params={params}            
-          current={pageNumber}                        
-          limit={postsPerPage}          
+        <LoopTurn
+          params={params}
+          current={pageNumber}
+          limit={postsPerPage}
         />
-                      
+
       </SectionDiv>
 
     </>

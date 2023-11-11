@@ -12,13 +12,13 @@ export const LoopApex = ({site, lang, params, current}: any) => {
 
   const Home = () => {
     return (
-      <Span>{site} </Span>      
+      <Span>{site} </Span>
     )
   }
 
   const HomeLink = () => {
     return (
-      <Link href={`/`}>{site}</Link> 
+      <Link href={`/`}>{site}</Link>
     )
   }
 
@@ -27,7 +27,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
       <>
         <Span ariaHidden={true}> / </Span>
         { linkLabel 
-          ? <Link href={`/${label}/`}>{label}</Link> 
+          ? <Link href={`/${label}/`}>{label}</Link>
           : <Span> {label} </Span>
         } 
         <Span ariaHidden={true}> / </Span>
@@ -37,8 +37,8 @@ export const LoopApex = ({site, lang, params, current}: any) => {
   }
 
   const Page = () => {
-    return (              
-      <Span> ({lang.page} {current})</Span>      
+    return (
+      <Span> ({lang.page} {current})</Span>
     )
   }
 
@@ -49,36 +49,36 @@ export const LoopApex = ({site, lang, params, current}: any) => {
   }
   
   return (
-    <aside className={` text-lg sm:text-2xl uppercase`}> 
+    <aside className={` text-lg sm:text-2xl uppercase`}>
 
       { (!params.finds && !params.kinds && !params.lists && !params.takes) &&
-        <Home />                  
+        <Home />
       }
 
       { (params.finds || params.kinds || params.lists) &&
         <HomeLink />
-      } 
+      }
 
       { (params.finds) && 
         <Fold label={`finds`} folder={params.finds} />
-      }  
+      }
 
       { (params.kinds) && 
         <Fold label={`kinds`} linkLabel={true} folder={params.kinds} />
-      }  
+      }
 
       { (params.lists) && 
         <Fold label={`lists`} folder={params.lists} />
       }
 
-      { 
+      {
         (params.takes) &&
         <Take />
-      }                   
+      }
       
       { current > 1 && 
-        <Page />        
-      }    
+        <Page />
+      }
 
     </aside>
   )

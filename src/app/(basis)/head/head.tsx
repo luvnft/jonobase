@@ -20,7 +20,8 @@ export default async function Head() {
   const HeadFullWidthWrapper = ({children}: any) => {
     return (
       <header 
-        className={`w-full sticky top-0 z-10
+        className={`head-fullwidth-wrapper
+          w-full sticky top-0 z-10
           bg-black bg-gradient-to-t from-black to-gray-700 
           text-white drop-shadow-xl`
       }>
@@ -32,16 +33,18 @@ export default async function Head() {
   const HeadWrapper = ({children}: any) => {
     return (
       <section 
-        className={`flex justify-between 
+        className={`head-wrapper
+          flex justify-between 
           items-center my-2 sm:my-5 gap-5 max-w-screen-lg mx-auto`}>
         {children}
       </section>
     )
   }
 
-  const HeadBranding = ({children}: any) => {
+  const HeadBrand = ({children}: any) => {
     return (
-      <div className={`flex flex-row 
+      <div className={`head-brand
+        flex flex-row 
         items-center gap-5`}>
         {children}
       </div>
@@ -52,7 +55,8 @@ export default async function Head() {
 
     return (
       <Link 
-        className={`flex flex-row 
+        className={`head-brand-link
+          flex flex-row 
           items-center gap-5`}
         href={`/`}
       >
@@ -64,16 +68,24 @@ export default async function Head() {
   const HeadBrandLogo = () => {
     return (
       <Image 
-        className={`min-w-10 max-h-10 
+        className={`head-brand-logo 
+          min-w-10 max-h-10 
           rounded-full border-2 border-white drop-shadow`}
-        src={icon} alt="" height={40} width={40} 
+        src={icon} 
+        alt="" 
+        height={40} 
+        width={40} 
       /> 
     )
   }
 
   const HeadBrandTitle = () => {
     return (
-      <h1 className={`text-2xl sm:text-3xl uppercase`}>
+      <h1 
+        className={`head-brand-title 
+          text-2xl sm:text-3xl uppercase
+        `}
+      >
         {app.title}
       </h1>
     )
@@ -81,7 +93,11 @@ export default async function Head() {
 
   const HeadBrandTagline = () => {
     return (
-      <div className={`hidden sm:block`}>
+      <div
+        className={`head-brand-tagline
+          hidden sm:block
+        `}
+      >
         {app.tagline}
       </div>
     )
@@ -89,7 +105,11 @@ export default async function Head() {
 
   const HeadMenuWrapper = ({children}: any) => {
     return (
-      <div className={`whitespace-nowrap flex flex-row gap-5`}>
+      <div 
+        className={`head-menu-wrapper
+          whitespace-nowrap flex flex-row gap-5
+        `}
+      >
         {children}
       </div>
     )
@@ -100,13 +120,13 @@ export default async function Head() {
     <HeadFullWidthWrapper>
       <Skip text={lang.skip_to_main_content} />
       <HeadWrapper>
-        <HeadBranding>
+        <HeadBrand>
           <HeadBrandLink>
             {app.icon && <HeadBrandLogo />}
             <HeadBrandTitle />
           </HeadBrandLink>
           { app.tagline && <HeadBrandTagline />}
-        </HeadBranding>      
+        </HeadBrand>      
         <HeadMenuWrapper>
           <Menu app={app} lang={lang} />
         </HeadMenuWrapper>        

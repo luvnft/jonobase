@@ -17,18 +17,31 @@ export default function PostHead({lang, post}: any) {
     
       <div className={`grow`}>
 
-        <h2 className={`post-head-meta
-          text-4xl sm:text-5xl lg:text-6xl my-5 uppercase
-        `}>{post.thumbnail ? '' : post.emoji} {post.title}</h2>
+        <h2 
+          className={`post-head-meta
+            uppercase text-4xl sm:text-5xl lg:text-6xl
+          `}
+        >
+          {post.thumbnail ? '' : post.emoji} 
+          {post.title}
+        </h2>
 
-        <Paragraph className={`text-lg sm:text-2xl`}>{post.summary}</Paragraph>
+        <Paragraph 
+          className={`post-head-summary
+            text-sm sm:text-2xl my-5
+          `}
+        >
+          {post.summary}
+        </Paragraph>
 
-        <Paragraph className={`
-          text-sm sm:text-lg 
-        `}>
+        <Paragraph 
+          className={`post-head-link
+            text-sm sm:text-lg 
+          `}
+        >
           {post.url &&
             <Link 
-              className={`button !border-white !text-white`} 
+              className={`button ${post.thumbnail && `!border-white !text-white`}`} 
               href={post.url} 
               target={post.url_newtab ? '_blank' : '_top'}
             >
@@ -46,6 +59,7 @@ export default function PostHead({lang, post}: any) {
   const PostHeadDate = () => {
     
     return (
+
       <SuperFlex
         className={`post-head-date
           grow sm:flex-col sm:items-end gap-5
@@ -100,8 +114,9 @@ export default function PostHead({lang, post}: any) {
             </div>
           </SuperFlex>
         }
-              
+
       </SuperFlex>
+
     )
   }
   

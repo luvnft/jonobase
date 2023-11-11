@@ -80,7 +80,7 @@ export default function ItemDrop({item, lang, view} : any) {
         `}
       >
         {item.featured && <FeaturedIcon />}
-        <Span className="text-md md:text-xl mr-1">{itemDate}</Span>        
+        <Span className="text-md md:text-xl mr-1">{itemDate}</Span>
       </Span> 
     )
   }
@@ -124,7 +124,7 @@ export default function ItemDrop({item, lang, view} : any) {
     const target = item.url_newtab ? '_blank' : ''
 
     return (
-      <div className="flex gap-2 whitespace-nowrap justify-end">     
+      <div className="flex gap-2 whitespace-nowrap justify-end">
         <Link href={item.url} target={target}>
           <div
             className={`item-card-link
@@ -133,7 +133,7 @@ export default function ItemDrop({item, lang, view} : any) {
           >
             {lang.visit_link}
           </div>
-        </Link>      
+        </Link>
       </div>
     )
 
@@ -149,7 +149,7 @@ export default function ItemDrop({item, lang, view} : any) {
 
       <Link 
         href={`/posts/${item.slug}`} 
-        className={`          
+        className={`
           ${item.featured && `hover:!text-black dark:hover:!text-white`}
         `}
       >
@@ -162,8 +162,8 @@ export default function ItemDrop({item, lang, view} : any) {
             {view.show_date ? <ItemDropDate /> : ''}
             {view.show_kind && <ItemDropKind />}
             <ItemDropTitle />
-            <ItemDropSummary />            
-          </ItemDropMeat>          
+            <ItemDropSummary />
+          </ItemDropMeat>
 
         </ItemDropMain>
         

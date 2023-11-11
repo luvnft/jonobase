@@ -10,7 +10,7 @@ jonobase
 import Link from "next/link"
 import { Span } from "@/app/(basis)/util/tidy-html"
 
-export default function ItemMini({item} : any) {  
+export default function ItemMini({item} : any) {
 
   const ItemMiniEmoji = () => {
     return (
@@ -42,10 +42,10 @@ export default function ItemMini({item} : any) {
       className={`item-mini
         h-full text-left hover:prose-a:!no-underline
       `}
-    >  
-      
-      <ItemMiniEmoji />      
-            
+    >
+
+      <ItemMiniEmoji />
+
       <Link 
         href={`/posts/${item.slug}`} 
         className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}

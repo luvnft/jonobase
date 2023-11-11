@@ -6,11 +6,11 @@ turn (page-flipper) for single "post" pages
 */
 
 import Link from "next/link";
-import { Span, Paragraph } from "@/app/(basis)/util/tidy-html";
+import { Span } from "@/app/(basis)/util/tidy-html";
 
 import { getAdjacentPost, getBase } from "@/app/(basis)/util/data";
 
-export default async function PostTurn({lang, post, params}: any) {
+export default async function PostTurn({lang, post}: any) {
 
   const { app } = await getBase()
   
@@ -22,38 +22,42 @@ export default async function PostTurn({lang, post, params}: any) {
   const TurnCard = ({older, newer, criteria}: any) => {
     
     return (
-      <div className={`
+      <div className={`post-turn
         border border-2 dark:border-gray-500 my-5 
-         text-lg sm:text-xl text-center
+        text-lg sm:text-xl text-center
         flex flex-col sm:flex-row items-center 
         ${older ? 'justify-start' : 'justify-end'}
       `}>
         
-        { older && 
+        { older &&
           <Link href={`/posts/${older.slug}`}
-            className={`${older ? 'block' : ''} sm:block sm:w-1/3 p-2 sm:p-5`}
+            className={`post-turn-older 
+              ${older ? 'block' : ''} sm:block sm:w-1/3 p-2 sm:p-5
+            `}
           > 
-            <Span className={`no-underline`} ariaLabel={lang.older}>⏪</Span>               
-            <Span className={`ml-2`}>{ older.title }</Span>          
+            <Span className={`no-underline`} ariaLabel={lang.older}>⏪</Span>
+            <Span className={`ml-2`}>{ older.title }</Span>
           </Link>
         }
         
-        <div className={`
+        <div className={`post-turn-label 
           sm:w-1/3 w-full p-5 
-          border-y-2 sm:border-x-2 
+          border-y-2 ${!older && `border-t-0`} ${!newer && `border-b-0`} sm:border-x-2 
           dark:border-gray-500 sm:border-y-0 
           `}
         > 
           <Span className={`sr-only`}>{lang.navigate_site} :</Span>
-          <Span>{criteria}</Span>
+          <Span className={`uppercase`}>{criteria}</Span>
         </div>
 
-        { newer &&           
+        { newer &&
           <Link href={`/posts/${newer.slug}`}
-            className={`${newer ? 'block' : 'hidden'} sm:w-1/3 p-2 sm:p-5`}
-          >              
+            className={`post-turn-newer
+              ${newer ? 'block' : 'hidden'} sm:w-1/3 p-2 sm:p-5
+            `}
+          >
             <Span className={`mr-2`}>{ newer.title }</Span>
-            <Span ariaLabel={lang.newer}>⏩</Span>               
+            <Span ariaLabel={lang.newer}>⏩</Span>
           </Link>
         }
         
@@ -61,7 +65,7 @@ export default async function PostTurn({lang, post, params}: any) {
     )
   }
   
-  return (     
+  return (
     <>
       { (olderPostInType || newerPostInType) &&
         <TurnCard 
@@ -76,7 +80,7 @@ export default async function PostTurn({lang, post, params}: any) {
           newer={newerPostInSite} 
           criteria={app.title} 
         />
-      }     
+      }
     </>
   )
   

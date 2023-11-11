@@ -9,7 +9,7 @@ with pagination
 import { getBase, getPosts, getUnpagedPostsCount } from '@/app/(basis)/util/data'
 import { LoopHead } from '@/app/(basis)/loop/loop-head'
 import { LoopApex } from '@/app/(basis)/loop/loop-apex'
-import { FindResultsCount } from '@/app/(basis)/loop/loop-count'
+import { LoopCount } from '@/app/(basis)/loop/loop-count'
 import { LoopShow } from '@/app/(basis)/loop/loop-show'
 import LoopTurn from '@/app/(basis)/loop/loop-turn'
 import MenuFind from '@/app/(basis)/head/menu-find'
@@ -72,43 +72,43 @@ export default async function Main({ params, searchParams }: any) {
 
   return (  
     <>
-      <SectionDiv className={`my-5`}>       
+      <SectionDiv className={`page-finds-apex my-5`}>
 
         <LoopHead>
-          <LoopApex 
+          <LoopApex
             site={app.slug}
             lang={lang}
-            params={params}              
-            current={pageNumber}              
-          />          
-          <FindResultsCount 
-            label={lang.search_results} 
-            resultsCount={resultsCount} 
+            params={params}
+            current={pageNumber}
+          />
+          <LoopCount
+            label={lang.search_results}
+            resultsCount={resultsCount}
           />
         </LoopHead>
 
       </SectionDiv>
 
-      <SectionDiv>
+      <SectionDiv className={`page-finds-find`}>
 
         <MenuFind lang={lang} inputName={`search-in-finds`} />
 
       </SectionDiv>
 
-      <SectionDiv className={`bg-zinc-50 dark:bg-zinc-950`}>
+      <SectionDiv className={`page-finds-loop bg-zinc-50 dark:bg-zinc-950`}>
         
         <LoopShow items={items} lang={lang} view={view} />
 
       </SectionDiv>
 
-      <SectionDiv>
+      <SectionDiv className={`page-finds-turn`}>
         
-        <LoopTurn             
-          params={params}            
-          current={pageNumber}                        
-          limit={postsPerPage}          
-        />         
-                              
+        <LoopTurn
+          params={params}
+          current={pageNumber}
+          limit={postsPerPage}
+        />
+
       </SectionDiv>
     </>
   )
