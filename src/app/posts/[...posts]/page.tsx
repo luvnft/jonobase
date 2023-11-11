@@ -77,7 +77,7 @@ export default async function Main({
         className={`post-head
           dark:border-gray-500
           bg-gradient-to-r 
-          from-zinc-100 to-zinc-300 
+          from-slate-100 to-slate-400 
           dark:from-emerald-900 dark:to-emerald-800
           py-5 drop-shadow-md 
         `}
@@ -99,7 +99,7 @@ export default async function Main({
         <SectionDiv className={`
           border-y dark:border-gray-500
           bg-gradient-to-r 
-          from-zinc-100 to-zinc-300 
+          from-slate-100 to-slate-400 
           dark:from-emerald-900 dark:to-emerald-800
           drop-shadow-md py-5
         `}>
