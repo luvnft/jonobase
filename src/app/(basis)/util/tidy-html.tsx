@@ -85,51 +85,6 @@ export const SuperFlex = ({
 
 }
 
-/* deprecated */
-
-export const StandardFlex = ({
-  className = '', 
-  children
-}: any) => {
-
-  return (
-    <div className={`flex flex-row justify-between items-center ${className}`}>
-      {children}
-    </div>
-  )
-
-}
-
-export const StartFlex = ({
-  className = '', 
-  children
-}: any) => {
-
-  return (
-    <div className={`
-      flex flex-row justify-start items-start ${className}
-    `}>
-      {children}
-    </div>
-  )
-
-}
-
-export const EndFlex = ({
-  className = '', 
-  children
-}: any) => {
-
-  return (
-    <div className={`
-      flex flex-row justify-start items-end ${className}
-    `}>
-      {children}
-    </div>
-  )
-
-}
-
 export const FeaturedIcon = ({
   ariaLabel
 }: any) => {
