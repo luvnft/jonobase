@@ -13,7 +13,7 @@ export default function PostApex({siteName, params, post}: any) {
   const { expand : { kind }, title } = post
 
   return (
-    <aside className={` text-lg md:text-2xl uppercase my-5 lg:my-2`}>      
+    <aside className={` text-lg sm:text-2xl uppercase my-5 lg:my-2`}>      
 
       <Link href={`/`}>{siteName}</Link>
       <Span ariaHidden="true"> / </Span>

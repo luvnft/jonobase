@@ -44,7 +44,7 @@ export default function ItemCard({lang, item, view} : any) {
     return (
       <div 
         className={`item-card-date
-          text-md md:text-xl
+          text-md sm:text-xl
         `}
       >
         {item.featured && <FeaturedIcon ariaLabel={lang.featured} />}
@@ -123,7 +123,7 @@ export default function ItemCard({lang, item, view} : any) {
   const ItemCardTitle = () => {
     return (
       <h3 
-        className={`item-card-title text-xl md:text-3xl`}
+        className={`item-card-title text-xl sm:text-3xl`}
       > 
         {item.title}
       </h3>
@@ -134,7 +134,7 @@ export default function ItemCard({lang, item, view} : any) {
     return (
       <SuperFlex         
         className={`item-card-tail 
-          text-center mt-2 gap-5
+          text-center mt-2 gap-5 flex-col md:flex-row
         `}
         text="center"
         items="start"
@@ -150,7 +150,7 @@ export default function ItemCard({lang, item, view} : any) {
           text-left
         `}
       > 
-        <Paragraph>{item.summary}</Paragraph>
+        <Paragraph className="!mb-0 md:mb">{item.summary}</Paragraph>
       </div>
     )
   }
@@ -160,7 +160,7 @@ export default function ItemCard({lang, item, view} : any) {
     const target = item.url_newtab ? '_blank' : ''
 
     return (
-      <div className="flex gap-2 whitespace-nowrap">
+      <div className="flex gap-2 !mt-0 md:!mt-2 whitespace-nowrap">
         <Link href={`/posts/${item.slug}`}>
           <div
             className={`item-card-link

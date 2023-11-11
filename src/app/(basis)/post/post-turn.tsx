@@ -24,14 +24,14 @@ export default async function PostTurn({lang, post, params}: any) {
     return (
       <div className={`
         border border-2 dark:border-gray-500 my-5 
-         text-lg md:text-xl text-center
-        flex flex-col md:flex-row items-center 
+         text-lg sm:text-xl text-center
+        flex flex-col sm:flex-row items-center 
         ${older ? 'justify-start' : 'justify-end'}
       `}>
         
         { older && 
           <Link href={`/posts/${older.slug}`}
-            className={`${older ? 'block' : ''} md:block md:w-1/3 p-2 md:p-5`}
+            className={`${older ? 'block' : ''} sm:block sm:w-1/3 p-2 sm:p-5`}
           > 
             <Span className={`no-underline`} ariaLabel={lang.older}>⏪</Span>               
             <Span className={`ml-2`}>{ older.title }</Span>          
@@ -39,9 +39,9 @@ export default async function PostTurn({lang, post, params}: any) {
         }
         
         <div className={`
-          md:w-1/3 w-full p-5 
-          border-y-2 md:border-x-2 
-          dark:border-gray-500 md:border-y-0 
+          sm:w-1/3 w-full p-5 
+          border-y-2 sm:border-x-2 
+          dark:border-gray-500 sm:border-y-0 
           `}
         > 
           <Span className={`sr-only`}>{lang.navigate_site} :</Span>
@@ -50,7 +50,7 @@ export default async function PostTurn({lang, post, params}: any) {
 
         { newer &&           
           <Link href={`/posts/${newer.slug}`}
-            className={`${newer ? 'block' : 'hidden'} md:w-1/3 p-2 md:p-5`}
+            className={`${newer ? 'block' : 'hidden'} sm:w-1/3 p-2 sm:p-5`}
           >              
             <Span className={`mr-2`}>{ newer.title }</Span>
             <Span ariaLabel={lang.newer}>⏩</Span>               

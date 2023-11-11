@@ -35,7 +35,7 @@ export default function ItemFlat({item, lang, view} : any) {
     return (
       <Span 
         className={`item-flat-date 
-          text-md md:text-xl text-black dark:text-white mt-2
+          text-md sm:text-xl text-black dark:text-white mt-2
           ${item.featured ? `text-black dark:text-yellow-500` : ``}
         `}
       >
@@ -86,7 +86,7 @@ export default function ItemFlat({item, lang, view} : any) {
     const target = item.url_newtab ? '_blank' : ''
 
     return (
-      <div className="flex gap-2 justify-center md:justify-start whitespace-nowrap">     
+      <div className="flex gap-2 justify-center sm:justify-start whitespace-nowrap">     
         <Link href={item.url} target={target}>
           <div
             className={`item-card-link
@@ -104,7 +104,7 @@ export default function ItemFlat({item, lang, view} : any) {
   return (
     <li 
       className={`item-flat 
-        h-full text-center md:text-left hover:prose-a:!no-underline
+        h-full text-center sm:text-left hover:prose-a:!no-underline
       `}
     >  
       

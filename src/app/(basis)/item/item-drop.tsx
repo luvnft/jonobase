@@ -80,7 +80,7 @@ export default function ItemDrop({item, lang, view} : any) {
         `}
       >
         {item.featured && <FeaturedIcon />}
-        <Span className="text-2xl mr-1">{itemDate}</Span>        
+        <Span className="text-md md:text-xl mr-1">{itemDate}</Span>        
       </Span> 
     )
   }
@@ -99,7 +99,7 @@ export default function ItemDrop({item, lang, view} : any) {
     return (
       <h3 
         className={`item-drop-title 
-          hover:underline text-3xl
+          hover:underline text-xl md:text-2xl
         `}
       > 
         {item.title}
@@ -142,7 +142,7 @@ export default function ItemDrop({item, lang, view} : any) {
   return (
     <li 
       className={`item-drop
-        h-full w-max max-w-full md:w-full
+        h-full w-max max-w-full sm:w-full
         text-left hover:prose-a:!no-underline 
       `}
     >

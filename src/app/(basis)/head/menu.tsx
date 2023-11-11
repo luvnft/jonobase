@@ -76,7 +76,7 @@ export default function Menu({app, lang} : any) {
   const MenuHead = ({children}: any) => {
     return (
       <div className={`
-        flex flex-col md:flex-row md:justify-between items-center mb-10
+        flex flex-col sm:flex-row sm:justify-between items-center mb-10
       `}>
         {children}
       </div>
@@ -94,7 +94,7 @@ export default function Menu({app, lang} : any) {
 
   const MenuTagline = () => {
     return (
-      <div className={`block md:hidden text-center my-2`}>
+      <div className={`block sm:hidden text-center my-2`}>
         <Span>{app.tagline}</Span>
       </div>
     )

@@ -49,7 +49,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
   }
   
   return (
-    <aside className={` text-lg md:text-2xl uppercase`}> 
+    <aside className={` text-lg sm:text-2xl uppercase`}> 
 
       { (!params.finds && !params.kinds && !params.lists && !params.takes) &&
         <Home />                  

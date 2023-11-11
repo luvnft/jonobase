@@ -58,7 +58,7 @@ export default function ItemLite({item, lang, view} : any) {
   return (
     <li 
       className={`item-lite
-        h-full text-center md:text-left hover:prose-a:!no-underline
+        h-full text-center sm:text-left hover:prose-a:!no-underline
       `}
     >  
       

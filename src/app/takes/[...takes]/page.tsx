@@ -41,8 +41,8 @@ export default async function Main({ params }: any) {
 
   const viewLoop = async () => {
     const promises = views.map( async (view : any) => {
-      const { find, kind, list, limit, id } = view
-      const { items } = await getPosts(find, kind, list, 1, limit)
+      const { find, kind, list, limit, id, order } = view
+      const { items } = await getPosts(find, kind, list, 1, limit, order)
       return { id, view, items }
     })
 

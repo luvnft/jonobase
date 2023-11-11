@@ -21,7 +21,7 @@ export const LoopShow = ({lang, items, view = null}: any) => {
   switch (view.type) {    
     case "mini":
     case "null": 
-      gap = 'gap-0 md:gap-5'      
+      gap = 'gap-0 sm:gap-5'      
       break
     default:
       trio = true      
@@ -34,11 +34,11 @@ export const LoopShow = ({lang, items, view = null}: any) => {
       {(items && items.length > 0) &&       
       
         <ul className={`loop-list
-          w-max max-w-full md:w-auto mx-auto 
+          w-max max-w-full sm:w-auto mx-auto 
           items-start py-10
           grid ${gap} grid-cols-1 
-          ${items.length >= 2 && `md:grid-cols-2`} 
-          ${(items.length >= 3 && trio) && `lg:grid-cols-3`}
+          ${items.length >= 2 && `sm:grid-cols-2`} 
+          ${(items.length >= 3 && trio) && `xl:grid-cols-3`}
         `}>
     
           {items.map((item: any) => {

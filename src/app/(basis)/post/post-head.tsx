@@ -18,13 +18,13 @@ export default function PostHead({lang, post}: any) {
       <div className={` grow`}>
 
         <h2 className={`
-          text-2xl md:text-4xl lg:text-5xl my-5 uppercase
+          text-2xl sm:text-4xl lg:text-5xl my-5 uppercase
         `}>{post.emoji} {post.title}</h2>
 
-        <Paragraph className={`text-lg md:text-2xl`}>{post.summary}</Paragraph>
+        <Paragraph className={`text-lg sm:text-2xl`}>{post.summary}</Paragraph>
 
         <Paragraph className={`
-          text-sm md:text-lg 
+          text-sm sm:text-lg 
         `}>
           {post.url &&               
             <Link 
@@ -48,7 +48,7 @@ export default function PostHead({lang, post}: any) {
     return (
       <div className={`
         text-right 
-        text-md md:text-lg         
+        text-md sm:text-lg         
         grow ml-2 my-2
       `}>
             
