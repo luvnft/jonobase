@@ -29,7 +29,7 @@ export default async function ViewShow({lang, takeView}: any) {
         py-10 drop-shadow-lg 
         bg-${view.bg_color}${view.bg_color_intensity ? `-${view.bg_color_intensity}` : ``} 
         text-${view.text_color}
-        dark:bg-${view.bg_color}${view.bg_color_intensity ? `-900` : ``}
+        dark:bg-${view.bg_color}${view.bg_color_intensity ? `-800` : ``}
         dark:text-white
       `}>
 
