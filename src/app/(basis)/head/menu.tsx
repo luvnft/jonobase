@@ -14,11 +14,16 @@ import FocusTrap from 'focus-trap-react'
 import { Span } from '../util/tidy-html'
 import MenuFind from './menu-find'
 import { getThemeLink, getTheme, getProse } from '../util/func'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 export default function Menu({app, lang} : any) {
 
   const [ showMenu, setShowMenu ] = useState(false)  
   const [ menuOpenedAlready, setMenuOpenedAlready ] = useState(false)  
+
+  useHotkeys('ctrl+k, meta+k', () => document.getElementById('desktop-search-in-nav')?.focus())
+  useHotkeys('ctrl+j, meta+j', () => document.getElementById('open-menu')?.click())
+  useHotkeys('escape', () => closeMenu())
 
   /* def dark mode */
   const { theme, setTheme } = useTheme()
@@ -55,10 +60,13 @@ export default function Menu({app, lang} : any) {
 
   const MenuButton = () => {
     return (
-      <button onClick={openMenu} id="openMenu">
-        <Span className={`mr-2`} aria-hidden="true">⚙️</Span> 
-        {lang.open_menu}
-      </button>
+      <div>
+        <button className={`text-sm uppercase`} onClick={openMenu} id="open-menu">
+          <Span className={`mr-1 text-2xl`} ariaHidden={true}>≡</Span>
+          <Span className={`mx-1 text-2xl`}>{lang.menu}</Span>
+          <Span className={`ml-1 text-gray-400 hidden sm:inline`}>(⌘J)</Span>
+        </button>
+      </div>
     )
   }
 
@@ -66,7 +74,9 @@ export default function Menu({app, lang} : any) {
     return (
       <dialog 
         aria-label={lang.menu} 
-        className={`menu-dialog  
+        className={`menu-dialog 
+          bg-gradient-to-b from-zinc-100 to-zinc-200
+          dark:from-black dark:to-gray-800
           flex z-20 overflow-y-auto 
           w-full h-screen fixed top-0 left-0 p-10
       `}>
@@ -205,8 +215,8 @@ export default function Menu({app, lang} : any) {
   return (
     <>
       <MenuButton />
-      <MenuFindWrapper className={`hidden lg:block`}>
-        <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-nav`} />
+      <MenuFindWrapper className={`hidden md:block`}>
+        <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-nav`} placeholder={`🔎 ${lang.search} (⌘K)`} />
       </MenuFindWrapper>
       { showMenu && (
         <FocusTrap>
@@ -221,12 +231,12 @@ export default function Menu({app, lang} : any) {
                     <MenuThemeOption />
                   </MenuOptions>
                 </MenuHead>
-                <MenuFindWrapper className={`block lg:hidden`}>
-                  <MenuFind lang={lang} showMenu={setShowMenu} inputName={`mobile-search-in-menu`}/>
+                <MenuFindWrapper className={`block md:hidden`}>
+                  <MenuFind lang={lang} showMenu={setShowMenu} inputName={`mobile-search-in-menu`} placeholder={`🔎 ${lang.search}`} />
                 </MenuFindWrapper>
                 <MenuContent />
-                <MenuFindWrapper className={`hidden lg:block`}>
-                  <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-menu`}/>
+                <MenuFindWrapper className={`hidden md:block`}>
+                  <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-menu`} placeholder={`🔎 ${lang.search}`} />
                 </MenuFindWrapper>
                 { app.footer_extra && <MenuFooter /> }
               </MenuWrapper>

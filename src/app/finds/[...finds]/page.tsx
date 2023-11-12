@@ -91,13 +91,21 @@ export default async function Main({ params, searchParams }: any) {
 
       <SectionDiv className={`page-finds-find`}>
 
-        <MenuFind lang={lang} inputName={`search-in-finds`} />
+        <MenuFind 
+          lang={lang} 
+          inputName={`search-in-finds`} 
+          placeholder={`🔎 ${lang.search}`} 
+        />
 
       </SectionDiv>
 
       <SectionDiv className={`page-finds-loop bg-zinc-50 dark:bg-zinc-950`}>
         
-        <LoopShow items={items} lang={lang} view={view} />
+        <LoopShow 
+          items={items} 
+          lang={lang} 
+          view={view} 
+        />
 
       </SectionDiv>
 

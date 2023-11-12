@@ -107,7 +107,8 @@ export default async function Head() {
     return (
       <div 
         className={`head-menu-wrapper
-          whitespace-nowrap flex flex-row gap-5
+          whitespace-nowrap 
+          flex flex-row gap-5 items-center
         `}
       >
         {children}
