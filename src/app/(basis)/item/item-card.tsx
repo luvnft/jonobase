@@ -180,15 +180,15 @@ export default function ItemCard({lang, item, view} : any) {
       h-auto hover:prose-a:!no-underline text-center
       ${item.thumbnail && `hover:prose-a:!text-white dark:hover:prose-a:!text-white`}
     `}>  
+      
+      <ItemCardHead>
+
+        {view.show_date && <ItemCardDate />}
+        {view.show_kind && <ItemCardKind />}
+
+      </ItemCardHead>
 
       <Link href={`/posts/${item.slug}`}>
-
-        <ItemCardHead>
-
-          {view.show_date && <ItemCardDate />}
-          {view.show_kind && <ItemCardKind />}
-
-        </ItemCardHead>
 
         <ItemCardMain featured={item.featured}>
 
