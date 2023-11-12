@@ -18,7 +18,7 @@ import { getThemeLink, getTheme, getProse } from '../util/func'
 export default function Menu({app, lang} : any) {
 
   const [ showMenu, setShowMenu ] = useState(false)  
-  const [ menuOpenedAlready, setMenuOpenedAlready ] = useState(false)
+  const [ menuOpenedAlready, setMenuOpenedAlready ] = useState(false)  
 
   /* def dark mode */
   const { theme, setTheme } = useTheme()
@@ -50,7 +50,7 @@ export default function Menu({app, lang} : any) {
   const richTextClasses = `${getThemeLink(app.theme)} ${getTheme()} ${getProse()}`
 
   useEffect(() => {
-    if (menuOpenedAlready) document.getElementById('openMenu')?.focus()
+    if (menuOpenedAlready) document.getElementById('open-menu')?.focus()
   }, [showMenu, menuOpenedAlready])
 
   const MenuButton = () => {
