@@ -9,8 +9,9 @@ jonobase
 
 import Link from "next/link"
 import { Span } from "@/app/(basis)/util/tidy-html"
+import { ItemProps } from "../util/types"
 
-export default function ItemMini({item} : any) {
+export default function ItemMini({item} : ItemProps) {
 
   const ItemMiniEmoji = () => {
     return (

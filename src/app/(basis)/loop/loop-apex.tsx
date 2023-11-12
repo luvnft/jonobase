@@ -7,8 +7,22 @@ apex (breadcrumbs) for loop-type pages (find, kind, list)
 
 import Link from "next/link"
 import { Span } from "@/app/(basis)/util/tidy-html"
+import { ParamsProps } from "../util/types"
 
-export const LoopApex = ({site, lang, params, current}: any) => {
+interface LoopProps {
+  site: string,
+  lang: { [x: string]: string},
+  params: ParamsProps, 
+  current: number
+}
+
+interface FoldProps {
+  label: string,
+  linkLabel?: boolean,
+  folder: string, 
+}
+
+export const LoopApex = ({site, lang, params, current}: LoopProps) => {
 
   const Home = () => {
     return (
@@ -22,7 +36,7 @@ export const LoopApex = ({site, lang, params, current}: any) => {
     )
   }
 
-  const Fold = ({label, linkLabel, folder}: any) => {
+  const Fold = ({label, linkLabel, folder}: FoldProps) => {
     return (
       <>
         <Span ariaHidden={true}> / </Span>

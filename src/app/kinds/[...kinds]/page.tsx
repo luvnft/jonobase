@@ -14,11 +14,12 @@ import { LoopShow } from '@/app/(basis)/loop/loop-show'
 import LoopTurn from '@/app/(basis)/loop/loop-turn'
 import NotFound from '@/app/not-found'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
+import { PageProps } from '@/app/(basis)/util/types'
 
 export async function generateMetadata({
   params,
   searchParams,
-}: any) {
+}: PageProps) {
 
   const {app, lang} = await getBase() 
 
@@ -33,7 +34,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function Main({ params, searchParams }: any) {
+export default async function Main({ params, searchParams }: PageProps) {
 
   const { kinds } = params
   const { p: pageNumber, l } = searchParams  
@@ -44,7 +45,7 @@ export default async function Main({ params, searchParams }: any) {
 
   const postsPerPage = isNaN(l) ? app.kind_list_limit : l
   
-  // reject any non-numeric injections in the URL bar
+  // reject all non-numeric injections in the URL bar
   if (
     (isNaN(pageNumber) && isNaN(postsPerPage)) &&
     (pageNumber !== undefined || postsPerPage !== undefined)) {

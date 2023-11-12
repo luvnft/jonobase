@@ -6,6 +6,7 @@ jonobase
 loop wrapper for finds/kinds/lists etc
 */
 
+import { RecordModel } from "pocketbase"
 import ItemCard from "../item/item-card"
 import ItemDrop from "../item/item-drop"
 import ItemFlat from "../item/item-flat"
@@ -13,7 +14,13 @@ import ItemLite from "../item/item-lite"
 import ItemMini from "../item/item-mini"
 import ItemNull from "../item/item-null"
 
-export const LoopShow = ({items, lang, view}: any) => {
+interface LoopShowProps {
+  items: RecordModel[],
+  lang: { [x: string]: string},
+  view: any
+}
+
+export const LoopShow = ({items, lang, view}: LoopShowProps) => {
 
   return (
 

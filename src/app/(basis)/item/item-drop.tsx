@@ -14,12 +14,13 @@ jonobase
 import Link from "next/link"
 import { Span, Paragraph, SuperFlex, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
+import { ChildrenProps, ItemProps } from "../util/types"
 
-export default function ItemDrop({item, lang, view} : any) {
+export default function ItemDrop({item, lang, view} : ItemProps) {
 
   let itemDate = getFormattedDate(item.created, view.show_time)
 
-  const ItemDropMain = ({children}: any) => {
+  const ItemDropMain = ({children}: ChildrenProps) => {
     return (
       <SuperFlex 
         className={`item-drop-main`}
@@ -58,7 +59,7 @@ export default function ItemDrop({item, lang, view} : any) {
     )
   }
 
-  const ItemDropMeat = ({children}: any) => {
+  const ItemDropMeat = ({children}: ChildrenProps) => {
     return (
       <div 
         className={`item-drop-meat 

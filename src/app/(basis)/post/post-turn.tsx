@@ -10,7 +10,19 @@ import { Span } from "@/app/(basis)/util/tidy-html";
 
 import { getAdjacentPost, getBase } from "@/app/(basis)/util/data";
 
-export default async function PostTurn({lang, post}: any) {
+interface PostTurnProps {
+  lang: { [x: string]: string},
+  post: any,
+  params: any,
+}
+
+interface TurnCardProps {
+  older?: any, 
+  newer?: any,
+  criteria: string,
+}
+
+export default async function PostTurn({lang, post}: PostTurnProps) {
 
   const { app } = await getBase()
   
@@ -19,7 +31,7 @@ export default async function PostTurn({lang, post}: any) {
   const newerPostInType = await getAdjacentPost(post, "newer", "kind")
   const olderPostInType = await getAdjacentPost(post, "older", "kind")
 
-  const TurnCard = ({older, newer, criteria}: any) => {
+  const TurnCard = ({older, newer, criteria}: TurnCardProps) => {
     
     return (
       <div className={`post-turn

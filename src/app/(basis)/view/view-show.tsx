@@ -9,8 +9,17 @@ import { SectionDiv, SuperFlex } from "../util/tidy-html"
 import { LoopShow } from "../loop/loop-show"
 import { sanitize } from "isomorphic-dompurify"
 import Link from "next/link"
+import { RecordModel } from "pocketbase"
 
-export default async function ViewShow({lang, takeView}: any) {
+interface ViewShowProps {
+  lang: { [x: string]: string},
+  takeView: {
+    view: any,
+    items: RecordModel[]
+  } 
+}
+
+export default async function ViewShow({lang, takeView}: ViewShowProps) {
 
   const { items, view } = takeView
 

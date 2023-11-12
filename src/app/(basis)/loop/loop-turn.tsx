@@ -8,11 +8,21 @@ pagination for loop-type pages
 import Link from "next/link"
 import { getUnpagedPostsCount } from "@/app/(basis)/util/data"
 
+interface LoopTurnProps {
+  params: {
+    finds: string,
+    kinds: string,
+    lists: string, 
+  }
+  current: number,
+  limit: number,
+}
+
 export default async function LoopTurn({
   params,         // URL dynamic folder params
   current = 1,    // current page # (1 by default)
   limit = 6,      // posts per page (6 by default)
-}: any) {  
+}: LoopTurnProps) {  
 
   const checkFinds = params.finds 
     ? params.finds
@@ -32,7 +42,7 @@ export default async function LoopTurn({
       checkLists,
   )  
   
-  const pageLimit = parseInt(limit, 10) || 6  
+  const pageLimit = limit || 6  
   const pageCount = Math.ceil(postCount / pageLimit) 
   
   let pagination = []

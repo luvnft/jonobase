@@ -22,7 +22,7 @@ import { PostMain } from '@/app/(basis)/post/post-main'
 import PostTags from '@/app/(basis)/post/post-tags'
 import PostTurn from '@/app/(basis)/post/post-turn'
 
-interface PostProps {
+interface ParamsProps {
   params: {
     posts: string
   }
@@ -30,7 +30,7 @@ interface PostProps {
 
 export async function generateMetadata({
   params  
-}: PostProps) {
+}: ParamsProps) {
 
   const { app } = await getBase() 
   const { post } = await getPost(params.posts)  
@@ -51,7 +51,7 @@ export async function generateMetadata({
 
 export default async function Main({ 
   params 
-}: PostProps) {
+}: ParamsProps) {
 
   const { app, lang } = await getBase()
   const { post } = await getPost(params.posts)  

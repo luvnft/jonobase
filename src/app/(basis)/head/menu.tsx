@@ -15,8 +15,19 @@ import { Span } from '../util/tidy-html'
 import MenuFind from './menu-find'
 import { getThemeLink, getTheme, getProse } from '../util/func'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { ChildrenProps } from '../util/types'
 
-export default function Menu({app, lang} : any) {
+interface MenuProps {
+  app: { [x: string]: string},
+  lang: { [x: string]: string},
+}
+
+interface MenuFindWrapperProps {
+  children: React.ReactNode | React.ReactNode[],
+  className: string
+}
+
+export default function Menu({app, lang} : MenuProps) {
 
   const [ showMenu, setShowMenu ] = useState(false)  
   const [ menuOpenedAlready, setMenuOpenedAlready ] = useState(false)  
@@ -28,7 +39,7 @@ export default function Menu({app, lang} : any) {
   /* def dark mode */
   const { theme, setTheme } = useTheme()
 
-  const handleTheme = (event: any) => {
+  const handleTheme = (event: React.FormEvent<HTMLButtonElement>): void => {
     event.preventDefault()
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
@@ -70,7 +81,7 @@ export default function Menu({app, lang} : any) {
     )
   }
 
-  const MenuDialog = ({children}: any) => {
+  const MenuDialog = ({children}: ChildrenProps) => {
     return (
       <dialog 
         aria-label={lang.menu} 
@@ -85,7 +96,7 @@ export default function Menu({app, lang} : any) {
     )
   }
 
-  const MenuWrapper = ({children}: any) => {
+  const MenuWrapper = ({children}: ChildrenProps) => {
     return (
       <div className={`menu-wrapper w-full lg:max-w-4xl mx-auto`}>
         {children}
@@ -93,7 +104,7 @@ export default function Menu({app, lang} : any) {
     )
   }
 
-  const MenuHead = ({children}: any) => {
+  const MenuHead = ({children}: ChildrenProps) => {
     return (
       <div className={`menu-head 
         flex flex-col sm:flex-row sm:justify-between items-center mb-10
@@ -124,7 +135,7 @@ export default function Menu({app, lang} : any) {
     )
   }
 
-  const MenuOptions = ({children} : any) => {
+  const MenuOptions = ({children} : ChildrenProps) => {
     return (
       <div 
         className={`menu-options 
@@ -199,7 +210,7 @@ export default function Menu({app, lang} : any) {
     )
   }
 
-  const MenuFindWrapper = ({children, className}: any) => {
+  const MenuFindWrapper = ({children, className}: MenuFindWrapperProps) => {
     return (
       <div 
         className={`menu-find-wrapper 
@@ -216,7 +227,12 @@ export default function Menu({app, lang} : any) {
     <>
       <MenuButton />
       <MenuFindWrapper className={`hidden md:block`}>
-        <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-nav`} placeholder={`🔎 ${lang.search} (⌘K)`} />
+        <MenuFind 
+          lang={lang} 
+          showMenu={setShowMenu} 
+          inputName={`desktop-search-in-nav`} 
+          placeholder={`🔎 ${lang.search} (⌘K)`} 
+        />
       </MenuFindWrapper>
       { showMenu && (
         <FocusTrap>
@@ -232,13 +248,23 @@ export default function Menu({app, lang} : any) {
                   </MenuOptions>
                 </MenuHead>
                 <MenuFindWrapper className={`block md:hidden`}>
-                  <MenuFind lang={lang} showMenu={setShowMenu} inputName={`mobile-search-in-menu`} placeholder={`🔎 ${lang.search}`} />
+                  <MenuFind 
+                    lang={lang} 
+                    showMenu={setShowMenu} 
+                    inputName={`mobile-search-in-menu`} 
+                    placeholder={`🔎 ${lang.search}`} 
+                  />
                 </MenuFindWrapper>
                 <MenuContent />
                 <MenuFindWrapper className={`hidden md:block`}>
-                  <MenuFind lang={lang} showMenu={setShowMenu} inputName={`desktop-search-in-menu`} placeholder={`🔎 ${lang.search}`} />
+                  <MenuFind 
+                    lang={lang} 
+                    showMenu={setShowMenu} 
+                    inputName={`desktop-search-in-menu`} 
+                    placeholder={`🔎 ${lang.search}`} 
+                  />
                 </MenuFindWrapper>
-                { app.footer_extra && <MenuFooter /> }
+                <MenuFooter />
               </MenuWrapper>
             </MenuDialog>
           </div>

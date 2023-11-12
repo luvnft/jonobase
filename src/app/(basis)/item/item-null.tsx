@@ -9,8 +9,9 @@ jonobase
 
 import Link from "next/link"
 import { Span } from "@/app/(basis)/util/tidy-html"
+import { ItemProps } from "../util/types"
 
-export default function ItemNull({item} : any) {
+export default function ItemNull({item} : ItemProps) {
 
   const ItemNullTitle = () => {
     return (

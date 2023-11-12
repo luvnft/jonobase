@@ -19,12 +19,13 @@ jonobase
 import Link from "next/link"
 import { Span, Paragraph, SuperFlex, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
+import { ChildrenProps, ItemProps } from "../util/types"
 
-export default function ItemCard({lang, item, view} : any) {
+export default function ItemCard({lang, item, view} : ItemProps) {
 
   let itemDate = getFormattedDate(item.created, view.show_time)
 
-  const ItemCardHead = ({children}: any) => {
+  const ItemCardHead = ({children}: ChildrenProps) => {
 
     return (
       <SuperFlex 
@@ -66,7 +67,7 @@ export default function ItemCard({lang, item, view} : any) {
 
   }
 
-  const ItemCardMain = ({children}: any) => {
+  const ItemCardMain = ({children}: ChildrenProps) => {
 
     const bgImage = item.thumbnail
       ? getImageURL(item.collectionId, item.id, item.thumbnail, '500x200') 
@@ -89,7 +90,7 @@ export default function ItemCard({lang, item, view} : any) {
     )
   }
 
-  const ItemCardMeat = ({children}: any) => {
+  const ItemCardMeat = ({children}: ChildrenProps) => {
 
     return (
       <div 
@@ -130,7 +131,7 @@ export default function ItemCard({lang, item, view} : any) {
     )
   }
 
-  const ItemCardTail = ({children}: any) => {
+  const ItemCardTail = ({children}: ChildrenProps) => {
     return (
       <SuperFlex         
         className={`item-card-tail 
@@ -190,11 +191,11 @@ export default function ItemCard({lang, item, view} : any) {
 
       <Link href={`/posts/${item.slug}`}>
 
-        <ItemCardMain featured={item.featured}>
+        <ItemCardMain>
 
           <ItemCardMeat>
             
-            {!item.thumbnail && <ItemCardIcon />}
+            <ItemCardIcon />
             <ItemCardTitle />
 
           </ItemCardMeat>
