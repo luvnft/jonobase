@@ -77,7 +77,7 @@ export default function Menu({app, lang} : any) {
         className={`menu-dialog 
           bg-gradient-to-b from-zinc-100 to-zinc-200
           dark:from-black dark:to-gray-800
-          flex z-20 overflow-y-auto 
+          flex z-50 overflow-y-auto 
           w-full h-screen fixed top-0 left-0 p-10
       `}>
         {children}

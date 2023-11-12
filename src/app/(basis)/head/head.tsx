@@ -21,7 +21,7 @@ export default async function Head() {
     return (
       <header 
         className={`head-fullwidth-wrapper
-          w-full sticky top-0 z-10
+          w-full sticky top-0 z-40
           bg-black bg-gradient-to-t from-black to-gray-700 
           text-white drop-shadow-xl`
       }>

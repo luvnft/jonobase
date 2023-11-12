@@ -30,7 +30,7 @@ export async function generateMetadata({
       ${finds ?? 'all'} 
       (${lang.page}: ${page})
       @ ${app.title}
-    `
+    `    
   }
 }
 
