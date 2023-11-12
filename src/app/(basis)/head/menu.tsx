@@ -22,7 +22,7 @@ export default function Menu({app, lang} : any) {
   const [ menuOpenedAlready, setMenuOpenedAlready ] = useState(false)  
 
   useHotkeys('ctrl+k, meta+k', () => document.getElementById('desktop-search-in-nav')?.focus())
-  useHotkeys('ctrl+j, meta+j', () => document.getElementById('open-menu')?.click())
+  useHotkeys('ctrl+/, meta+/', () => document.getElementById('open-menu')?.click())
   useHotkeys('escape', () => closeMenu())
 
   /* def dark mode */
@@ -64,7 +64,7 @@ export default function Menu({app, lang} : any) {
         <button className={`text-sm uppercase`} onClick={openMenu} id="open-menu">
           <Span className={`mr-1 text-2xl`} ariaHidden={true}>≡</Span>
           <Span className={`mx-1 text-2xl`}>{lang.menu}</Span>
-          <Span className={`ml-1 text-gray-400 hidden sm:inline`}>(⌘J)</Span>
+          <Span className={`ml-1 text-gray-400 hidden sm:inline`}>(⌘/)</Span>
         </button>
       </div>
     )
