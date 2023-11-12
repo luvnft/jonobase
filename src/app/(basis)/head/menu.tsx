@@ -7,7 +7,7 @@ essential site navigation
 
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { sanitize } from 'isomorphic-dompurify'
 import FocusTrap from 'focus-trap-react'
@@ -17,7 +17,8 @@ import { getThemeLink, getTheme, getProse } from '../util/func'
 
 export default function Menu({app, lang} : any) {
 
-  const [ showMenu, setShowMenu ] = useState(false)
+  const [ showMenu, setShowMenu ] = useState(false)  
+  const [ menuOpenedAlready, setMenuOpenedAlready ] = useState(false)
 
   /* def dark mode */
   const { theme, setTheme } = useTheme()
@@ -29,8 +30,13 @@ export default function Menu({app, lang} : any) {
   /* end dark mode */
   
   /* def menu ui */
-  const handleMenu = () => {
-    setShowMenu(!showMenu)
+  const openMenu = () => {
+    setShowMenu(!showMenu) 
+    setMenuOpenedAlready(true)   
+  }
+
+  const closeMenu = () => {
+    setShowMenu(!showMenu)    
   }
 
   const menuContent = app.menu 
@@ -43,9 +49,13 @@ export default function Menu({app, lang} : any) {
 
   const richTextClasses = `${getThemeLink(app.theme)} ${getTheme()} ${getProse()}`
 
+  useEffect(() => {
+    if (menuOpenedAlready) document.getElementById('openMenu')?.focus()
+  }, [showMenu, menuOpenedAlready])
+
   const MenuButton = () => {
     return (
-      <button onClick={handleMenu}>
+      <button onClick={openMenu} id="openMenu">
         <Span className={`mr-2`} aria-hidden="true">⚙️</Span> 
         {lang.open_menu}
       </button>
@@ -123,7 +133,7 @@ export default function Menu({app, lang} : any) {
           mt-5
         `}
       >
-        <button onClick={handleMenu}>
+        <button onClick={closeMenu}>
           <Span 
             aria-hidden="true" 
             className={`mr-2`}>❌</Span> 
