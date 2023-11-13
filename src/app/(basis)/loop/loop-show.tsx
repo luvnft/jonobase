@@ -31,7 +31,7 @@ export const LoopShow = ({items, lang, view}: LoopShowProps) => {
         <ul className={`loop-show-list
           w-max max-w-full sm:w-auto mx-auto 
           items-start py-10
-          grid gap-10 grid-cols-1 
+          grid gap-0 sm:gap-10 grid-cols-1 
           ${items.length >= 2 && `sm:grid-cols-2`}
           ${view.type !== 'drop' && items.length >= 3 && `xl:grid-cols-3`}
         `}>

@@ -20,7 +20,7 @@ export default function ItemNull({item} : ItemProps) {
           hover:underline text-2xl
         `}
       > 
-        {item.title}
+        {item.emoji} {item.title}
       </Span>
     )
   }
@@ -36,9 +36,9 @@ export default function ItemNull({item} : ItemProps) {
     >
 
       <Link 
-        href={href} 
-        target={target}
         className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
+        href={href} 
+        target={target}        
       >
         <ItemNullTitle />
       </Link>
