@@ -115,7 +115,7 @@ export default function ItemCard({lang, item, view} : ItemProps) {
         `}
       >
         <Span ariaHidden={true}>
-          {item.emoji}
+          {!item.thumbnail && item.emoji}
         </Span>
       </div>
     )
