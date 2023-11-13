@@ -47,12 +47,12 @@ export default function Menu({app, lang} : MenuProps) {
   
   /* def menu ui */
   const openMenu = () => {
-    setShowMenu(!showMenu) 
+    setShowMenu(true) 
     setMenuOpenedAlready(true)   
   }
 
   const closeMenu = () => {
-    setShowMenu(!showMenu)    
+    setShowMenu(false)    
   }
 
   const menuContent = app.menu 
