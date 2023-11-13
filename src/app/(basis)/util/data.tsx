@@ -53,8 +53,8 @@ export async function getHomePage() {
 
 export async function getUnpagedPostsCount(
   find: string = '', 
-  kind: any = '',
-  list: any = '',   
+  kind: string = '',
+  list: string = '',   
 ) {
 
   const pb = new PocketBase(process.env.PBDOMAIN)
@@ -105,7 +105,7 @@ export async function getPosts(
 }
 
 export async function getPost(
-  slug: any,
+  slug: string,
 ) {
 
   try {
@@ -197,7 +197,7 @@ export async function getAdjacentPost(
 }
 
 export async function getTake(
-  slug: any
+  slug: string
 ) {
 
   try {

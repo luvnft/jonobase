@@ -12,15 +12,19 @@ import { getProse } from "../util/func"
 import Prism from './prism.js'
 import './prism.css'
 
-export const PostMain = ({post: { content } }: any) => {
+interface PostMainProps {
+  post: any
+}
+
+export const PostMain = ({post: { content } }: PostMainProps) => {
 
   useEffect(() => {
     Prism.highlightAll(content)
   }, [content])
+
+  return (
     
-  return (  
-    
-    <article 
+    <article
       className={`post-main
         ${getProse()}
       `}

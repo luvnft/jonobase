@@ -19,12 +19,13 @@ jonobase
 import Link from "next/link"
 import { Span, Paragraph, SuperFlex, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate, getImageURL } from "@/app/(basis)/util/func"
+import { ChildrenProps, ItemProps } from "../util/types"
 
-export default function ItemCard({lang, item, view} : any) {
+export default function ItemCard({lang, item, view} : ItemProps) {
 
   let itemDate = getFormattedDate(item.created, view.show_time)
 
-  const ItemCardHead = ({children}: any) => {
+  const ItemCardHead = ({children}: ChildrenProps) => {
 
     return (
       <SuperFlex 
@@ -66,7 +67,7 @@ export default function ItemCard({lang, item, view} : any) {
 
   }
 
-  const ItemCardMain = ({children}: any) => {
+  const ItemCardMain = ({children}: ChildrenProps) => {
 
     const bgImage = item.thumbnail
       ? getImageURL(item.collectionId, item.id, item.thumbnail, '500x200') 
@@ -89,7 +90,7 @@ export default function ItemCard({lang, item, view} : any) {
     )
   }
 
-  const ItemCardMeat = ({children}: any) => {
+  const ItemCardMeat = ({children}: ChildrenProps) => {
 
     return (
       <div 
@@ -114,7 +115,7 @@ export default function ItemCard({lang, item, view} : any) {
         `}
       >
         <Span ariaHidden={true}>
-          {item.emoji}
+          {!item.thumbnail && item.emoji}
         </Span>
       </div>
     )
@@ -130,7 +131,7 @@ export default function ItemCard({lang, item, view} : any) {
     )
   }
 
-  const ItemCardTail = ({children}: any) => {
+  const ItemCardTail = ({children}: ChildrenProps) => {
     return (
       <SuperFlex         
         className={`item-card-tail 
@@ -180,21 +181,21 @@ export default function ItemCard({lang, item, view} : any) {
       h-auto hover:prose-a:!no-underline text-center
       ${item.thumbnail && `hover:prose-a:!text-white dark:hover:prose-a:!text-white`}
     `}>  
+      
+      <ItemCardHead>
+
+        {view.show_date && <ItemCardDate />}
+        {view.show_kind && <ItemCardKind />}
+
+      </ItemCardHead>
 
       <Link href={`/posts/${item.slug}`}>
 
-        <ItemCardHead>
-
-          {view.show_date && <ItemCardDate />}
-          {view.show_kind && <ItemCardKind />}
-
-        </ItemCardHead>
-
-        <ItemCardMain featured={item.featured}>
+        <ItemCardMain>
 
           <ItemCardMeat>
             
-            {!item.thumbnail && <ItemCardIcon />}
+            <ItemCardIcon />
             <ItemCardTitle />
 
           </ItemCardMeat>

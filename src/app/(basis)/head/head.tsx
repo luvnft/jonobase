@@ -11,17 +11,18 @@ import { getImageURL } from '../util/func'
 import Skip from '../a11y/skip'
 import Menu from './menu'
 import { getBase } from '../util/data'
+import { ChildrenProps } from '../util/types'
 
 export default async function Head() {
 
   const { app, lang } = await getBase()
   const icon = getImageURL(app.collectionId, app.id, app.icon)
 
-  const HeadFullWidthWrapper = ({children}: any) => {
+  const HeadFullWidthWrapper = ({children}: ChildrenProps) => {
     return (
       <header 
         className={`head-fullwidth-wrapper
-          w-full sticky top-0 z-10
+          w-full sticky top-0 z-40
           bg-black bg-gradient-to-t from-black to-gray-700 
           text-white drop-shadow-xl`
       }>
@@ -30,7 +31,7 @@ export default async function Head() {
     )
   }
 
-  const HeadWrapper = ({children}: any) => {
+  const HeadWrapper = ({children}: ChildrenProps) => {
     return (
       <section 
         className={`head-wrapper
@@ -41,7 +42,7 @@ export default async function Head() {
     )
   }
 
-  const HeadBrand = ({children}: any) => {
+  const HeadBrand = ({children}: ChildrenProps) => {
     return (
       <div className={`head-brand
         flex flex-row 
@@ -51,7 +52,7 @@ export default async function Head() {
     )
   }
 
-  const HeadBrandLink = ({children}: any) => {
+  const HeadBrandLink = ({children}: ChildrenProps) => {
 
     return (
       <Link 
@@ -103,11 +104,12 @@ export default async function Head() {
     )
   }
 
-  const HeadMenuWrapper = ({children}: any) => {
+  const HeadMenuWrapper = ({children}: ChildrenProps) => {
     return (
       <div 
         className={`head-menu-wrapper
-          whitespace-nowrap flex flex-row gap-5
+          whitespace-nowrap 
+          flex flex-row gap-5 items-center
         `}
       >
         {children}

@@ -6,7 +6,12 @@ jonobase
 results count
 */
 
-export const LoopCount = ({label, resultsCount}: any) => {    
+interface LoopCountProps {
+  label: string,
+  resultsCount: number,
+}
+
+export const LoopCount = ({label, resultsCount}: LoopCountProps) => {    
   return (
     <aside className={`loop-count text-sm`}>
       {label} : {resultsCount}

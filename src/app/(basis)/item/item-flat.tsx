@@ -13,8 +13,9 @@ jonobase
 import Link from "next/link"
 import { Span, Paragraph, FeaturedIcon } from "@/app/(basis)/util/tidy-html"
 import { getFormattedDate } from "@/app/(basis)/util/func"
+import { ItemProps } from "../util/types"
 
-export default function ItemFlat({item, lang, view} : any) {
+export default function ItemFlat({item, lang, view} : ItemProps) {
 
   let itemDate = getFormattedDate(item.created, view.show_time)
 

@@ -9,7 +9,12 @@ import { getFormattedDateTime } from "@/app/(basis)/util/func"
 import { SuperFlex, Paragraph } from "@/app/(basis)/util/tidy-html"
 import Link from "next/link"
 
-export default function PostHead({lang, post}: any) {
+interface PostHeadProps {
+  lang: { [x: string]: string},
+  post: any,
+}
+
+export default function PostHead({lang, post}: PostHeadProps) {
 
   const PostHeadMeta = () => {
 
@@ -82,7 +87,7 @@ export default function PostHead({lang, post}: any) {
               {getFormattedDateTime(post.updated)}
             </div>
           </SuperFlex>
-        }    
+        }
 
         <SuperFlex
           orientation="col"
@@ -93,7 +98,7 @@ export default function PostHead({lang, post}: any) {
         >
           <div className={`font-light`}>
             {`${lang.published} `} 
-          </div>          
+          </div>
           <div className={`font-semibold`}>
             {getFormattedDateTime(post.created)}
           </div> 

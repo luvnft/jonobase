@@ -9,8 +9,9 @@ jonobase
 
 import Link from "next/link"
 import { Span } from "@/app/(basis)/util/tidy-html"
+import { ItemProps } from "../util/types"
 
-export default function ItemNull({item} : any) {
+export default function ItemNull({item} : ItemProps) {
 
   const ItemNullTitle = () => {
     return (
@@ -19,7 +20,7 @@ export default function ItemNull({item} : any) {
           hover:underline text-2xl
         `}
       > 
-        {item.title}
+        {item.emoji} {item.title}
       </Span>
     )
   }
@@ -35,9 +36,9 @@ export default function ItemNull({item} : any) {
     >
 
       <Link 
-        href={href} 
-        target={target}
         className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
+        href={href} 
+        target={target}        
       >
         <ItemNullTitle />
       </Link>

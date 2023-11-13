@@ -13,6 +13,7 @@ import { LoopCount } from '@/app/(basis)/loop/loop-count'
 import ViewShow from './view/view-show'
 import NotFound from '@/app/not-found'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
+import { ParamsProps } from './util/types'
 
 export async function generateMetadata() {
 
@@ -23,7 +24,20 @@ export async function generateMetadata() {
   }
 }
 
-export default async function Main({ params }: any) {
+interface MainProps {
+  params: ParamsProps
+}
+
+interface ViewProps {
+  find: string, 
+  kind: string, 
+  list: string,
+  limit: number,
+  id: string,
+  order: 'asc' | 'desc'
+}
+
+export default async function Main({ params }: MainProps) {
 
   const { lang } = await getBase()
   const { app: home } = await getHomePage()
@@ -39,8 +53,8 @@ export default async function Main({ params }: any) {
   if (take.public_name === '') return (<NotFound />)
 
   const viewLoop = async () => {
-    const promises = views.map( async (view : any) => {
-      const { find, kind, list, limit, id, order } = view
+    const promises = views.map( async (view : ViewProps) => {
+      const { find, kind, list, limit, id, order } = view      
       const { items } = await getPosts(find, kind, list, 1, limit, order)
       return { id, view, items }
     })
@@ -66,6 +80,7 @@ export default async function Main({ params }: any) {
             site={take.public_name}
             lang={lang}
             params={params}
+            current={1}
           />
           <LoopCount
             label={lang.posts}

@@ -11,18 +11,25 @@ essential site navigation
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
 
-export default function MenuFind({lang, showMenu, inputName}: any) {
+interface MenuFindProps {
+  lang: { [x: string]: string },
+  showMenu?: (arg: boolean) => void,
+  inputName: string,
+  placeholder: string,
+}
+
+export default function MenuFind({lang, showMenu, inputName, placeholder = '🔎'}: MenuFindProps) {
 
   const [ searchTerm, setSearchTerm ] = useState('')
   const router = useRouter()
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>): void => {
     event.preventDefault()
     router.push(`/finds/${decodeURIComponent(searchTerm)}`)
     showMenu && showMenu(false)
   }
 
-  const handleSearchChange = (event: any) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault()
     setSearchTerm(event.target.value)
   }
@@ -44,7 +51,7 @@ export default function MenuFind({lang, showMenu, inputName}: any) {
             border-black dark:bg-black
             border-gray-800 dark:border-gray-600
             text-black dark:text-white`}
-          placeholder={`🔎 ${lang.search}`}
+          placeholder={placeholder}
           onChange={handleSearchChange}
         />
         <input 

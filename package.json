@@ -18,6 +18,7 @@
     "pocketbase": "^0.19.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hotkeys-hook": "^4.4.1",
     "react-markdown": "^9.0.0",
     "rehype-raw": "^7.0.0",
     "utf-8-validate": "^6.0.3"

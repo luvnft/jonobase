@@ -9,6 +9,12 @@ essential component for the app's footer
 import { sanitize } from 'isomorphic-dompurify'
 import { getBase } from '@/app/(basis)/util/data'
 import { getThemeLink, getTheme, getProse } from '../util/func'
+import { ChildrenProps } from '../util/types'
+
+interface TailProps {
+  children: React.ReactNode | React.ReactNode[],
+  className?: string
+}
 
 export default async function Tail() {
 
@@ -26,7 +32,7 @@ export default async function Tail() {
     ? sanitize(app.footer_extra, { ADD_ATTR: ['target']})
     : ''
 
-  const TailFullWidthWrapper = ({children, className}: any) => {
+  const TailFullWidthWrapper = ({children, className}: TailProps) => {
     return (
       <footer className={`tail-full-wrapper
         ${getThemeLink(app.theme)}
@@ -43,7 +49,7 @@ export default async function Tail() {
     )
   }
 
-  const TailWrapper = ({children}: any) => {
+  const TailWrapper = ({children}: ChildrenProps) => {
     return (
       <section 
         className={`tail-wrapper 

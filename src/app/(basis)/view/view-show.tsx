@@ -9,8 +9,17 @@ import { SectionDiv, SuperFlex } from "../util/tidy-html"
 import { LoopShow } from "../loop/loop-show"
 import { sanitize } from "isomorphic-dompurify"
 import Link from "next/link"
+import { RecordModel } from "pocketbase"
 
-export default async function ViewShow({lang, takeView}: any) {
+interface ViewShowProps {
+  lang: { [x: string]: string},
+  takeView: {
+    view: any,
+    items: RecordModel[]
+  } 
+}
+
+export default async function ViewShow({lang, takeView}: ViewShowProps) {
 
   const { items, view } = takeView
 
@@ -45,7 +54,7 @@ export default async function ViewShow({lang, takeView}: any) {
       {view.message_before && 
         <aside 
           className={`view-section-premsg 
-            ${getProse()} text-center sm:text-left mt-5
+            ${getProse()} text-center sm:text-left my-5
           `}
           dangerouslySetInnerHTML={{__html: messageBefore}} 
         />
@@ -62,7 +71,7 @@ export default async function ViewShow({lang, takeView}: any) {
       {view.message_after && 
         <aside 
           className={`view-section-postmsg
-            ${getProse()} text-center sm:text-left mt-5
+            ${getProse()} text-center sm:text-left mb-5
           `} 
           dangerouslySetInnerHTML={{__html: messageAfter}}
         />
@@ -71,7 +80,7 @@ export default async function ViewShow({lang, takeView}: any) {
       {view.cta_url &&
         <SuperFlex
           className={`view-section-cta
-            w-full
+            w-full mt-5
           `}
           justify="center"
           items="center"
@@ -88,6 +97,5 @@ export default async function ViewShow({lang, takeView}: any) {
 
     </SectionDiv>
   )
-
 
 }

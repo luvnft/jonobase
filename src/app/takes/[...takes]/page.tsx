@@ -13,10 +13,11 @@ import { LoopCount } from '@/app/(basis)/loop/loop-count'
 import ViewShow from '@/app/(basis)/view/view-show'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
 import NotFound from '@/app/not-found'
+import { PageProps } from '@/app/(basis)/util/types'
 
 export async function generateMetadata({
   params
-}: any) {
+}: PageProps) {
 
   const { app } = await getBase()
   const { take } = await getTake(params.takes)
@@ -26,9 +27,9 @@ export async function generateMetadata({
   }
 }
 
-export default async function Main({ params }: any) {
+export default async function Main({ params }: PageProps) {
 
-  const { app, lang } = await getBase()
+  const { lang } = await getBase()
 
   /* the total of all the site's published post counts */
   const resultsCount = await getUnpagedPostsCount('', '', '')
@@ -63,6 +64,7 @@ export default async function Main({ params }: any) {
             site={take.public_name}
             lang={lang}
             params={params}
+            current={1}
           />          
           <LoopCount 
             label={lang.posts}

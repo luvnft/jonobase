@@ -15,26 +15,27 @@ import LoopTurn from '@/app/(basis)/loop/loop-turn'
 import MenuFind from '@/app/(basis)/head/menu-find'
 import NotFound from '@/app/not-found'
 import { SectionDiv } from '@/app/(basis)/util/tidy-html'
+import { PageProps } from '@/app/(basis)/util/types'
 
 export async function generateMetadata({
   params, 
   searchParams,
-}: any) {
+}: PageProps) {
 
   const {app, lang} = await getBase() 
   const { finds } = params
-  const page  = searchParams.p || 1
+  const page  = searchParams?.p || 1
   
   return {
     title: `      
       ${finds ?? 'all'} 
       (${lang.page}: ${page})
       @ ${app.title}
-    `
+    `    
   }
 }
 
-export default async function Main({ params, searchParams }: any) {
+export default async function Main({ params, searchParams }: PageProps) {
 
   const { finds } = params
   const { p: pageNumber, l } = searchParams
@@ -44,7 +45,7 @@ export default async function Main({ params, searchParams }: any) {
   const { app, lang } = await getBase()
   const postsPerPage = isNaN(l) ? app.find_list_limit : l
   
-  // reject any non-numeric injections in the URL bar
+  // reject all non-numeric injections in the URL bar
   if (
     (isNaN(pageNumber) && isNaN(postsPerPage)) &&
     (pageNumber !== undefined || postsPerPage !== undefined)) {
@@ -91,13 +92,21 @@ export default async function Main({ params, searchParams }: any) {
 
       <SectionDiv className={`page-finds-find`}>
 
-        <MenuFind lang={lang} inputName={`search-in-finds`} />
+        <MenuFind 
+          lang={lang} 
+          inputName={`search-in-finds`} 
+          placeholder={`🔎 ${lang.search}`} 
+        />
 
       </SectionDiv>
 
       <SectionDiv className={`page-finds-loop bg-zinc-50 dark:bg-zinc-950`}>
         
-        <LoopShow items={items} lang={lang} view={view} />
+        <LoopShow 
+          items={items} 
+          lang={lang} 
+          view={view} 
+        />
 
       </SectionDiv>
 

@@ -5,12 +5,14 @@ jonobase
 "mini" style of list item
 - shows emoji as a non-link
 - shows title as a link
+- shows summary as a span
 */
 
 import Link from "next/link"
-import { Span } from "@/app/(basis)/util/tidy-html"
+import { Span, Paragraph } from "@/app/(basis)/util/tidy-html"
+import { ItemProps } from "../util/types"
 
-export default function ItemMini({item} : any) {
+export default function ItemMini({item} : ItemProps) {  
 
   const ItemMiniEmoji = () => {
     return (
@@ -37,6 +39,21 @@ export default function ItemMini({item} : any) {
     )
   }
 
+  const ItemMiniSummary = () => {
+    return (
+      <Paragraph 
+        className={`item-mini-summary
+          text-md my-0
+        `}
+      >
+        {item.summary}
+      </Paragraph>
+    )
+  }
+
+  const href = item.url ? item.url : `/posts/${item.slug}`
+  const target = item.url_newtab ? '_blank' : ''
+
   return (
     <li 
       className={`item-mini
@@ -47,11 +64,14 @@ export default function ItemMini({item} : any) {
       <ItemMiniEmoji />
 
       <Link 
-        href={`/posts/${item.slug}`} 
         className={`${item.featured && `hover:!text-black dark:hover:!text-white`}`}
+        href={href} 
+        target={target}        
       >
         <ItemMiniTitle />
       </Link>
+
+      <ItemMiniSummary />
 
     </li>
   )

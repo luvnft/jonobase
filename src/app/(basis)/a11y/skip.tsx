@@ -8,9 +8,11 @@ un-hides before the header by pressing shift+tab
 
 'use client'
 
+import { FC } from "react"
 import Link from "next/link"
+import { TextProps } from "../util/types"
 
-export default function Skip({ text } : any) {
+const Skip: FC<TextProps> = ({ text }: TextProps) => {
 
   const handleSkip = () => {
     document.getElementsByTagName("main")[0].focus()
@@ -30,3 +32,5 @@ export default function Skip({ text } : any) {
     </Link>
   )
 }
+
+export default Skip
